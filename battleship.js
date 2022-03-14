@@ -18,8 +18,11 @@ const ship = (shipLength) => {
 
 const gameBoard = () => {
   const boardArray = [];
-  for (i = 0; i < 100; i++) {
-    boardArray.push([]);
+  for (i = 0, n = 0; i < 100; i++, n++) {
+    if (n === 10) {
+      n = 0;
+    }
+    boardArray.push([n]);
   }
   const ships = {
     carrier: ship(5),

@@ -22,13 +22,13 @@ test('isSunk method returns "deth" when shipArray contains all 1s', () => {
 test('placeShip function adds ship information to indicated array index', () => {
   const testBoard = gameBoard();
   testBoard.placeShip(testBoard.ships.destroyer, 0, 0);
-  expect(testBoard.boardArray[0]).toEqual([testBoard.ships.destroyer]);
+  expect(testBoard.boardArray[0]).toEqual([0, testBoard.ships.destroyer]);
 });
 
 test('placeShip function adds ship information to all indexes it should occupy with vertical orientation', () => {
   const testBoard = gameBoard();
   testBoard.placeShip(testBoard.ships.destroyer, 0, 0);
-  expect(testBoard.boardArray[0] && testBoard.boardArray[10] && testBoard.boardArray[20]).toEqual([testBoard.ships.destroyer]);
+  expect(testBoard.boardArray[0] && testBoard.boardArray[10] && testBoard.boardArray[20]).toEqual([0, testBoard.ships.destroyer]);
 });
 
 test('placeShip throws an error if a carrier would be placed out of bounds in vertical orientation', () => {

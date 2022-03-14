@@ -49,6 +49,4 @@ const gameBoard = () => {
   return { boardArray, ships, placeShip }
 };
 
-const playerBoard = gameBoard();
-
-module.exports = { ship, gameBoard, playerBoard };
+module.exports = { gameBoard };

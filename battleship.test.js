@@ -1,5 +1,4 @@
-//ship factory function tests
-const { ship, gameBoard } = require('./battleship');
+const { gameBoard } = require('./battleship');
 
 test('shipArray is declared with quantity of indexes equivalent to argument, and contains only 0s', () => {
   const testBoard = gameBoard();

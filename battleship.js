@@ -29,9 +29,15 @@ const gameBoard = () => {
     patrolboat: ship(2)
   };
   const placeShip = (shipType, orientation, location) => {
-    if (shipType.shipArray.length >= 3 && location > 79) {
-      return 'Error!';
-    }
+    if (shipType.shipArray.length >= 5 && location > 59) {
+      throw 'Out of bounds!'
+    } else if (shipType.shipArray.length >= 4 && location > 69) {
+      throw 'Out of bounds!'
+    } else if (shipType.shipArray.length >= 3 && location > 79) {
+      throw 'Out of bounds!'
+    } else if (shipType.shipArray.length >= 2 && location > 89) {
+      throw 'Out of bounds!'
+    } 
     if (orientation === 0) {
       let n = -10;
       for (i = 0; i < shipType.shipArray.length; i++) {
@@ -43,4 +49,6 @@ const gameBoard = () => {
   return { boardArray, ships, placeShip }
 };
 
-module.exports = { ship, gameBoard };
+const playerBoard = gameBoard();
+
+module.exports = { ship, gameBoard, playerBoard };

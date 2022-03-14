@@ -19,6 +19,11 @@ test('isSunk method returns "deth" when shipArray contains all 1s', () => {
   expect(testBoard.ships.destroyer.isSunk()).toBe('deth');
 });
 
+test('receiveAttack function detects correct index based on provided coordinates', () => {
+  const testBoard = gameBoard();
+  expect(testBoard.receiveAttack(0, 2)).toEqual(20);
+})
+
 test('placeShip function adds ship information to indicated beginning index with vertical orientation', () => {
   const testBoard = gameBoard();
   testBoard.placeShip(testBoard.ships.destroyer, 0, 0);

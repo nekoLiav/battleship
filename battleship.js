@@ -88,9 +88,15 @@ const gameBoard = () => {
       }
     }
   };
-  const receiveAttack = () => {
-  }
-  return { boardArray, ships, placeShip }
+  const receiveAttack = (x, y) => {
+    let coords = [x, y];
+    for (i = 0; i < boardArray.length; i++) {
+      if (boardArray[i][0] == coords[0] && boardArray[i][1] == coords[1]) {
+        return(i);
+      }
+    }
+  };
+  return { boardArray, ships, placeShip, receiveAttack }
 };
 
 module.exports = { gameBoard };

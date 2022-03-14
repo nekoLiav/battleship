@@ -22,31 +22,37 @@ test('isSunk method returns "deth" when shipArray contains all 1s', () => {
 test('placeShip function adds ship information to indicated beginning index with vertical orientation', () => {
   const testBoard = gameBoard();
   testBoard.placeShip(testBoard.ships.destroyer, 0, 0);
-  expect(testBoard.boardArray[0]).toEqual([0, testBoard.ships.destroyer]);
+  expect(testBoard.boardArray[0]).toEqual([0, 0, testBoard.ships.destroyer]);
+});
+
+test('placeShip function adds ship information to all indexes it should occupy with vertical orientation (1)', () => {
+  const testBoard = gameBoard();
+  testBoard.placeShip(testBoard.ships.destroyer, 0, 0);
+  expect(testBoard.boardArray[10]).toEqual([0, 1, testBoard.ships.destroyer]);
+});
+
+test('placeShip function adds ship information to all indexes it should occupy with vertical orientation (2)', () => {
+  const testBoard = gameBoard();
+  testBoard.placeShip(testBoard.ships.destroyer, 0, 0);
+  expect(testBoard.boardArray[20]).toEqual([0, 2, testBoard.ships.destroyer]);
 });
 
 test('placeShip function adds ship information to indicated beginning index with horizontal orientation', () => {
   const testBoard = gameBoard();
   testBoard.placeShip(testBoard.ships.destroyer, 1, 0);
-  expect(testBoard.boardArray[0]).toEqual([0, testBoard.ships.destroyer]);
+  expect(testBoard.boardArray[0]).toEqual([0, 0, testBoard.ships.destroyer]);
 });
 
 test('placeShip function adds ship information to all indexes it should occupy with horizontal orientation (1)', () => {
   const testBoard = gameBoard();
   testBoard.placeShip(testBoard.ships.destroyer, 1, 0);
-  expect(testBoard.boardArray[1]).toEqual([1, testBoard.ships.destroyer]);
+  expect(testBoard.boardArray[1]).toEqual([1, 0, testBoard.ships.destroyer]);
 });
 
 test('placeShip function adds ship information to all indexes it should occupy with horizontal orientation(2)', () => {
   const testBoard = gameBoard();
   testBoard.placeShip(testBoard.ships.destroyer, 1, 0);
-  expect(testBoard.boardArray[2]).toEqual([2, testBoard.ships.destroyer]);
-});
-
-test('placeShip function adds ship information to all indexes it should occupy with vertical orientation', () => {
-  const testBoard = gameBoard();
-  testBoard.placeShip(testBoard.ships.destroyer, 0, 0);
-  expect(testBoard.boardArray[0] && testBoard.boardArray[10] && testBoard.boardArray[20]).toEqual([0, testBoard.ships.destroyer]);
+  expect(testBoard.boardArray[2]).toEqual([2, 0, testBoard.ships.destroyer]);
 });
 
 test('placeShip throws an error if a carrier would be placed out of bounds in vertical orientation', () => {
@@ -87,7 +93,7 @@ test('placeShip throws an error if a destroyer would be placed out of bounds in 
 test('placeShip throws an error if a destroyer would be placed out of bounds in horizontal orientation', () => {
   const testBoard = gameBoard();
   expect(() => {
-    testBoard.placeShip(testBoard.ships.destroyer, 1, 7);
+    testBoard.placeShip(testBoard.ships.destroyer, 1, 8);
   }).toThrow();
 });
 

@@ -4,7 +4,7 @@ const ship = (shipLength) => {
   const shipArray = [];
   for (i = 0; i < shipLength; i++) {
     shipArray.push(0);
-  };
+  }
   // flips the index to a one upon hit detection
   // n parameter indicates index hit
   // - 1 is for zero based indexing correction
@@ -18,7 +18,7 @@ const ship = (shipLength) => {
       (prev, cur) => prev + cur);
       if (shipHitsArray === shipArray.length) {
         return 'deth';
-      };
+      }
   };
   return { shipArray, hit, isSunk }
 };
@@ -55,19 +55,19 @@ const gameBoard = () => {
     } else if (shipType.shipArray.length >= 2 && 
       location > 89 || boardArray[location][0] >= 9) {
       throw 'Out of bounds!';
-    };
+    }
     // orientation of 0 indicates vertical placement
     if (orientation === 0) {
       for (i = 0, n = 0; i < shipType.shipArray.length; i++, n += 10) {
           boardArray[location + n].push(shipType);
-      };
-    };
+      }
+    }
     // orientation of 1 indicates horizontal placement
     if (orientation === 1) {
       for (i = 0; i < shipType.shipArray.length; i++) {
-        boardArray[location + i].push(shipType);
+        boardArray[location += i].push(shipType);
       }
-    };
+    }
   };
   return { boardArray, ships, placeShip }
 };

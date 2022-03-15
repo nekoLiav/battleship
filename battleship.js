@@ -30,25 +30,7 @@ const gameBoard = () => {
   for (i = 0, x = 0, y = 0; i < 100; i++, x++) {
     if (x === 10) {
       x = 0;
-    }
-    if (i === 90) {
-      y = 9;
-    } else if (i === 80) {
-      y = 8;
-    } else if (i === 70) {
-      y = 7;
-    } else if (i === 60) {
-      y = 6;
-    } else if (i === 50) {
-      y = 5;
-    } else if (i === 40) {
-      y = 4;
-    } else if (i === 30) {
-      y = 3;
-    } else if (i === 20) {
-      y = 2;
-    } else if (i === 10) {
-      y = 1;
+      y += 1;
     }
     boardArray.push([x, y]);
   }
@@ -88,6 +70,7 @@ const gameBoard = () => {
       }
     }
   };
+  // accepts two coordinates and targets the associated boardArray index
   const receiveAttack = (x, y) => {
     let coords = [x, y];
     for (i = 0; i < boardArray.length; i++) {

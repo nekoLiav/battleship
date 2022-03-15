@@ -88,9 +88,20 @@ const gameBoard = () => {
           ships.patrolboat.hit(boardArray[i][4]);
         }
       }
-    } 
+    } endGameHandler();
   };
-  return { boardArray, ships, placeShip, receiveAttack }
+  const endGameHandler = () => {
+    if (
+      ships.carrier.isSunk() === 'deth' &&
+      ships.carrier.isSunk() === 'deth' &&
+      ships.carrier.isSunk() === 'deth' &&
+      ships.carrier.isSunk() === 'deth' &&
+      ships.carrier.isSunk() === 'deth'
+    ) {
+      return('Game over!');
+    }
+  };
+  return { boardArray, ships, placeShip, receiveAttack, endGameHandler }
 };
 
 module.exports = { gameBoard };

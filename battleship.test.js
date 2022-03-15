@@ -151,3 +151,25 @@ test('placeShip throws an error if a patrol boat would be placed out of bounds i
     testBoard.placeShip(testBoard.ships.patrolboat, 1, 9);
   }).toThrow();
 });
+
+test('bulky function to confirm endgame state is detected properly', () => {
+  const testBoard = gameBoard();
+  testBoard.ships.carrier.hit(0);
+  testBoard.ships.carrier.hit(1);
+  testBoard.ships.carrier.hit(2);
+  testBoard.ships.carrier.hit(3);
+  testBoard.ships.carrier.hit(4);
+  testBoard.ships.battleship.hit(0);
+  testBoard.ships.battleship.hit(1);
+  testBoard.ships.battleship.hit(2);
+  testBoard.ships.battleship.hit(3);
+  testBoard.ships.destroyer.hit(0);
+  testBoard.ships.destroyer.hit(1);
+  testBoard.ships.destroyer.hit(2);
+  testBoard.ships.submarine.hit(0);
+  testBoard.ships.submarine.hit(1);
+  testBoard.ships.submarine.hit(2);
+  testBoard.ships.patrolboat.hit(0);
+  testBoard.ships.patrolboat.hit(1);
+  expect(testBoard.endGameHandler()).toEqual('Game over!')
+});

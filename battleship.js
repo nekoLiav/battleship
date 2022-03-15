@@ -9,7 +9,7 @@ const ship = (shipLength, shipType) => {
   const hit = (n) => {
     shipArray[n] = 1;
   };
-  // If the length of the array is equal to the sum of its elements,
+  // If the sum of the array's elements is equal to its length,
   // this implies that it is filled with 1s, or fully 'hit'
   const isSunk = () => {
     const shipHitsArray = shipArray.reduce(

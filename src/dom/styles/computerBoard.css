@@ -1,0 +1,18 @@
+#computercontainer {
+  border: 1px solid #999999;
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 500px;
+}
+
+.computersquare {
+  border: 1px solid #999999;
+  box-sizing: border-box;
+  height: 10%;
+  width: 10%;
+}
+
+.computersquare:hover {
+  background-color: #555555;
+}

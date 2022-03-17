@@ -1,23 +1,4 @@
-import { gameBoard } from '../battleship/gameBoard';
-
-test('shipArray is declared with quantity of indexes equivalent to argument, and contains only 0s', () => {
-  const testBoard = gameBoard();
-  expect(testBoard.ships.destroyer.shipArray).toEqual([0, 0, 0]);
-});
-
-test('hit method affects shipArray correctly by flipping the index of parameter to a 1', () => {
-  const testBoard = gameBoard();
-  testBoard.ships.destroyer.hit(0);
-  expect(testBoard.ships.destroyer.shipArray).toEqual([1, 0, 0]);
-});
-
-test('isSunk method returns "deth" when shipArray contains all 1s', () => {
-  const testBoard = gameBoard();
-  testBoard.ships.destroyer.hit(0);
-  testBoard.ships.destroyer.hit(1);
-  testBoard.ships.destroyer.hit(2);
-  expect(testBoard.ships.destroyer.isSunk()).toBe('deth');
-});
+import { gameBoard } from '../game/gameBoard';
 
 test('receiveAttack function targets correct boardArray index based on provided coordinates', () => {
   const testBoard = gameBoard();

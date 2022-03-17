@@ -1,3 +1,5 @@
+import { boardContainer } from "./boards";
+
 export default function playerBoard() {
   const playerBoardContainer = document.createElement('div');
   playerBoardContainer.id = 'playercontainer';
@@ -8,6 +10,5 @@ export default function playerBoard() {
     playerBoardSquare.className = 'playersquare';
     playerBoardContainer.appendChild(playerBoardSquare);
   }
-  const boardContainer = document.getElementById('boardcontainer');
   boardContainer.appendChild(playerBoardContainer);
 }

@@ -13,7 +13,7 @@ const ship = (shipLength, shipType) => {
   // this implies that it is filled with 1s, or fully 'hit'
   const isSunk = () => {
     const shipHitsArray = shipArray.reduce(
-      (prev, cur) => prev + cur);
+      (acc, cur) => acc + cur);
       if (shipHitsArray === shipArray.length) {
         return 'deth';
       }

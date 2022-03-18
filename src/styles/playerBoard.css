@@ -1,4 +1,4 @@
-#playercontainer {
+#playerboard {
   border: 1px solid #999999;
   display: flex;
   flex-wrap: wrap;
@@ -11,6 +11,14 @@
   box-sizing: border-box;
   height: 10%;
   width: 10%;
+}
+
+.occupied {
+  border: 1px solid #999999;
+  box-sizing: border-box;
+  height: 10%;
+  width: 10%;
+  background-color: #999999;
 }
 
 .playersquare:hover {

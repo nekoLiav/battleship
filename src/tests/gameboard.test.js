@@ -1,4 +1,4 @@
-import { gameBoard } from '../game/gameBoard';
+import { gameBoard } from "../logic/gameBoard";
 
 test('receiveAttack function targets correct boardArray index based on provided coordinates', () => {
   const testBoard = gameBoard();
@@ -61,76 +61,6 @@ test('placeShip function adds ship information to all indexes it should occupy w
   const testBoard = gameBoard();
   testBoard.placeShip(testBoard.ships.destroyer, 1, 0);
   expect(testBoard.boardArray[2]).toEqual([2, 0, 0, 'destroyer', 2]);
-});
-
-test('placeShip throws an error if a carrier would be placed out of bounds in vertical orientation', () => {
-  const testBoard = gameBoard();
-  expect(() => {
-    testBoard.placeShip(testBoard.ships.carrier, 0, 60);
-  }).toThrow();
-});
-
-test('placeShip throws an error if a carrier would be placed out of bounds in horizontal orientation', () => {
-  const testBoard = gameBoard();
-  expect(() => {
-    testBoard.placeShip(testBoard.ships.carrier, 1, 6);
-  }).toThrow();
-});
-
-test('placeShip throws an error if a battleship would be placed out of bounds in vertical orientation', () => {
-  const testBoard = gameBoard();
-  expect(() => {
-    testBoard.placeShip(testBoard.ships.battleship, 0, 70);
-  }).toThrow();
-});
-
-test('placeShip throws an error if a battleship would be placed out of bounds in horizontal orientation', () => {
-  const testBoard = gameBoard();
-  expect(() => {
-    testBoard.placeShip(testBoard.ships.battleship, 1, 7);
-  }).toThrow();
-});
-
-test('placeShip throws an error if a destroyer would be placed out of bounds in vertical orientation', () => {
-  const testBoard = gameBoard();
-  expect(() => {
-    testBoard.placeShip(testBoard.ships.destroyer, 0, 80);
-  }).toThrow();
-});
-
-test('placeShip throws an error if a destroyer would be placed out of bounds in horizontal orientation', () => {
-  const testBoard = gameBoard();
-  expect(() => {
-    testBoard.placeShip(testBoard.ships.destroyer, 1, 8);
-  }).toThrow();
-});
-
-test('placeShip throws an error if a submarine would be placed out of bounds in vertical orientation', () => {
-  const testBoard = gameBoard();
-  expect(() => {
-    testBoard.placeShip(testBoard.ships.submarine, 0, 80);
-  }).toThrow();
-});
-
-test('placeShip throws an error if a submarine would be placed out of bounds in horizontal orientation', () => {
-  const testBoard = gameBoard();
-  expect(() => {
-    testBoard.placeShip(testBoard.ships.submarine, 1, 8);
-  }).toThrow();
-});
-
-test('placeShip throws an error if a patrol boat would be placed out of bounds in vertical orientation', () => {
-  const testBoard = gameBoard();
-  expect(() => {
-    testBoard.placeShip(testBoard.ships.patrolboat, 0, 90);
-  }).toThrow();
-});
-
-test('placeShip throws an error if a patrol boat would be placed out of bounds in horizontal orientation', () => {
-  const testBoard = gameBoard();
-  expect (() => {
-    testBoard.placeShip(testBoard.ships.patrolboat, 1, 9);
-  }).toThrow();
 });
 
 test('bulky function to confirm endgame state is detected properly', () => {

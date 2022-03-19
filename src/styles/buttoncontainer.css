@@ -1,0 +1,8 @@
+#buttoncontainer {
+  display: flex;
+  justify-content: center;
+}
+
+#randombutton {
+  height: 50px;
+}

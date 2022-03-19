@@ -1,3 +1,6 @@
+import random from "./random";
+import { player, computer } from './players';
+
 export default function listeners() {
 
   const boardContainer = document.getElementById('boardcontainer');
@@ -12,5 +15,23 @@ export default function listeners() {
       computer.receiveAttack(coordX, coordY);
       console.log(computer.ships.destroyer.shipArray);
     }
+  });
+
+  const randomButton = document.getElementById('randombutton');
+
+  const checkSquares = document.getElementsByClassName('playersquare');
+
+  randomButton.addEventListener('click', () => {
+    random(player.ships.carrier);
+    random(player.ships.battleship);
+    random(player.ships.destroyer);
+    random(player.ships.submarine);
+    random(player.ships.patrolboat);
+    for (let i = 0; i < 100; i++) {
+      if (player.boardArray[i][4] >= 0) {
+        checkSquares[i].classList.add('occupied');
+      }
+    }
+    console.log(player.boardArray);
   });
 }

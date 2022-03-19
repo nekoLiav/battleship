@@ -1,4 +1,4 @@
-import { gameBoard } from "../logic/gameBoard";
+import { gameBoard } from "../scripts/gameBoard";
 
 test('receiveAttack function targets correct boardArray index based on provided coordinates', () => {
   const testBoard = gameBoard();

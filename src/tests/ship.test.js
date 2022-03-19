@@ -1,4 +1,4 @@
-import { ship } from '../logic/ship'
+import { ship } from '../scripts/ship'
 
 test('ships are created with an array containing quantity of indexes equal to first argument, populated with 0', () => {
   const destroyer = ship(3, 'destroyer');

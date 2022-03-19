@@ -1,8 +1,4 @@
-import '../styles/index.css';
-import '../styles/content.css';
-import '../styles/boards.css';
-import '../styles/playerBoard.css';
-import '../styles/computerBoard.css';
+import random from "./random";
 
 export default function pageSetup () {
 
@@ -39,6 +35,15 @@ export default function pageSetup () {
 
   boardContainer.appendChild(playerBoard);
 
+  const buttonContainer = document.createElement('div');
+  buttonContainer.id = 'buttoncontainer';
+ boardContainer.appendChild(buttonContainer);
+
+  const randomButton = document.createElement('button');
+  randomButton.id = 'randombutton';
+  randomButton.textContent = 'Random';
+  buttonContainer.appendChild(randomButton);
+
   // identical to player board setup
   const computerBoard = document.createElement('div');
   computerBoard.id = 'computerboard';
@@ -56,5 +61,5 @@ export default function pageSetup () {
   }
   
   boardContainer.appendChild(computerBoard);
-
+  
 }

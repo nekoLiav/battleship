@@ -19,7 +19,6 @@ const gameBoard = () => {
     submarine: ship(3, 'submarine'),
     patrolboat: ship(2, 'patrol boat')
   };
-  // This if/else block detects invalid/out of bounds ship placements
   const placeShip = (ship, orientation, x, y) => {
     let locationXY = [x, y];
     let locationIndex = 0;
@@ -28,16 +27,16 @@ const gameBoard = () => {
         locationIndex = i;
       }
     }
-    // Orientation of 0 indicates vertical placement
+    // Orientation of 0 indicates horizontal placement
     if (orientation === 0) {
-      for (let i = 0, n = 0; i < ship.shipArray.length; i++, n += 10) {
-          boardArray[locationIndex + n].push(ship.type, i);
-      }
-    }
-    // Orientation of 1 indicates horizontal placement
-    if (orientation === 1) {
       for (let i = 0; i < ship.shipArray.length; i++) {
         boardArray[locationIndex + i].push(ship.type, i);
+      }
+    }
+    // Orientation of 1 indicates vertical placement
+    if (orientation === 1) {
+      for (let i = 0, n = 0; i < ship.shipArray.length; i++, n += 10) {
+          boardArray[locationIndex + n].push(ship.type, i);
       }
     }
   };

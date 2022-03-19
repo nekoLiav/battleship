@@ -22,16 +22,20 @@ export default function listeners() {
   const checkSquares = document.getElementsByClassName('playersquare');
 
   randomButton.addEventListener('click', () => {
+    for (let i = 0; i < 100; i++) {
+      player.boardArray[i].splice(3, 4);
+    }
     random(player.ships.carrier);
     random(player.ships.battleship);
     random(player.ships.destroyer);
     random(player.ships.submarine);
     random(player.ships.patrolboat);
     for (let i = 0; i < 100; i++) {
-      if (player.boardArray[i][4] >= 0) {
+      if (player.boardArray[i].length > 3) {
         checkSquares[i].classList.add('occupied');
+      } else {
+        checkSquares[i].classList.remove('occupied');
       }
     }
-    console.log(player.boardArray);
   });
 }

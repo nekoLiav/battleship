@@ -4,31 +4,17 @@
   flex-wrap: wrap;
   width: 500px;
   height: 500px;
+  border-radius: 10px;
 }
 
 .playersquare {
   border: 1px solid #999999;
   box-sizing: border-box;
-  height: 10%;
   width: 10%;
-}
-
-.occupied {
-  border: 1px solid #999999;
-  box-sizing: border-box;
   height: 10%;
-  width: 10%;
-  background-color: #999999;
+  border-radius: 10px;
 }
 
 .playersquare:hover {
   background-color: #555555;
-}
-
-.hit {
-  background-color: #FF5733;
-}
-
-.miss {
-  background-color: #FFBD33;
 }

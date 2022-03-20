@@ -11,14 +11,6 @@ export default function listeners() {
     let coordX = e.target.getAttribute('data-x');
     let coordY = e.target.getAttribute('data-y');
 
-    if (e.target.parentNode.id === 'playerboard') {
-      if (players.player.boardArray[e.target.getAttribute('data-i')].length > 3) {
-        e.target.classList.add('hit');
-      } else {
-        e.target.classList.add('miss');
-      }
-    }
-
     if (e.target.parentNode.id === 'computerboard') {
       if (players.computer.boardArray[e.target.getAttribute('data-i')].length > 3) {
         e.target.classList.add('hit');
@@ -27,9 +19,7 @@ export default function listeners() {
       }
     }
 
-    if (e.target.parentNode.id === 'playerboard') {
-      players.player.receiveAttack(coordX, coordY);
-    } else if (e.target.parentNode.id === 'computerboard') {
+    if (e.target.parentNode.id === 'computerboard') {
       players.computer.receiveAttack(coordX, coordY);
     }
 

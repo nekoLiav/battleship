@@ -1,9 +1,10 @@
-#computerboard{
+#computerboard {
   border: 1px solid #999999;
   display: flex;
   flex-wrap: wrap;
   width: 500px;
   height: 500px;
+  border-radius: 10px;
 }
 
 .computersquare {
@@ -11,6 +12,7 @@
   box-sizing: border-box;
   height: 10%;
   width: 10%;
+  border-radius: 10px;
 }
 
 .computersquare:hover {

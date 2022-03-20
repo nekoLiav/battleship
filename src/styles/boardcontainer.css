@@ -1,0 +1,22 @@
+#boardcontainer {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 50px;
+}
+
+.occupied {
+  border: 1px solid #999999;
+  box-sizing: border-box;
+  height: 10%;
+  width: 10%;
+  background-color: #999999;
+}
+
+.hit {
+  background-color: #FF5733 !important;
+}
+
+.miss {
+  background-color: #FFBD33 !important;
+}

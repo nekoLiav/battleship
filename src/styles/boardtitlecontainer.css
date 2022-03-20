@@ -1,0 +1,15 @@
+#boardtitlecontainer {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+#playerboardtitle {
+  width: 500px;
+  text-align: center;
+}
+
+#computerboardtitle {
+  width: 500px;
+  text-align: center;
+}

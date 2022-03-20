@@ -75,5 +75,6 @@ export default function listeners() {
     startButton.style.display = 'block';
     randomButton.style.display = 'block';
     restartButton.style.display = 'none';
+    computerOverlay.style.display = 'block';
   });
 }

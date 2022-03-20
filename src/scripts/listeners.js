@@ -1,41 +1,40 @@
 import random from "./random";
-import { player, computer } from './players';
+import { players } from './players';
+import { ships } from "./ships";
 
 export default function listeners() {
 
   const boardContainer = document.getElementById('boardcontainer');
+  const randomButton = document.getElementById('randombutton');
+  const checkSquares = document.getElementsByClassName('playersquare');
 
   boardContainer.addEventListener('click', (e) => {
     let coordX = e.target.getAttribute('data-x');
     let coordY = e.target.getAttribute('data-y');
-    if (e.target.parentNode.id === 'playercontainer') {
-      player.receiveAttack(coordX, coordY);
-      console.log(player.ships.destroyer.shipArray);
-    } else if (e.target.parentNode.id === 'computercontainer') {
-      computer.receiveAttack(coordX, coordY);
-      console.log(computer.ships.destroyer.shipArray);
+    if (e.target.parentNode.id === 'playerboard') {
+      players.player.receiveAttack(coordX, coordY);
+      console.log(players.player.boardArray);
+    } else if (e.target.parentNode.id === 'computerboard') {
+      players.computer.receiveAttack(coordX, coordY);
     }
   });
 
-  const randomButton = document.getElementById('randombutton');
-
-  const checkSquares = document.getElementsByClassName('playersquare');
-
   randomButton.addEventListener('click', () => {
     for (let i = 0; i < 100; i++) {
-      player.boardArray[i].splice(3, 4);
+      players.player.boardArray[i].splice(3, 4);
     }
-    random(player.ships.carrier);
-    random(player.ships.battleship);
-    random(player.ships.destroyer);
-    random(player.ships.submarine);
-    random(player.ships.patrolboat);
+    random(ships.carrier, players.player);
+    random(ships.battleship, players.player);
+    random(ships.destroyer, players.player);
+    random(ships.submarine, players.player);
+    random(ships.patrolboat, players.player);
     for (let i = 0; i < 100; i++) {
-      if (player.boardArray[i].length > 3) {
+      if (players.player.boardArray[i].length > 3) {
         checkSquares[i].classList.add('occupied');
       } else {
         checkSquares[i].classList.remove('occupied');
       }
     }
   });
+
 }

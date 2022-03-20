@@ -1,8 +1,7 @@
-import listeners from "./listeners";
-
+import init from "./init";
 
 export default function game() {
 
-  listeners();
+  init();
 
 }

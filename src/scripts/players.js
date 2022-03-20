@@ -1,6 +1,8 @@
-import { gameBoard } from "./gameBoard";
+import { gameBoardFactory } from "./gameBoardFactory";
 
-const player = gameBoard();
-const computer = gameBoard();
+const players = {
+  player: gameBoardFactory(),
+  computer: gameBoardFactory(),
+}
 
-export { player, computer };
+export { players };

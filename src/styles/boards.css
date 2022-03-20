@@ -5,12 +5,10 @@
 }
 
 #playerboard {
-  border: 1px solid #999999;
   display: flex;
   flex-wrap: wrap;
   width: 500px;
   height: 500px;
-  border-radius: 10px;
 }
 
 .playersquare {
@@ -26,12 +24,10 @@
 }
 
 #computerboard {
-  border: 1px solid #999999;
   display: flex;
   flex-wrap: wrap;
   width: 500px;
   height: 500px;
-  border-radius: 10px;
 }
 
 .computersquare {
@@ -51,6 +47,22 @@
   width: 500px;
   height: 500px;
   background-color: rgba(100, 100, 100, 0.5);
+}
+
+#boardtitlecontainer {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+#playerboardtitle {
+  width: 500px;
+  text-align: center;
+}
+
+#computerboardtitle {
+  width: 500px;
+  text-align: center;
 }
 
 .occupied {

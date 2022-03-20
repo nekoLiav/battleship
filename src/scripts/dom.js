@@ -14,6 +14,13 @@ export default function dom () {
   const computerOverlay = document.createElement('div');
   const startButton = document.createElement('button');
   const restartButton = document.createElement('button');
+  const gameStatusContainer = document.createElement('div');
+  const playerStatus = document.createElement('div');
+  const computerStatus = document.createElement('div');
+  const playerHit = document.createElement('p');
+  const playerMiss = document.createElement('p');
+  const computerHit = document.createElement('p');
+  const computerMiss = document.createElement('p');
 
   content.id = 'content';
   boardContainer.id = 'boardcontainer'; 
@@ -22,7 +29,7 @@ export default function dom () {
   playerBoardTitle.textContent = 'PLAYER';
   buttonContainer.id = 'buttoncontainer';
   randomButton.id = 'randombutton';
-  randomButton.textContent = 'RANDOM SHIPS';
+  randomButton.textContent = 'PLACE SHIPS';
   computerBoard.id = 'computerboard';
   computerBoardTitle.id = 'computerboardtitle';
   computerBoardTitle.textContent = 'COMPUTER'
@@ -36,7 +43,24 @@ export default function dom () {
   restartButton.id = 'restartbutton';
   restartButton.textContent = 'RESTART GAME';
   restartButton.style.display = 'none';
+  gameStatusContainer.id = "gamestatuscontainer";
+  playerStatus.id = 'playerstatus';
+  computerStatus.id = 'computerstatus';
+  playerHit.id = 'playerhit';
+  playerHit.textContent = 'Player Hits: ';
+  playerMiss.id = 'playermiss';
+  playerMiss.textContent = 'Player Misses: ';
+  computerHit.id = 'computerhit';
+  computerHit.textContent = 'Computer Hits: ';
+  computerMiss.id = 'computermiss';
+  computerMiss.textContent = 'Computer Misses: ';
 
+  playerStatus.appendChild(playerHit);
+  playerStatus.appendChild(playerMiss);
+  computerStatus.appendChild(computerHit);
+  computerStatus.appendChild(computerMiss);
+  gameStatusContainer.appendChild(playerStatus);
+  gameStatusContainer.appendChild(computerStatus);
   boardTitleContainer.appendChild(playerBoardTitle);
   boardTitleContainer.appendChild(computerBoardTitle);
   boardContainer.appendChild(playerBoard);
@@ -50,6 +74,7 @@ export default function dom () {
   content.appendChild(boardTitleContainer);
   content.appendChild(boardContainer);
   content.appendChild(buttonContainer);
+  content.appendChild(gameStatusContainer);
 
   for (let i = 0, x = 0, y = 0; i < 100; i++, x++) {
     if (x === 10) {

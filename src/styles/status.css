@@ -1,0 +1,13 @@
+#gamestatuscontainer {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+#playerstatus {
+  width: 500px;
+}
+
+#computerstatus {
+  width: 500px;
+}

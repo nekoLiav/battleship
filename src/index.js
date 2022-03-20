@@ -1,11 +1,11 @@
 import dom from './scripts/dom';
-import game from './scripts/game';
+import init from './scripts/init';
 import './styles/index.css';
 import './styles/content.css';
 import './styles/titlebar.css';
-import './styles/boardtitlecontainer.css';
-import './styles/boardcontainer.css';
-import './styles/buttoncontainer.css';
+import './styles/boards.css';
+import './styles/buttons.css';
+import './styles/status.css';
 
 dom();
-game();
+init();

@@ -1,3 +1,5 @@
+import { ships } from "./ships";
+
 const gameBoardFactory = () => {
 
   const boardArray = [];
@@ -49,7 +51,7 @@ const gameBoardFactory = () => {
           ships.patrolboat.hit(boardArray[i][4]);
         }
       }
-    } endGameHandler();
+    }
   };
 
   return { boardArray, placeShip, receiveAttack }

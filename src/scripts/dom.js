@@ -27,6 +27,7 @@ export default function dom () {
       y += 1;
     }
     const playerSquare = document.createElement('div');
+    playerSquare.dataset.i = i;
     playerSquare.dataset.x = x;
     playerSquare.dataset.y = y;
     playerSquare.className = 'playersquare';
@@ -39,6 +40,7 @@ export default function dom () {
       y += 1;
     }
     const computerSquare = document.createElement('div');
+    computerSquare.dataset.i = i;
     computerSquare.dataset.x = x;
     computerSquare.dataset.y = y;
     computerSquare.className = 'computersquare';

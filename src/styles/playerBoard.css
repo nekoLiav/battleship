@@ -24,3 +24,11 @@
 .playersquare:hover {
   background-color: #555555;
 }
+
+.hit {
+  background-color: #FF5733;
+}
+
+.miss {
+  background-color: #FFBD33;
+}

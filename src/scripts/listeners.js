@@ -1,40 +1,39 @@
-import random from "./random";
+import init from './init';
 import { players } from './players';
-import { ships } from "./ships";
 
 export default function listeners() {
 
   const boardContainer = document.getElementById('boardcontainer');
   const randomButton = document.getElementById('randombutton');
-  const checkSquares = document.getElementsByClassName('playersquare');
 
   boardContainer.addEventListener('click', (e) => {
+
     let coordX = e.target.getAttribute('data-x');
     let coordY = e.target.getAttribute('data-y');
+
+    if (e.target.parentNode.id === 'playerboard') {
+      if (players.player.boardArray[e.target.getAttribute('data-i')].length > 3) {
+        e.target.classList.add('hit');
+      } else {
+        e.target.classList.add('miss');
+      }
+    }
+
+    if (e.target.parentNode.id === 'computerboard') {
+      if (players.computer.boardArray[e.target.getAttribute('data-i')].length > 3) {
+        e.target.classList.add('hit');
+      } else {
+        e.target.classList.add('miss');
+      }
+    }
+
     if (e.target.parentNode.id === 'playerboard') {
       players.player.receiveAttack(coordX, coordY);
-      console.log(players.player.boardArray);
     } else if (e.target.parentNode.id === 'computerboard') {
       players.computer.receiveAttack(coordX, coordY);
     }
+
   });
 
-  randomButton.addEventListener('click', () => {
-    for (let i = 0; i < 100; i++) {
-      players.player.boardArray[i].splice(3, 4);
-    }
-    random(ships.carrier, players.player);
-    random(ships.battleship, players.player);
-    random(ships.destroyer, players.player);
-    random(ships.submarine, players.player);
-    random(ships.patrolboat, players.player);
-    for (let i = 0; i < 100; i++) {
-      if (players.player.boardArray[i].length > 3) {
-        checkSquares[i].classList.add('occupied');
-      } else {
-        checkSquares[i].classList.remove('occupied');
-      }
-    }
-  });
-
+  randomButton.addEventListener('click', init);
 }

@@ -1,8 +1,11 @@
 #buttoncontainer {
   display: flex;
   justify-content: center;
+  margin-top: 30px;
 }
 
 #randombutton {
+  width: 100px;
   height: 50px;
+  font-family: 'Bungee', Arial, Helvetica, sans-serif;
 }

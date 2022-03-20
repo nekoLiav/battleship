@@ -11,7 +11,7 @@ export default function dom () {
   const buttonContainer = document.createElement('div');
   const randomButton = document.createElement('button');
   const computerBoard = document.createElement('div');
-  const overlay = document.createElement('div');
+  const computerOverlay = document.createElement('div');
 
   content.id = 'content';
   boardContainer.id = 'boardcontainer'; 
@@ -20,11 +20,11 @@ export default function dom () {
   playerBoardTitle.textContent = 'PLAYER';
   buttonContainer.id = 'buttoncontainer';
   randomButton.id = 'randombutton';
-  randomButton.textContent = 'Random';
+  randomButton.textContent = 'RANDOM SHIPS';
   computerBoard.id = 'computerboard';
   computerBoardTitle.id = 'computerboardtitle';
   computerBoardTitle.textContent = 'COMPUTER'
-  overlay.id = 'overlay';
+  computerOverlay.id = 'computeroverlay';
   titlebar.id = 'titlebar';
   title.id = 'title';
   title.textContent = 'BATTLESHIP';
@@ -35,12 +35,12 @@ export default function dom () {
   boardContainer.appendChild(playerBoard);
   buttonContainer.appendChild(randomButton);
   boardContainer.appendChild(computerBoard);
-  computerBoard.appendChild(overlay);
+  computerBoard.appendChild(computerOverlay);
   titlebar.appendChild(title);
   content.appendChild(titlebar);
   content.appendChild(boardTitleContainer);
-  content.appendChild(buttonContainer);
   content.appendChild(boardContainer);
+  content.appendChild(buttonContainer);
 
   for (let i = 0, x = 0, y = 0; i < 100; i++, x++) {
     if (x === 10) {

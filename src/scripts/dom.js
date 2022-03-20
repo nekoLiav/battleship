@@ -12,6 +12,8 @@ export default function dom () {
   const randomButton = document.createElement('button');
   const computerBoard = document.createElement('div');
   const computerOverlay = document.createElement('div');
+  const startButton = document.createElement('button');
+  const restartButton = document.createElement('button');
 
   content.id = 'content';
   boardContainer.id = 'boardcontainer'; 
@@ -29,11 +31,18 @@ export default function dom () {
   title.id = 'title';
   title.textContent = 'BATTLESHIP';
   boardTitleContainer.id = 'boardtitlecontainer';
+  startButton.id = 'startbutton';
+  startButton.textContent = 'START GAME';
+  restartButton.id = 'restartbutton';
+  restartButton.textContent = 'RESTART GAME';
+  restartButton.style.display = 'none';
 
   boardTitleContainer.appendChild(playerBoardTitle);
   boardTitleContainer.appendChild(computerBoardTitle);
   boardContainer.appendChild(playerBoard);
+  buttonContainer.appendChild(startButton);
   buttonContainer.appendChild(randomButton);
+  buttonContainer.appendChild(restartButton);
   boardContainer.appendChild(computerBoard);
   computerBoard.appendChild(computerOverlay);
   titlebar.appendChild(title);

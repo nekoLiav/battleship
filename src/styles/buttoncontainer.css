@@ -2,9 +2,22 @@
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  gap: 50px;
+}
+
+#startbutton {
+  width: 100px;
+  height: 50px;
+  font-family: 'Bungee', Arial, Helvetica, sans-serif;
 }
 
 #randombutton {
+  width: 100px;
+  height: 50px;
+  font-family: 'Bungee', Arial, Helvetica, sans-serif;
+}
+
+#restartbutton {
   width: 100px;
   height: 50px;
   font-family: 'Bungee', Arial, Helvetica, sans-serif;

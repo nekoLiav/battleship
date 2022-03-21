@@ -22,7 +22,7 @@ const gameBoardFactory = (name) => {
     patrolboat: shipFactory(2, 'patrol boat', owner),
   };
 
-  const placeShip = (ship, orientation, x, y, owner) => {
+  const placeShip = (ship, orientation, x, y) => {
     let locationXY = [x, y];
     let locationIndex = 0;
     for (let i = 0; i < boardArray.length; i++) {
@@ -33,13 +33,13 @@ const gameBoardFactory = (name) => {
     // orientation of 0 indicates horizontal placement
     if (orientation === 0) {
       for (let i = 0; i < ship.shipArray.length; i++) {
-        boardArray[locationIndex + i].push(ship.type, i, owner);
+        boardArray[locationIndex + i].push(ship.type, i);
       }
     }
     // orientation of 1 indicates vertical placement
     if (orientation === 1) {
       for (let i = 0, n = 0; i < ship.shipArray.length; i++, n += 10) {
-          boardArray[locationIndex + n].push(ship.type, i, owner);
+          boardArray[locationIndex + n].push(ship.type, i);
       }
     }
   };

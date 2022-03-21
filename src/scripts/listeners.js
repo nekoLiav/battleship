@@ -13,7 +13,6 @@ export default function listeners() {
   const restartButton = document.getElementById('restartbutton');
   const computerOverlay = document.getElementById('computeroverlay')
   const checkSquaresPlayer = document.getElementsByClassName('playersquare');
-  const checkSquaresComputer = document.getElementsByClassName('computersquare');
   const computerHit = document.getElementById('computerhit');
   const computerMiss = document.getElementById('computermiss');
 
@@ -23,6 +22,7 @@ export default function listeners() {
     if (e.target.parentNode.id === 'computerboard') {
       if (players.computer.boardArray[e.target.getAttribute('data-i')][2] === 0) {
         players.computer.receiveAttack(coordX, coordY);
+        console.log(players.computer.boardArray);
         game();
         if (players.computer.boardArray[e.target.getAttribute('data-i')].length > 3) {
           e.target.classList.add('hit');
@@ -52,12 +52,7 @@ export default function listeners() {
 
   randomButton.addEventListener('click', () => {
     shipsPlaced = 1;
-    for (let i = 0; i < 100; i++) {
-      players.player.boardArray[i].splice(3, 4);
-      players.computer.boardArray[i].splice(3, 4);
-      checkSquaresPlayer[i].classList.remove('occupied', 'hit', 'miss');
-      checkSquaresComputer[i].classList.remove('hit', 'miss');
-    }
+    reset();
     random(players.player.boardShips.carrier, players.player);
     random(players.player.boardShips.battleship, players.player);
     random(players.player.boardShips.destroyer, players.player);
@@ -76,16 +71,11 @@ export default function listeners() {
   });
 
   restartButton.addEventListener('click', () => {
-    shipsPlaced = 0;
-    for (let i = 0; i < 100; i++) {
-      players.player.boardArray[i].splice(3, 4);
-      players.computer.boardArray[i].splice(3, 4);
-      checkSquaresPlayer[i].classList.remove('occupied', 'hit', 'miss');
-      checkSquaresComputer[i].classList.remove('hit', 'miss');
-    }
     startButton.style.display = 'block';
     randomButton.style.display = 'block';
     restartButton.style.display = 'none';
     computerOverlay.style.display = 'block';
+    shipsPlaced = 0;
+    reset();
   });
 }

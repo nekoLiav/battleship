@@ -22,7 +22,6 @@ export default function listeners() {
     if (e.target.parentNode.id === 'computerboard') {
       if (players.computer.boardArray[e.target.getAttribute('data-i')][2] === 0) {
         players.computer.receiveAttack(coordX, coordY);
-        console.log(players.computer.boardArray);
         game();
         if (players.computer.boardArray[e.target.getAttribute('data-i')].length > 3) {
           e.target.classList.add('hit');

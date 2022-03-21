@@ -1,4 +1,6 @@
-const shipFactory = (shipLength, shipType) => {
+const shipFactory = (shipLength, shipType, shipOwner) => {
+
+  const owner = shipOwner;
 
   const type = shipType;
 
@@ -9,18 +11,17 @@ const shipFactory = (shipLength, shipType) => {
 
   const hit = (n) => {
     shipArray[n] = 1;
-    isSunk();
   };
   // if the sum of all ship array elements are equal to its length, it is sunk
   const isSunk = () => {
     const shipHitsArray = shipArray.reduce(
       (acc, cur) => acc + cur);
       if (shipHitsArray === shipArray.length) {
-        console.log('You sunk my ' + shipType + '!');
+        return true;
       }
   };
 
-  return { type, shipArray, hit, isSunk }
+  return { owner, type, shipArray, hit, isSunk }
   
 };
 

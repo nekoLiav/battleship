@@ -1,8 +1,8 @@
 import { gameBoardFactory } from "./gameBoardFactory";
 
 const players = {
-  player: gameBoardFactory(),
-  computer: gameBoardFactory(),
+  player: gameBoardFactory('player'),
+  computer: gameBoardFactory('computer'),
 }
 
 export { players };

@@ -47,13 +47,13 @@ export default function dom () {
   playerStatus.id = 'playerstatus';
   computerStatus.id = 'computerstatus';
   playerHit.id = 'playerhit';
-  playerHit.textContent = 'Player Hits: ';
+  playerHit.textContent = 'PLAYER BOARD HITS: ' + 0;
   playerMiss.id = 'playermiss';
-  playerMiss.textContent = 'Player Misses: ';
+  playerMiss.textContent = 'PLAYER BOARD MISSES: ' + 0;
   computerHit.id = 'computerhit';
-  computerHit.textContent = 'Computer Hits: ';
+  computerHit.textContent = 'COMPUTER BOARD HITS: ' + 0;
   computerMiss.id = 'computermiss';
-  computerMiss.textContent = 'Computer Misses: ';
+  computerMiss.textContent = 'COMPUTER BOARD MISSES: ' + 0;
 
   playerStatus.appendChild(playerHit);
   playerStatus.appendChild(playerMiss);

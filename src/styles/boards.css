@@ -16,11 +16,6 @@
   box-sizing: border-box;
   width: 10%;
   height: 10%;
-  border-radius: 10px;
-}
-
-.playersquare:hover {
-  background-color: #555555;
 }
 
 #computerboard {
@@ -35,7 +30,6 @@
   box-sizing: border-box;
   height: 10%;
   width: 10%;
-  border-radius: 10px;
 }
 
 .computersquare:hover {

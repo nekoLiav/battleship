@@ -4,6 +4,8 @@ const shipFactory = (shipLength, shipType, shipOwner) => {
 
   const type = shipType;
 
+  const length = shipLength;
+
   const shipArray = [];
   for (let i = 0; i < shipLength; i++) {
     shipArray.push(0);
@@ -21,7 +23,7 @@ const shipFactory = (shipLength, shipType, shipOwner) => {
       }
   };
 
-  return { owner, type, shipArray, hit, isSunk }
+  return { owner, type, length, shipArray, hit, isSunk }
   
 };
 

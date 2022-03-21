@@ -1,19 +1,22 @@
-export default function dom () {
+import players from './players';
+import reset from './reset';
+import ai from './ai';
 
+export default function dom() {
   const content = document.createElement('div');
   const titlebar = document.createElement('div');
   const title = document.createElement('h1');
   const boardTitleContainer = document.createElement('div');
   const computerBoardTitle = document.createElement('h2');
   const playerBoardTitle = document.createElement('h2');
-  const boardContainer= document.createElement('div');
+  const boardContainer = document.createElement('div');
   const playerBoard = document.createElement('div');
   const buttonContainer = document.createElement('div');
   const randomButton = document.createElement('button');
   const computerBoard = document.createElement('div');
   const computerOverlay = document.createElement('div');
   const startButton = document.createElement('button');
-  const restartButton = document.createElement('button');
+  const resetButton = document.createElement('button');
   const gameStatusContainer = document.createElement('div');
   const playerStatus = document.createElement('div');
   const computerStatus = document.createElement('div');
@@ -21,9 +24,14 @@ export default function dom () {
   const playerMiss = document.createElement('p');
   const computerHit = document.createElement('p');
   const computerMiss = document.createElement('p');
+  const endGameModal = document.createElement('div');
+  const endGameModalHeader = document.createElement('h2');
+  const endGameModalText = document.createElement('p');
+  const playAgainButton = document.createElement('button');
+  const overlay = document.createElement('div');
 
   content.id = 'content';
-  boardContainer.id = 'boardcontainer'; 
+  boardContainer.id = 'boardcontainer';
   playerBoard.id = 'playerboard';
   playerBoardTitle.id = 'playerboardtitle';
   playerBoardTitle.textContent = 'PLAYER';
@@ -32,7 +40,7 @@ export default function dom () {
   randomButton.textContent = 'PLACE SHIPS';
   computerBoard.id = 'computerboard';
   computerBoardTitle.id = 'computerboardtitle';
-  computerBoardTitle.textContent = 'COMPUTER'
+  computerBoardTitle.textContent = 'COMPUTER';
   computerOverlay.id = 'computeroverlay';
   titlebar.id = 'titlebar';
   title.id = 'title';
@@ -40,68 +48,148 @@ export default function dom () {
   boardTitleContainer.id = 'boardtitlecontainer';
   startButton.id = 'startbutton';
   startButton.textContent = 'START GAME';
-  restartButton.id = 'restartbutton';
-  restartButton.textContent = 'RESTART GAME';
-  restartButton.style.display = 'none';
-  gameStatusContainer.id = "gamestatuscontainer";
+  resetButton.id = 'restartbutton';
+  resetButton.textContent = 'RESTART GAME';
+  resetButton.style.display = 'none';
+  gameStatusContainer.id = 'gamestatuscontainer';
   playerStatus.id = 'playerstatus';
   computerStatus.id = 'computerstatus';
   playerHit.id = 'playerhit';
-  playerHit.textContent = 'PLAYER BOARD HITS: ' + 0;
+  playerHit.textContent = `PLAYER BOARD HITS: ${0}`;
   playerMiss.id = 'playermiss';
-  playerMiss.textContent = 'PLAYER BOARD MISSES: ' + 0;
+  playerMiss.textContent = `PLAYER BOARD MISSES: ${0}`;
   computerHit.id = 'computerhit';
-  computerHit.textContent = 'COMPUTER BOARD HITS: ' + 0;
+  computerHit.textContent = `COMPUTER BOARD HITS: ${0}`;
   computerMiss.id = 'computermiss';
-  computerMiss.textContent = 'COMPUTER BOARD MISSES: ' + 0;
+  computerMiss.textContent = `COMPUTER BOARD MISSES: ${0}`;
+  endGameModal.id = 'endgamemodal';
+  playAgainButton.id = 'playagainbutton';
+  overlay.id = 'overlay';
+  overlay.style.display = 'none';
+  endGameModalHeader.id = 'endgamemodalheader';
+  endGameModalText.id = 'endgamemodaltext';
+  endGameModalText.textContent = 'Would you like to play again?';
+  playAgainButton.textContent = 'PLAY AGAIN';
 
-  playerStatus.appendChild(playerHit);
-  playerStatus.appendChild(playerMiss);
-  computerStatus.appendChild(computerHit);
-  computerStatus.appendChild(computerMiss);
-  gameStatusContainer.appendChild(playerStatus);
-  gameStatusContainer.appendChild(computerStatus);
-  boardTitleContainer.appendChild(playerBoardTitle);
-  boardTitleContainer.appendChild(computerBoardTitle);
-  boardContainer.appendChild(playerBoard);
-  buttonContainer.appendChild(startButton);
-  buttonContainer.appendChild(randomButton);
-  buttonContainer.appendChild(restartButton);
-  boardContainer.appendChild(computerBoard);
-  computerBoard.appendChild(computerOverlay);
-  titlebar.appendChild(title);
-  content.appendChild(titlebar);
-  content.appendChild(boardTitleContainer);
-  content.appendChild(boardContainer);
-  content.appendChild(buttonContainer);
-  content.appendChild(gameStatusContainer);
+  playerStatus.append(
+    playerHit,
+    playerMiss,
+  );
+  computerStatus.append(
+    computerHit,
+    computerMiss,
+  );
+  gameStatusContainer.append(
+    playerStatus,
+    computerStatus,
+  );
+  boardTitleContainer.append(
+    playerBoardTitle,
+    computerBoardTitle,
+  );
+  boardContainer.append(
+    playerBoard,
+    computerBoard,
+  );
+  computerBoard.append(
+    computerOverlay,
+  );
+  buttonContainer.append(
+    startButton,
+    resetButton,
+    randomButton,
+  );
+  titlebar.append(
+    title,
+  );
+  endGameModal.append(
+    endGameModalHeader,
+    endGameModalText,
+    playAgainButton,
+  );
+  overlay.append(
+    endGameModal,
+  );
+  content.append(
+    titlebar,
+    boardTitleContainer,
+    boardContainer,
+    buttonContainer,
+    gameStatusContainer,
+    overlay,
+  );
 
-  for (let i = 0, x = 0, y = 0; i < 100; i++, x++) {
+  for (let i = 0, x = 0, y = 0; i < 100; i += 1, x += 1) {
     if (x === 10) {
       x = 0;
       y += 1;
     }
     const playerSquare = document.createElement('div');
-    playerSquare.dataset.i = i;
-    playerSquare.dataset.x = x;
-    playerSquare.dataset.y = y;
-    playerSquare.className = 'playersquare';
-    playerBoard.appendChild(playerSquare);
-  }
-
-  for (let i = 0, x = 0, y = 0; i < 100; i++, x++) {
-    if (x === 10) {
-      x = 0;
-      y += 1;
-    }
     const computerSquare = document.createElement('div');
+    playerSquare.dataset.i = i;
     computerSquare.dataset.i = i;
+    playerSquare.dataset.x = x;
     computerSquare.dataset.x = x;
+    playerSquare.dataset.y = y;
     computerSquare.dataset.y = y;
+    playerSquare.className = 'playersquare';
     computerSquare.className = 'computersquare';
-    computerBoard.appendChild(computerSquare);
+    playerBoard.append(playerSquare);
+    computerBoard.append(computerSquare);
   }
 
-  document.body.appendChild(content);
-  
+  document.body.append(content);
+
+  boardContainer.addEventListener('click', (e) => {
+    const i = e.target.getAttribute('data-i');
+    if (e.target.parentNode.id === 'computerboard') {
+      if (players.c.boardArray[i][2] === 0) {
+        players.c.receiveAttack(i);
+        ai();
+        const computerSquares = document.getElementsByClassName('computersquare');
+        if (players.c.boardArray[i].length > 3) {
+          computerSquares[i].classList.add('hit');
+        } else {
+          computerSquares[i].classList.add('miss');
+        }
+      }
+    }
+  });
+
+  let resetCheck = 0;
+
+  startButton.addEventListener('click', () => {
+    if (resetCheck === 1) {
+      startButton.style.display = 'none';
+      randomButton.style.display = 'none';
+      resetButton.style.display = 'block';
+      computerOverlay.style.display = 'none';
+    } else {
+      alert('You must place your ships before you start the game!');
+    }
+  });
+
+  resetButton.addEventListener('click', () => {
+    reset();
+    resetCheck = 0;
+    startButton.style.display = 'block';
+    randomButton.style.display = 'block';
+    resetButton.style.display = 'none';
+    computerOverlay.style.display = 'block';
+  });
+
+  randomButton.addEventListener('click', () => {
+    reset();
+    resetCheck = 1;
+  });
+
+  playAgainButton.addEventListener('click', () => {
+    reset();
+    resetCheck = 1;
+    overlay.style.display = 'none';
+    startButton.style.display = 'block';
+    randomButton.style.display = 'block';
+    resetButton.style.display = 'none';
+    computerOverlay.style.display = 'block';
+  });
 }

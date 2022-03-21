@@ -1,8 +1,8 @@
-import { gameBoardFactory } from "./gameBoardFactory";
+import gameBoard from './gameBoard';
 
 const players = {
-  player: gameBoardFactory('player'),
-  computer: gameBoardFactory('computer'),
-}
+  p1: gameBoard('player'),
+  c: gameBoard('computer'),
+};
 
-export { players };
+export default players;

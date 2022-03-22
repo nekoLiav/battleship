@@ -1,7 +1,6 @@
 #boardcontainer {
   display: flex;
-  justify-content: center;
-  gap: 50px;
+  gap: 25px;
   background-color: #1a1a1a;
 }
 
@@ -62,7 +61,7 @@
   box-sizing: border-box;
   height: 10%;
   width: 10%;
-  background-color: #999999;
+  background-color: #555555;
 }
 
 .hit {
@@ -71,4 +70,8 @@
 
 .miss {
   background-color: #FFBD33 !important;
+}
+
+.dropzone {
+  background-color: #999999;
 }

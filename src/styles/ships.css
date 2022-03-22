@@ -1,0 +1,41 @@
+#shipcontainer {
+  width: 250px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.shipSquare {
+  border: 1px solid #999999;
+  background-color: #555555;
+  box-sizing: border-box;
+  width: 50px;
+  height: 50px;
+}
+
+#carrier {
+  display: flex;
+  width: 250px;
+}
+
+#battleship {
+  display: flex;
+  width: 200px;
+}
+
+#destroyer {
+  display: flex;
+  width: 150px;
+}
+
+#submarine {
+  display: flex;
+  width: 150px;
+}
+
+#patrolboat {
+  display: flex;
+  width: 100px;
+}
+

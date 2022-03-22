@@ -6,5 +6,6 @@ import './styles/boards.css';
 import './styles/buttons.css';
 import './styles/status.css';
 import './styles/modal.css';
+import './styles/ships.css';
 
 dom();

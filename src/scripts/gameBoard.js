@@ -9,7 +9,7 @@ export default function gameBoard(name) {
     battleship: ship(4, 'battleship', owner),
     destroyer: ship(3, 'destroyer', owner),
     submarine: ship(3, 'submarine', owner),
-    patrolboat: ship(2, 'patrol boat', owner),
+    patrolboat: ship(2, 'patrolboat', owner),
   };
 
   const placeShip = (shippy, orientation, x, y) => {

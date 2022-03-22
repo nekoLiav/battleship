@@ -31,6 +31,12 @@ export default function dom() {
   const modalText = document.createElement('p');
   const playAgainButton = document.createElement('button');
   const overlay = document.createElement('div');
+  const shipContainer = document.createElement('div');
+  const carrierContainer = document.createElement('div');
+  const battleshipContainer = document.createElement('div');
+  const destroyerContainer = document.createElement('div');
+  const submarineContainer = document.createElement('div');
+  const patrolBoatContainer = document.createElement('div');
 
   content.id = 'content';
   main.id = 'main';
@@ -70,6 +76,22 @@ export default function dom() {
   modalText.id = 'modaltext';
   modalText.textContent = 'Would you like to play again?';
   playAgainButton.textContent = 'PLAY AGAIN';
+  shipContainer.id = 'shipcontainer';
+  carrierContainer.id = 'carrier';
+  carrierContainer.className = 'ship';
+  carrierContainer.setAttribute('draggable', true);
+  battleshipContainer.id = 'battleship';
+  battleshipContainer.className = 'ship';
+  battleshipContainer.setAttribute('draggable', true);
+  destroyerContainer.id = 'destroyer';
+  destroyerContainer.className = 'ship';
+  destroyerContainer.setAttribute('draggable', true);
+  submarineContainer.id = 'submarine';
+  submarineContainer.className = 'ship';
+  submarineContainer.setAttribute('draggable', true);
+  patrolBoatContainer.id = 'patrolboat';
+  patrolBoatContainer.className = 'ship';
+  patrolBoatContainer.setAttribute('draggable', true);
 
   playerStatus.append(
     playerShipsSunk,
@@ -90,6 +112,7 @@ export default function dom() {
     computerBoardTitle,
   );
   boardContainer.append(
+    shipContainer,
     playerBoard,
     computerBoard,
     overlay,
@@ -110,6 +133,13 @@ export default function dom() {
   overlay.append(
     modal,
   );
+  shipContainer.append(
+    carrierContainer,
+    battleshipContainer,
+    destroyerContainer,
+    submarineContainer,
+    patrolBoatContainer,
+  );
   main.append(
     boardTitleContainer,
     boardContainer,
@@ -120,6 +150,36 @@ export default function dom() {
     titlebar,
     main,
   );
+
+  for (let i = 0; i < 5; i += 1) {
+    const shipSquare = document.createElement('div');
+    shipSquare.className = 'shipsquare';
+    carrierContainer.append(shipSquare);
+  }
+
+  for (let i = 0; i < 4; i += 1) {
+    const shipSquare = document.createElement('div');
+    shipSquare.className = 'shipsquare';
+    battleshipContainer.append(shipSquare);
+  }
+
+  for (let i = 0; i < 3; i += 1) {
+    const shipSquare = document.createElement('div');
+    shipSquare.className = 'shipsquare';
+    destroyerContainer.append(shipSquare);
+  }
+
+  for (let i = 0; i < 3; i += 1) {
+    const shipSquare = document.createElement('div');
+    shipSquare.className = 'shipsquare';
+    submarineContainer.append(shipSquare);
+  }
+
+  for (let i = 0; i < 2; i += 1) {
+    const shipSquare = document.createElement('div');
+    shipSquare.className = 'shipsquare';
+    patrolBoatContainer.append(shipSquare);
+  }
 
   for (let i = 0, x = 0, y = 0; i < 100; i += 1, x += 1) {
     if (x === 10) {
@@ -177,7 +237,7 @@ export default function dom() {
   });
 
   resetButton.addEventListener('click', () => {
-    reset();
+    reset('partial');
     resetCheck = 0;
     computerBoard.style.display = 'none';
     computerBoardTitle.style.display = 'none';
@@ -189,12 +249,12 @@ export default function dom() {
   });
 
   randomButton.addEventListener('click', () => {
-    reset(true);
+    reset('full');
     resetCheck = 1;
   });
 
   playAgainButton.addEventListener('click', () => {
-    reset();
+    reset('partial');
     resetCheck = 1;
     computerBoard.style.display = 'none';
     computerBoardTitle.style.display = 'none';
@@ -203,5 +263,57 @@ export default function dom() {
     startButton.style.display = 'block';
     randomButton.style.display = 'block';
     resetButton.style.display = 'none';
+  });
+
+  shipContainer.addEventListener('dragstart', (e) => {
+    e.dataTransfer.setData('text', e.target.id);
+    e.dataTransfer.effectAllowed = 'copy';
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.code === 'KeyR') {
+      console.log(e.target);
+    }
+  });
+
+  playerBoard.addEventListener('dragover', (e) => {
+    e.target.classList.add('draggedover');
+    e.preventDefault();
+  });
+
+  playerBoard.addEventListener('dragenter', (e) => {
+    e.target.classList.add('dropzone');
+    e.preventDefault();
+  });
+
+  playerBoard.addEventListener('dragleave', (e) => {
+    e.target.classList.remove('dropzone');
+    e.preventDefault();
+  });
+
+  playerBoard.addEventListener('drop', (e) => {
+    const data = e.dataTransfer.getData('text');
+    const coordX = parseInt((e.target.getAttribute('data-x')), 10);
+    const coordY = parseInt((e.target.getAttribute('data-y')), 10);
+    switch (data) {
+      case players.p1.ships.carrier.type:
+        players.p1.placeShip(players.p1.ships.carrier, 0, coordX, coordY);
+        break;
+      case players.p1.ships.battleship.type:
+        players.p1.placeShip(players.p1.ships.battleship, 0, coordX, coordY);
+        break;
+      case players.p1.ships.destroyer.type:
+        players.p1.placeShip(players.p1.ships.destroyer, 0, coordX, coordY);
+        break;
+      case players.p1.ships.submarine.type:
+        players.p1.placeShip(players.p1.ships.submarine, 0, coordX, coordY);
+        break;
+      case players.p1.ships.patrolboat.type:
+        players.p1.placeShip(players.p1.ships.patrolboat, 0, coordX, coordY);
+        break;
+      default:
+    }
+    e.target.classList.remove('dropzone');
+    reset('refresh');
   });
 }

@@ -1,7 +1,7 @@
 import players from './players';
 import random from './random';
 
-export default function reset(isFullReset) {
+export default function reset(resetType) {
   const playerSquare = document.getElementsByClassName('playersquare');
   const computerSquare = document.getElementsByClassName('computersquare');
   const playerShipsSunk = document.getElementById('playershipssunk');
@@ -64,9 +64,12 @@ export default function reset(isFullReset) {
     refreshBoardElements();
   };
 
-  resetBoard();
-
-  if (isFullReset === true) {
+  if (resetType === 'full') {
+    resetBoard();
     randomShips();
+  } else if (resetType === 'partial') {
+    resetBoard();
+  } else if (resetType === 'refresh') {
+    refreshBoardElements();
   }
 }

@@ -1,7 +1,7 @@
 import players from './players';
 import random from './random';
 
-export default function reset(type) {
+export default function reset(isFullReset) {
   const playerSquare = document.getElementsByClassName('playersquare');
   const computerSquare = document.getElementsByClassName('computersquare');
   const playerShipsSunk = document.getElementById('playershipssunk');
@@ -53,15 +53,20 @@ export default function reset(type) {
     }
   };
 
-  if (type === 'full') {
+  const resetBoard = () => {
     resetBoardElements();
     resetBoardInfo();
+  };
+
+  const randomShips = () => {
     randomPlayerOneShips();
     randomComputerShips();
     refreshBoardElements();
-  } else {
-    resetBoardElements();
-    resetBoardInfo();
-    refreshBoardElements();
+  };
+
+  resetBoard();
+
+  if (isFullReset === true) {
+    randomShips();
   }
 }

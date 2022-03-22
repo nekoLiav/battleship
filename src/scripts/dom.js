@@ -179,7 +179,7 @@ export default function dom() {
   });
 
   resetButton.addEventListener('click', () => {
-    reset('full');
+    reset();
     resetCheck = 0;
     playerStatus.style.display = 'none';
     computerBoard.style.display = 'none';
@@ -191,13 +191,17 @@ export default function dom() {
   });
 
   randomButton.addEventListener('click', () => {
-    reset();
+    reset(true);
     resetCheck = 1;
   });
 
   playAgainButton.addEventListener('click', () => {
-    reset('full');
+    reset();
     resetCheck = 1;
+    playerStatus.style.display = 'none';
+    computerBoard.style.display = 'none';
+    computerBoardTitle.style.display = 'none';
+    computerStatus.style.display = 'none';
     overlay.style.display = 'none';
     startButton.style.display = 'block';
     randomButton.style.display = 'block';

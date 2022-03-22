@@ -198,6 +198,7 @@ export default function dom() {
     resetCheck = 1;
     computerBoard.style.display = 'none';
     computerBoardTitle.style.display = 'none';
+    gameStatusContainer.style.display = 'none';
     overlay.style.display = 'none';
     startButton.style.display = 'block';
     randomButton.style.display = 'block';

@@ -1,14 +1,26 @@
 import players from './players';
 import random from './random';
 
-export default function reset() {
+export default function reset(type) {
   const playerSquare = document.getElementsByClassName('playersquare');
   const computerSquare = document.getElementsByClassName('computersquare');
+  const playerShipsSunk = document.getElementById('playershipssunk');
+  const playerHit = document.getElementById('playerhit');
+  const playerMiss = document.getElementById('playermiss');
+  const computerShipsSunk = document.getElementById('computershipssunk');
+  const computerHit = document.getElementById('computerhit');
+  const computerMiss = document.getElementById('computermiss');
 
   const resetBoardElements = () => {
     for (let i = 0; i < 100; i += 1) {
       playerSquare[i].classList.remove('occupied', 'hit', 'miss');
       computerSquare[i].classList.remove('hit', 'miss');
+      playerShipsSunk.textContent = 'PLAYER SHIPS SUNK: 0';
+      playerHit.textContent = 'PLAYER BOARD HITS: 0';
+      playerMiss.textContent = 'PLAYER BOARD MISSES: 0';
+      computerShipsSunk.textContent = 'COMPUTER SHIPS SUNK: 0';
+      computerHit.textContent = 'COMPUTER BOARD HITS: 0';
+      computerMiss.textContent = 'COMPUTER BOARD MISSES: 0';
     }
   };
 
@@ -41,9 +53,15 @@ export default function reset() {
     }
   };
 
-  resetBoardElements();
-  resetBoardInfo();
-  randomPlayerOneShips();
-  randomComputerShips();
-  refreshBoardElements();
+  if (type === 'full') {
+    resetBoardElements();
+    resetBoardInfo();
+    randomPlayerOneShips();
+    randomComputerShips();
+    refreshBoardElements();
+  } else {
+    resetBoardElements();
+    resetBoardInfo();
+    refreshBoardElements();
+  }
 }

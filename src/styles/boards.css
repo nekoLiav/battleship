@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   gap: 50px;
+  background-color: #1a1a1a;
 }
 
 #playerboard {
@@ -19,7 +20,7 @@
 }
 
 #computerboard {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   width: 500px;
   height: 500px;
@@ -40,16 +41,18 @@
   display: flex;
   justify-content: center;
   gap: 50px;
+  text-align: center;
 }
 
 #playerboardtitle {
   width: 500px;
-  text-align: center;
+  background-color: #1a1a1a;
 }
 
 #computerboardtitle {
+  display: none;
   width: 500px;
-  text-align: center;
+  background-color: #1a1a1a;
 }
 
 .occupied {

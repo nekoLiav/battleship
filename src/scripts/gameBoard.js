@@ -65,6 +65,24 @@ export default function gameBoard(name) {
     }
   };
 
+  const hitCount = () => {
+    let hitCounter = 0;
+    for (let i = 0; i < 100; i += 1) {
+      if (boardArray[i].length > 3 && boardArray[i][2] === 1) {
+        hitCounter += 1;
+      }
+    } return hitCounter;
+  };
+
+  const missCount = () => {
+    let missCounter = 0;
+    for (let i = 0; i < 100; i += 1) {
+      if (boardArray[i].length === 3 && boardArray[i][2] === 1) {
+        missCounter += 1;
+      }
+    } return missCounter;
+  };
+
   const receiveAttack = (i) => {
     boardArray[i][2] = 1;
     if (boardArray[i][3] === 'carrier') {
@@ -77,7 +95,8 @@ export default function gameBoard(name) {
       ships.submarine.hit(boardArray[i][4]);
     } else if (boardArray[i][3] === 'patrol boat') {
       ships.patrolboat.hit(boardArray[i][4]);
-    } endGame();
+    }
+    endGame();
   };
 
   const populate = () => {
@@ -109,5 +128,7 @@ export default function gameBoard(name) {
     receiveAttack,
     sunkShips,
     clean,
+    hitCount,
+    missCount,
   };
 }

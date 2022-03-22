@@ -5,9 +5,13 @@
 }
 
 #playerstatus {
+  display: none;
   width: 500px;
+  background-color: #1a1a1a;
 }
 
 #computerstatus {
+  display: none;
   width: 500px;
+  background-color: #1a1a1a;
 }

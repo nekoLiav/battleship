@@ -14,14 +14,15 @@ export default function dom() {
   const buttonContainer = document.createElement('div');
   const randomButton = document.createElement('button');
   const computerBoard = document.createElement('div');
-  const computerOverlay = document.createElement('div');
   const startButton = document.createElement('button');
   const resetButton = document.createElement('button');
   const gameStatusContainer = document.createElement('div');
   const playerStatus = document.createElement('div');
   const computerStatus = document.createElement('div');
+  const playerShipsSunk = document.createElement('p');
   const playerHit = document.createElement('p');
   const playerMiss = document.createElement('p');
+  const computerShipsSunk = document.createElement('p');
   const computerHit = document.createElement('p');
   const computerMiss = document.createElement('p');
   const endGameModal = document.createElement('div');
@@ -41,7 +42,6 @@ export default function dom() {
   computerBoard.id = 'computerboard';
   computerBoardTitle.id = 'computerboardtitle';
   computerBoardTitle.textContent = 'COMPUTER';
-  computerOverlay.id = 'computeroverlay';
   titlebar.id = 'titlebar';
   title.id = 'title';
   title.textContent = 'BATTLESHIP';
@@ -55,13 +55,13 @@ export default function dom() {
   playerStatus.id = 'playerstatus';
   computerStatus.id = 'computerstatus';
   playerHit.id = 'playerhit';
-  playerHit.textContent = `PLAYER BOARD HITS: ${0}`;
+  playerHit.textContent = 'PLAYER BOARD HITS: 0';
   playerMiss.id = 'playermiss';
-  playerMiss.textContent = `PLAYER BOARD MISSES: ${0}`;
+  playerMiss.textContent = 'PLAYER BOARD MISSES: 0';
   computerHit.id = 'computerhit';
-  computerHit.textContent = `COMPUTER BOARD HITS: ${0}`;
+  computerHit.textContent = 'COMPUTER BOARD HITS: 0';
   computerMiss.id = 'computermiss';
-  computerMiss.textContent = `COMPUTER BOARD MISSES: ${0}`;
+  computerMiss.textContent = 'COMPUTER BOARD MISSES: 0';
   endGameModal.id = 'endgamemodal';
   playAgainButton.id = 'playagainbutton';
   overlay.id = 'overlay';
@@ -70,12 +70,18 @@ export default function dom() {
   endGameModalText.id = 'endgamemodaltext';
   endGameModalText.textContent = 'Would you like to play again?';
   playAgainButton.textContent = 'PLAY AGAIN';
+  playerShipsSunk.id = 'playershipssunk';
+  playerShipsSunk.textContent = 'PLAYER SHIPS SUNK: 0';
+  computerShipsSunk.id = 'computershipssunk';
+  computerShipsSunk.textContent = 'COMPUTER SHIPS SUNK: 0';
 
   playerStatus.append(
+    playerShipsSunk,
     playerHit,
     playerMiss,
   );
   computerStatus.append(
+    computerShipsSunk,
     computerHit,
     computerMiss,
   );
@@ -90,9 +96,6 @@ export default function dom() {
   boardContainer.append(
     playerBoard,
     computerBoard,
-  );
-  computerBoard.append(
-    computerOverlay,
   );
   buttonContainer.append(
     startButton,
@@ -154,28 +157,37 @@ export default function dom() {
         }
       }
     }
+    computerShipsSunk.textContent = `COMPUTER SHIPS SUNK: ${players.c.sunkShips()}`;
+    computerHit.textContent = `COMPUTER BOARD HITS: ${players.c.hitCount()}`;
+    computerMiss.textContent = `COMPUTER BOARD MISSES: ${players.c.missCount()}`;
   });
 
   let resetCheck = 0;
 
   startButton.addEventListener('click', () => {
     if (resetCheck === 1) {
+      playerStatus.style.display = 'block';
+      computerBoard.style.display = 'flex';
+      computerBoardTitle.style.display = 'block';
+      computerStatus.style.display = 'block';
       startButton.style.display = 'none';
       randomButton.style.display = 'none';
       resetButton.style.display = 'block';
-      computerOverlay.style.display = 'none';
     } else {
       alert('You must place your ships before you start the game!');
     }
   });
 
   resetButton.addEventListener('click', () => {
-    reset();
+    reset('full');
     resetCheck = 0;
+    playerStatus.style.display = 'none';
+    computerBoard.style.display = 'none';
+    computerBoardTitle.style.display = 'none';
+    computerStatus.style.display = 'none';
     startButton.style.display = 'block';
     randomButton.style.display = 'block';
     resetButton.style.display = 'none';
-    computerOverlay.style.display = 'block';
   });
 
   randomButton.addEventListener('click', () => {
@@ -184,12 +196,11 @@ export default function dom() {
   });
 
   playAgainButton.addEventListener('click', () => {
-    reset();
+    reset('full');
     resetCheck = 1;
     overlay.style.display = 'none';
     startButton.style.display = 'block';
     randomButton.style.display = 'block';
     resetButton.style.display = 'none';
-    computerOverlay.style.display = 'block';
   });
 }

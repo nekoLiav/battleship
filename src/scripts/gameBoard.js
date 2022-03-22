@@ -93,7 +93,7 @@ export default function gameBoard(name) {
       ships.destroyer.hit(boardArray[i][4]);
     } else if (boardArray[i][3] === 'submarine') {
       ships.submarine.hit(boardArray[i][4]);
-    } else if (boardArray[i][3] === 'patrol boat') {
+    } else if (boardArray[i][3] === 'patrolboat') {
       ships.patrolboat.hit(boardArray[i][4]);
     }
     endGame();

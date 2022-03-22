@@ -4,32 +4,17 @@ import ai from './ai';
 
 export default function dom() {
   const content = document.createElement('div');
-  const main = document.createElement('div');
   const titlebar = document.createElement('div');
-  const title = document.createElement('p');
+  const main = document.createElement('div');
   const boardTitleContainer = document.createElement('div');
-  const computerBoardTitle = document.createElement('p');
-  const playerBoardTitle = document.createElement('p');
   const boardContainer = document.createElement('div');
   const playerBoard = document.createElement('div');
-  const buttonContainer = document.createElement('div');
-  const randomButton = document.createElement('button');
   const computerBoard = document.createElement('div');
-  const startButton = document.createElement('button');
-  const resetButton = document.createElement('button');
+  const buttonContainer = document.createElement('div');
   const gameStatusContainer = document.createElement('div');
   const playerStatus = document.createElement('div');
   const computerStatus = document.createElement('div');
-  const playerShipsSunk = document.createElement('p');
-  const playerHit = document.createElement('p');
-  const playerMiss = document.createElement('p');
-  const computerShipsSunk = document.createElement('p');
-  const computerHit = document.createElement('p');
-  const computerMiss = document.createElement('p');
   const modal = document.createElement('div');
-  const modalHeader = document.createElement('p');
-  const modalText = document.createElement('p');
-  const playAgainButton = document.createElement('button');
   const overlay = document.createElement('div');
   const shipContainer = document.createElement('div');
   const carrierContainer = document.createElement('div');
@@ -37,6 +22,21 @@ export default function dom() {
   const destroyerContainer = document.createElement('div');
   const submarineContainer = document.createElement('div');
   const patrolBoatContainer = document.createElement('div');
+  const randomButton = document.createElement('button');
+  const startButton = document.createElement('button');
+  const resetButton = document.createElement('button');
+  const playAgainButton = document.createElement('button');
+  const title = document.createElement('p');
+  const playerBoardTitle = document.createElement('p');
+  const computerBoardTitle = document.createElement('p');
+  const playerShipsSunk = document.createElement('p');
+  const playerHit = document.createElement('p');
+  const playerMiss = document.createElement('p');
+  const computerShipsSunk = document.createElement('p');
+  const computerHit = document.createElement('p');
+  const computerMiss = document.createElement('p');
+  const modalHeader = document.createElement('p');
+  const modalText = document.createElement('p');
 
   content.id = 'content';
   main.id = 'main';
@@ -56,7 +56,7 @@ export default function dom() {
   boardTitleContainer.id = 'boardtitlecontainer';
   startButton.id = 'startbutton';
   startButton.textContent = 'START GAME';
-  resetButton.id = 'restartbutton';
+  resetButton.id = 'resetbutton';
   resetButton.textContent = 'RESET GAME';
   resetButton.style.display = 'none';
   gameStatusContainer.id = 'gamestatuscontainer';
@@ -79,19 +79,14 @@ export default function dom() {
   shipContainer.id = 'shipcontainer';
   carrierContainer.id = 'carrier';
   carrierContainer.className = 'ship';
-  carrierContainer.setAttribute('draggable', true);
   battleshipContainer.id = 'battleship';
   battleshipContainer.className = 'ship';
-  battleshipContainer.setAttribute('draggable', true);
   destroyerContainer.id = 'destroyer';
   destroyerContainer.className = 'ship';
-  destroyerContainer.setAttribute('draggable', true);
   submarineContainer.id = 'submarine';
   submarineContainer.className = 'ship';
-  submarineContainer.setAttribute('draggable', true);
   patrolBoatContainer.id = 'patrolboat';
   patrolBoatContainer.className = 'ship';
-  patrolBoatContainer.setAttribute('draggable', true);
 
   playerStatus.append(
     playerShipsSunk,
@@ -203,16 +198,16 @@ export default function dom() {
   document.body.append(content);
 
   boardContainer.addEventListener('click', (e) => {
-    const i = e.target.getAttribute('data-i');
     if (e.target.parentNode.id === 'computerboard') {
-      if (players.c.boardArray[i][2] === 0) {
-        players.c.receiveAttack(i);
+      const dataIndex = e.target.getAttribute('data-i');
+      if (players.c.boardArray[dataIndex][2] === 0) {
+        players.c.receiveAttack(dataIndex);
         ai();
         const computerSquares = document.getElementsByClassName('computersquare');
-        if (players.c.boardArray[i].length > 3) {
-          computerSquares[i].classList.add('hit');
+        if (players.c.boardArray[dataIndex].length > 3) {
+          computerSquares[dataIndex].classList.add('hit');
         } else {
-          computerSquares[i].classList.add('miss');
+          computerSquares[dataIndex].classList.add('miss');
         }
       }
     }
@@ -221,99 +216,38 @@ export default function dom() {
     computerMiss.textContent = `COMPUTER BOARD MISSES: ${players.c.missCount()}`;
   });
 
-  let resetCheck = 0;
+  shipContainer.addEventListener('click', (e) => {
+    if (e.target.className === 'shipsquare') {
+      const shipSelection = e.target.parentNode;
+      carrierContainer.style.backgroundColor = '#555555';
+      battleshipContainer.style.backgroundColor = '#555555';
+      destroyerContainer.style.backgroundColor = '#555555';
+      submarineContainer.style.backgroundColor = '#555555';
+      patrolBoatContainer.style.backgroundColor = '#555555';
+      shipSelection.style.backgroundColor = '#999999';
+    }
+  });
 
-  startButton.addEventListener('click', () => {
-    if (resetCheck === 1) {
+  buttonContainer.addEventListener('click', (e) => {
+    if (e.target.id === 'startbutton') {
+      shipContainer.style.display = 'none';
       computerBoard.style.display = 'flex';
       computerBoardTitle.style.display = 'block';
       gameStatusContainer.style.display = 'flex';
       startButton.style.display = 'none';
       randomButton.style.display = 'none';
       resetButton.style.display = 'block';
-    } else {
-      alert('You must place your ships before you start the game!');
+    } else if (e.target.id === 'resetbutton' || e.target.id === 'playAgainButton') {
+      reset('partial');
+      shipContainer.style.display = 'flex';
+      computerBoard.style.display = 'none';
+      computerBoardTitle.style.display = 'none';
+      gameStatusContainer.style.display = 'none';
+      startButton.style.display = 'block';
+      randomButton.style.display = 'block';
+      resetButton.style.display = 'none';
+    } else if (e.target.id === 'randombutton') {
+      reset('full');
     }
-  });
-
-  resetButton.addEventListener('click', () => {
-    reset('partial');
-    resetCheck = 0;
-    computerBoard.style.display = 'none';
-    computerBoardTitle.style.display = 'none';
-    gameStatusContainer.style.display = 'none';
-    overlay.style.display = 'none';
-    startButton.style.display = 'block';
-    randomButton.style.display = 'block';
-    resetButton.style.display = 'none';
-  });
-
-  randomButton.addEventListener('click', () => {
-    reset('full');
-    resetCheck = 1;
-  });
-
-  playAgainButton.addEventListener('click', () => {
-    reset('partial');
-    resetCheck = 1;
-    computerBoard.style.display = 'none';
-    computerBoardTitle.style.display = 'none';
-    gameStatusContainer.style.display = 'none';
-    overlay.style.display = 'none';
-    startButton.style.display = 'block';
-    randomButton.style.display = 'block';
-    resetButton.style.display = 'none';
-  });
-
-  shipContainer.addEventListener('dragstart', (e) => {
-    e.dataTransfer.setData('text', e.target.id);
-    e.dataTransfer.effectAllowed = 'copy';
-  });
-
-  window.addEventListener('keydown', (e) => {
-    if (e.code === 'KeyR') {
-      console.log(e.target);
-    }
-  });
-
-  playerBoard.addEventListener('dragover', (e) => {
-    e.target.classList.add('draggedover');
-    e.preventDefault();
-  });
-
-  playerBoard.addEventListener('dragenter', (e) => {
-    e.target.classList.add('dropzone');
-    e.preventDefault();
-  });
-
-  playerBoard.addEventListener('dragleave', (e) => {
-    e.target.classList.remove('dropzone');
-    e.preventDefault();
-  });
-
-  playerBoard.addEventListener('drop', (e) => {
-    const data = e.dataTransfer.getData('text');
-    const coordX = parseInt((e.target.getAttribute('data-x')), 10);
-    const coordY = parseInt((e.target.getAttribute('data-y')), 10);
-    switch (data) {
-      case players.p1.ships.carrier.type:
-        players.p1.placeShip(players.p1.ships.carrier, 0, coordX, coordY);
-        break;
-      case players.p1.ships.battleship.type:
-        players.p1.placeShip(players.p1.ships.battleship, 0, coordX, coordY);
-        break;
-      case players.p1.ships.destroyer.type:
-        players.p1.placeShip(players.p1.ships.destroyer, 0, coordX, coordY);
-        break;
-      case players.p1.ships.submarine.type:
-        players.p1.placeShip(players.p1.ships.submarine, 0, coordX, coordY);
-        break;
-      case players.p1.ships.patrolboat.type:
-        players.p1.placeShip(players.p1.ships.patrolboat, 0, coordX, coordY);
-        break;
-      default:
-    }
-    e.target.classList.remove('dropzone');
-    reset('refresh');
   });
 }

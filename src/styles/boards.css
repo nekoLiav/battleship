@@ -72,6 +72,10 @@
   background-color: #FFBD33 !important;
 }
 
-.dropzone {
-  background-color: #999999;
+.valid {
+  background-color: green;
+}
+
+.invalid {
+  background-color: red;
 }

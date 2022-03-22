@@ -53,13 +53,13 @@ export default function gameBoard(name) {
 
   const endGame = () => {
     const overlay = document.getElementById('overlay');
-    const endGameModalHeader = document.getElementById('endgamemodalheader');
+    const modalHeader = document.getElementById('modalheader');
     if (sunkShips() === 5) {
       if (owner === 'computer') {
-        endGameModalHeader.textContent = 'YOU WIN! (=^_^=)';
+        modalHeader.textContent = 'YOU WIN! (=^_^=)';
         overlay.style.display = 'flex';
       } else if (owner === 'player') {
-        endGameModalHeader.textContent = 'YOU LOSE! <(-_-<)';
+        modalHeader.textContent = 'YOU LOSE! <(-_-<)';
         overlay.style.display = 'flex';
       }
     }

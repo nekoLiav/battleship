@@ -15,12 +15,12 @@ export default function reset(isFullReset) {
     for (let i = 0; i < 100; i += 1) {
       playerSquare[i].classList.remove('occupied', 'hit', 'miss');
       computerSquare[i].classList.remove('hit', 'miss');
-      playerShipsSunk.textContent = 'PLAYER SHIPS SUNK: 0';
-      playerHit.textContent = 'PLAYER BOARD HITS: 0';
-      playerMiss.textContent = 'PLAYER BOARD MISSES: 0';
-      computerShipsSunk.textContent = 'COMPUTER SHIPS SUNK: 0';
-      computerHit.textContent = 'COMPUTER BOARD HITS: 0';
-      computerMiss.textContent = 'COMPUTER BOARD MISSES: 0';
+      playerShipsSunk.textContent = 'SHIPS SUNK: 0';
+      playerHit.textContent = 'BOARD HITS: 0';
+      playerMiss.textContent = 'BOARD MISSES: 0';
+      computerShipsSunk.textContent = 'SHIPS SUNK: 0';
+      computerHit.textContent = 'BOARD HITS: 0';
+      computerMiss.textContent = 'BOARD MISSES: 0';
     }
   };
 

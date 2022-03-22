@@ -4,11 +4,12 @@ import ai from './ai';
 
 export default function dom() {
   const content = document.createElement('div');
+  const main = document.createElement('div');
   const titlebar = document.createElement('div');
-  const title = document.createElement('h1');
+  const title = document.createElement('p');
   const boardTitleContainer = document.createElement('div');
-  const computerBoardTitle = document.createElement('h2');
-  const playerBoardTitle = document.createElement('h2');
+  const computerBoardTitle = document.createElement('p');
+  const playerBoardTitle = document.createElement('p');
   const boardContainer = document.createElement('div');
   const playerBoard = document.createElement('div');
   const buttonContainer = document.createElement('div');
@@ -25,13 +26,14 @@ export default function dom() {
   const computerShipsSunk = document.createElement('p');
   const computerHit = document.createElement('p');
   const computerMiss = document.createElement('p');
-  const endGameModal = document.createElement('div');
-  const endGameModalHeader = document.createElement('h2');
-  const endGameModalText = document.createElement('p');
+  const modal = document.createElement('div');
+  const modalHeader = document.createElement('p');
+  const modalText = document.createElement('p');
   const playAgainButton = document.createElement('button');
   const overlay = document.createElement('div');
 
   content.id = 'content';
+  main.id = 'main';
   boardContainer.id = 'boardcontainer';
   playerBoard.id = 'playerboard';
   playerBoardTitle.id = 'playerboardtitle';
@@ -49,31 +51,25 @@ export default function dom() {
   startButton.id = 'startbutton';
   startButton.textContent = 'START GAME';
   resetButton.id = 'restartbutton';
-  resetButton.textContent = 'RESTART GAME';
+  resetButton.textContent = 'RESET GAME';
   resetButton.style.display = 'none';
   gameStatusContainer.id = 'gamestatuscontainer';
   playerStatus.id = 'playerstatus';
   computerStatus.id = 'computerstatus';
+  playerShipsSunk.id = 'playershipssunk';
   playerHit.id = 'playerhit';
-  playerHit.textContent = 'PLAYER BOARD HITS: 0';
   playerMiss.id = 'playermiss';
-  playerMiss.textContent = 'PLAYER BOARD MISSES: 0';
+  computerShipsSunk.id = 'computershipssunk';
   computerHit.id = 'computerhit';
-  computerHit.textContent = 'COMPUTER BOARD HITS: 0';
   computerMiss.id = 'computermiss';
-  computerMiss.textContent = 'COMPUTER BOARD MISSES: 0';
-  endGameModal.id = 'endgamemodal';
+  modal.id = 'modal';
   playAgainButton.id = 'playagainbutton';
   overlay.id = 'overlay';
   overlay.style.display = 'none';
-  endGameModalHeader.id = 'endgamemodalheader';
-  endGameModalText.id = 'endgamemodaltext';
-  endGameModalText.textContent = 'Would you like to play again?';
+  modalHeader.id = 'modalheader';
+  modalText.id = 'modaltext';
+  modalText.textContent = 'Would you like to play again?';
   playAgainButton.textContent = 'PLAY AGAIN';
-  playerShipsSunk.id = 'playershipssunk';
-  playerShipsSunk.textContent = 'PLAYER SHIPS SUNK: 0';
-  computerShipsSunk.id = 'computershipssunk';
-  computerShipsSunk.textContent = 'COMPUTER SHIPS SUNK: 0';
 
   playerStatus.append(
     playerShipsSunk,
@@ -96,6 +92,7 @@ export default function dom() {
   boardContainer.append(
     playerBoard,
     computerBoard,
+    overlay,
   );
   buttonContainer.append(
     startButton,
@@ -105,21 +102,23 @@ export default function dom() {
   titlebar.append(
     title,
   );
-  endGameModal.append(
-    endGameModalHeader,
-    endGameModalText,
+  modal.append(
+    modalHeader,
+    modalText,
     playAgainButton,
   );
   overlay.append(
-    endGameModal,
+    modal,
+  );
+  main.append(
+    boardTitleContainer,
+    boardContainer,
+    gameStatusContainer,
+    buttonContainer,
   );
   content.append(
     titlebar,
-    boardTitleContainer,
-    boardContainer,
-    buttonContainer,
-    gameStatusContainer,
-    overlay,
+    main,
   );
 
   for (let i = 0, x = 0, y = 0; i < 100; i += 1, x += 1) {
@@ -166,10 +165,9 @@ export default function dom() {
 
   startButton.addEventListener('click', () => {
     if (resetCheck === 1) {
-      playerStatus.style.display = 'block';
       computerBoard.style.display = 'flex';
       computerBoardTitle.style.display = 'block';
-      computerStatus.style.display = 'block';
+      gameStatusContainer.style.display = 'flex';
       startButton.style.display = 'none';
       randomButton.style.display = 'none';
       resetButton.style.display = 'block';
@@ -181,10 +179,10 @@ export default function dom() {
   resetButton.addEventListener('click', () => {
     reset();
     resetCheck = 0;
-    playerStatus.style.display = 'none';
     computerBoard.style.display = 'none';
     computerBoardTitle.style.display = 'none';
-    computerStatus.style.display = 'none';
+    gameStatusContainer.style.display = 'none';
+    overlay.style.display = 'none';
     startButton.style.display = 'block';
     randomButton.style.display = 'block';
     resetButton.style.display = 'none';
@@ -198,10 +196,8 @@ export default function dom() {
   playAgainButton.addEventListener('click', () => {
     reset();
     resetCheck = 1;
-    playerStatus.style.display = 'none';
     computerBoard.style.display = 'none';
     computerBoardTitle.style.display = 'none';
-    computerStatus.style.display = 'none';
     overlay.style.display = 'none';
     startButton.style.display = 'block';
     randomButton.style.display = 'block';

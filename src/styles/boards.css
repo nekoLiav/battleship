@@ -42,17 +42,19 @@
   justify-content: center;
   gap: 50px;
   text-align: center;
+  font-size: 2rem;
+  background-color: #1a1a1a;
 }
 
 #playerboardtitle {
   width: 500px;
-  background-color: #1a1a1a;
+  margin: 0;
 }
 
 #computerboardtitle {
   display: none;
   width: 500px;
-  background-color: #1a1a1a;
+  margin: 0;
 }
 
 .occupied {

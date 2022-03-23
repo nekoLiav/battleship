@@ -43,3 +43,7 @@
   background-color: #555555;
 }
 
+.selected {
+  background-color: #999999 !important;
+}
+

@@ -1,6 +1,7 @@
 import players from './players';
 import reset from './reset';
 import ai from './ai';
+import shipPlacement from './shipPlacement';
 
 export default function dom() {
   const content = document.createElement('div');
@@ -146,6 +147,41 @@ export default function dom() {
     main,
   );
 
+  const handleMouseEvents = (e) => {
+    const squares = document.querySelectorAll('.playersquare');
+    const manualX = parseInt(e.target.getAttribute('data-x'), 10);
+    const manualY = parseInt(e.target.getAttribute('data-y'), 10);
+    const manualI = parseInt(e.target.getAttribute('data-i'), 10);
+    const selectedShipID = document.querySelector('.selected');
+    let selectedShip = null;
+    if (selectedShipID != null) {
+      if (selectedShipID.id === 'carrier') {
+        selectedShip = players.p1.ships.carrier;
+      } else if (selectedShipID.id === 'battleship') {
+        selectedShip = players.p1.ships.battleship;
+      } else if (selectedShipID.id === 'destroyer') {
+        selectedShip = players.p1.ships.destroyer;
+      } else if (selectedShipID.id === 'submarine') {
+        selectedShip = players.p1.ships.submarine;
+      } else if (selectedShipID.id === 'patrolboat') {
+        selectedShip = players.p1.ships.submarine;
+      }
+    }
+    if (e.type === 'mouseenter' && selectedShip != null) {
+      shipPlacement('manual', manualX, manualY, manualI, selectedShip);
+    } else if (e.type === 'mouseleave' && selectedShip != null) {
+      if (manualX <= (10 - selectedShip.length)) {
+        for (let n = 0; n < selectedShip.length; n += 1) {
+          squares[manualI + n].classList.remove('valid', 'invalid');
+        }
+      } else if (manualX > (10 - selectedShip.length)) {
+        for (let n = 0; n < (10 - manualX); n += 1) {
+          squares[manualI + n].classList.remove('valid', 'invalid');
+        }
+      }
+    }
+  };
+
   for (let i = 0; i < 5; i += 1) {
     const shipSquare = document.createElement('div');
     shipSquare.className = 'shipsquare';
@@ -191,6 +227,8 @@ export default function dom() {
     computerSquare.dataset.y = y;
     playerSquare.className = 'playersquare';
     computerSquare.className = 'computersquare';
+    playerSquare.addEventListener('mouseenter', handleMouseEvents);
+    playerSquare.addEventListener('mouseleave', handleMouseEvents);
     playerBoard.append(playerSquare);
     computerBoard.append(computerSquare);
   }
@@ -218,13 +256,11 @@ export default function dom() {
 
   shipContainer.addEventListener('click', (e) => {
     if (e.target.className === 'shipsquare') {
-      const shipSelection = e.target.parentNode;
-      carrierContainer.style.backgroundColor = '#555555';
-      battleshipContainer.style.backgroundColor = '#555555';
-      destroyerContainer.style.backgroundColor = '#555555';
-      submarineContainer.style.backgroundColor = '#555555';
-      patrolBoatContainer.style.backgroundColor = '#555555';
-      shipSelection.style.backgroundColor = '#999999';
+      const shipSquares = document.querySelectorAll('.ship');
+      shipSquares.forEach((element) => {
+        element.classList.remove('selected');
+      });
+      e.target.parentNode.classList.add('selected');
     }
   });
 

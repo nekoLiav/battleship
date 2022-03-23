@@ -1,5 +1,5 @@
 import players from './players';
-import random from './random';
+import shipPlacement from './shipPlacement';
 
 export default function reset(resetType) {
   const playerSquare = document.getElementsByClassName('playersquare');
@@ -29,22 +29,6 @@ export default function reset(resetType) {
     players.c.clean();
   };
 
-  const randomPlayerOneShips = () => {
-    random(players.p1.ships.carrier, players.p1);
-    random(players.p1.ships.battleship, players.p1);
-    random(players.p1.ships.destroyer, players.p1);
-    random(players.p1.ships.submarine, players.p1);
-    random(players.p1.ships.patrolboat, players.p1);
-  };
-
-  const randomComputerShips = () => {
-    random(players.c.ships.carrier, players.c);
-    random(players.c.ships.battleship, players.c);
-    random(players.c.ships.destroyer, players.c);
-    random(players.c.ships.submarine, players.c);
-    random(players.c.ships.patrolboat, players.c);
-  };
-
   const refreshBoardElements = () => {
     for (let i = 0; i < 100; i += 1) {
       if (players.p1.boardArray[i].length > 3) {
@@ -58,15 +42,10 @@ export default function reset(resetType) {
     resetBoardInfo();
   };
 
-  const randomShips = () => {
-    randomPlayerOneShips();
-    randomComputerShips();
-    refreshBoardElements();
-  };
-
   if (resetType === 'full') {
     resetBoard();
-    randomShips();
+    shipPlacement('auto');
+    refreshBoardElements();
   } else if (resetType === 'partial') {
     resetBoard();
   } else if (resetType === 'refresh') {

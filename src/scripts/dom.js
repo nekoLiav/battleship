@@ -166,39 +166,133 @@ export default function dom() {
     const manualX = parseInt(e.target.getAttribute('data-x'), 10);
     const manualY = parseInt(e.target.getAttribute('data-y'), 10);
     const manualI = parseInt(e.target.getAttribute('data-i'), 10);
-    const selectedShipID = document.querySelector('.selected');
+    const selectedShipSelector = document.querySelector('.shipselected');
     let selectedShip = null;
-    if (selectedShipID != null) {
-      if (selectedShipID.id === 'carrier') {
+    if (selectedShipSelector != null) {
+      if (selectedShipSelector.id === 'carrier') {
         selectedShip = players.p1.ships.carrier;
-      } else if (selectedShipID.id === 'battleship') {
+      } else if (selectedShipSelector.id === 'battleship') {
         selectedShip = players.p1.ships.battleship;
-      } else if (selectedShipID.id === 'destroyer') {
+      } else if (selectedShipSelector.id === 'destroyer') {
         selectedShip = players.p1.ships.destroyer;
-      } else if (selectedShipID.id === 'submarine') {
+      } else if (selectedShipSelector.id === 'submarine') {
         selectedShip = players.p1.ships.submarine;
-      } else if (selectedShipID.id === 'patrolboat') {
+      } else if (selectedShipSelector.id === 'patrolboat') {
         selectedShip = players.p1.ships.patrolboat;
       }
     }
-    if (e.type === 'click' && selectedShip != null) {
-      shipPlacement('manual', manualX, manualY, manualI);
+    if (e.type === 'click' && selectedShipSelector != null) {
+      if (selectedShipSelector.id === 'carrier') {
+        const carrier = Array.from(document.getElementsByClassName('carrier'));
+        carrier.forEach((element) => {
+          element.classList.add('placed');
+        });
+      }
+      if (selectedShipSelector.id === 'battleship') {
+        const battleship = Array.from(document.getElementsByClassName('battleship'));
+        battleship.forEach((element) => {
+          element.classList.add('placed');
+        });
+      }
+      if (selectedShipSelector.id === 'destroyer') {
+        const destroyer = Array.from(document.getElementsByClassName('destroyer'));
+        destroyer.forEach((element) => {
+          element.classList.add('placed');
+        });
+      }
+      if (selectedShipSelector.id === 'submarine') {
+        const submarine = Array.from(document.getElementsByClassName('submarine'));
+        submarine.forEach((element) => {
+          element.classList.add('placed');
+        });
+      }
+      if (selectedShipSelector.id === 'patrolboat') {
+        const patrolboat = Array.from(document.getElementsByClassName('patrolboat'));
+        patrolboat.forEach((element) => {
+          element.classList.add('placed');
+        });
+      }
+      selectedShipSelector.remove();
     }
-    if (e.type === 'mouseenter' && selectedShip != null) {
-      if (selectedShipID.classList.contains('horizontal')) {
+    if (e.type === 'mouseenter' && selectedShipSelector != null) {
+      if (selectedShipSelector.classList.contains('horizontal')) {
         if (manualX <= (10 - selectedShip.length)) {
           for (let i = 0; i < selectedShip.length; i += 1) {
-            squares[manualI + i].classList.add('valid');
+            squares[manualI + i].classList.add(`${selectedShipSelector.id}`);
+            if (squares[manualI + i].classList.contains('placed')) {
+              if (selectedShipSelector.id === 'carrier') {
+                const carrier = Array.from(document.getElementsByClassName('carrier'));
+                carrier.forEach((element) => {
+                  element.classList.add('invalid');
+                });
+              }
+              if (selectedShipSelector.id === 'battleship') {
+                const battleship = Array.from(document.getElementsByClassName('battleship'));
+                battleship.forEach((element) => {
+                  element.classList.add('invalid');
+                });
+              }
+              if (selectedShipSelector.id === 'destroyer') {
+                const destroyer = Array.from(document.getElementsByClassName('destroyer'));
+                destroyer.forEach((element) => {
+                  element.classList.add('invalid');
+                });
+              }
+              if (selectedShipSelector.id === 'submarine') {
+                const submarine = Array.from(document.getElementsByClassName('submarine'));
+                submarine.forEach((element) => {
+                  element.classList.add('invalid');
+                });
+              }
+              if (selectedShipSelector.id === 'patrolboat') {
+                const patrolboat = Array.from(document.getElementsByClassName('patrolboat'));
+                patrolboat.forEach((element) => {
+                  element.classList.add('invalid');
+                });
+              }
+            }
           }
         } else if (manualX > (10 - selectedShip.length)) {
           for (let i = 0; i < (10 - manualX); i += 1) {
             squares[manualI + i].classList.add('invalid');
           }
         }
-      } else if (selectedShipID.classList.contains('vertical')) {
+      } else if (selectedShipSelector.classList.contains('vertical')) {
         if (manualY <= (10 - selectedShip.length)) {
           for (let i = 0, i2 = 0; i < selectedShip.length; i += 1, i2 += 9) {
-            squares[manualI + (i + i2)].classList.add('valid');
+            squares[manualI + (i + i2)].classList.add(`${selectedShipSelector.id}`);
+            if (squares[manualI + (i + i2)].classList.contains('placed')) {
+              if (selectedShipSelector.id === 'carrier') {
+                const carrier = Array.from(document.getElementsByClassName('carrier'));
+                carrier.forEach((element) => {
+                  element.classList.add('invalid');
+                });
+              }
+              if (selectedShipSelector.id === 'battleship') {
+                const battleship = Array.from(document.getElementsByClassName('battleship'));
+                battleship.forEach((element) => {
+                  element.classList.add('invalid');
+                });
+              }
+              if (selectedShipSelector.id === 'destroyer') {
+                const destroyer = Array.from(document.getElementsByClassName('destroyer'));
+                destroyer.forEach((element) => {
+                  element.classList.add('invalid');
+                });
+              }
+              if (selectedShipSelector.id === 'submarine') {
+                const submarine = Array.from(document.getElementsByClassName('submarine'));
+                submarine.forEach((element) => {
+                  element.classList.add('invalid');
+                });
+              }
+              if (selectedShipSelector.id === 'patrolboat') {
+                const patrolboat = Array.from(document.getElementsByClassName('patrolboat'));
+                patrolboat.forEach((element) => {
+                  element.classList.add('invalid');
+                });
+              }
+            }
           }
         } else if (manualY > (10 - selectedShip.length)) {
           for (let i = 0, i2 = 0; i < (10 - manualY); i += 1, i2 += 9) {
@@ -206,25 +300,25 @@ export default function dom() {
           }
         }
       }
-    } else if (e.type === 'mouseleave' && selectedShip != null) {
-      if (selectedShipID.classList.contains('horizontal')) {
+    } else if (e.type === 'mouseleave' && selectedShipSelector != null) {
+      if (selectedShipSelector.classList.contains('horizontal')) {
         if (manualX <= (10 - selectedShip.length)) {
           for (let i = 0; i < selectedShip.length; i += 1) {
-            squares[manualI + i].classList.remove('valid', 'invalid');
+            squares[manualI + i].classList.remove(`${selectedShipSelector.id}`, 'invalid');
           }
         } else if (manualX > (10 - selectedShip.length)) {
           for (let i = 0; i < (10 - manualX); i += 1) {
-            squares[manualI + i].classList.remove('valid', 'invalid');
+            squares[manualI + i].classList.remove(`${selectedShipSelector.id}`, 'invalid');
           }
         }
-      } else if (selectedShipID.classList.contains('vertical')) {
+      } else if (selectedShipSelector.classList.contains('vertical')) {
         if (manualY <= (10 - selectedShip.length)) {
           for (let i = 0, i2 = 0; i < selectedShip.length; i += 1, i2 += 9) {
-            squares[manualI + (i + i2)].classList.remove('valid', 'invalid');
+            squares[manualI + (i + i2)].classList.remove(`${selectedShipSelector.id}`, 'invalid');
           }
         } else if (manualY > (10 - selectedShip.length)) {
           for (let i = 0, i2 = 0; i < (10 - manualY); i += 1, i2 += 9) {
-            squares[manualI + (i + i2)].classList.remove('valid', 'invalid');
+            squares[manualI + (i + i2)].classList.remove(`${selectedShipSelector.id}`, 'invalid');
           }
         }
       }
@@ -374,9 +468,9 @@ export default function dom() {
     if (e.target.className === 'shipsquare') {
       const shipSquares = document.querySelectorAll('.ship');
       shipSquares.forEach((element) => {
-        element.classList.remove('selected');
+        element.classList.remove('shipselected');
       });
-      e.target.parentNode.classList.add('selected');
+      e.target.parentNode.classList.add('shipselected');
     }
   });
 

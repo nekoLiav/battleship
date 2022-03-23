@@ -41,18 +41,6 @@ export default function shipPlacement(type, manualX, manualY, manualI, selectedS
   };
 
   const manual = () => {
-    const squares = document.querySelectorAll('.playersquare');
-    if (selectedShip != null) {
-      if (manualX <= (10 - selectedShip.length)) {
-        for (let i = 0; i < selectedShip.length; i += 1) {
-          squares[manualI + i].classList.add('valid');
-        }
-      } else if (manualX > (10 - selectedShip.length)) {
-        for (let i = 0; i < (10 - manualX); i += 1) {
-          squares[manualI + i].classList.add('invalid');
-        }
-      }
-    }
   };
 
   if (type === 'auto') {

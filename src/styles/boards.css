@@ -1,6 +1,5 @@
 #boardcontainer {
   display: flex;
-  gap: 25px;
   background-color: #1a1a1a;
 }
 

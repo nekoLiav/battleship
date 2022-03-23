@@ -23,10 +23,13 @@ export default function dom() {
   const destroyerContainer = document.createElement('div');
   const submarineContainer = document.createElement('div');
   const patrolBoatContainer = document.createElement('div');
+  const shipContainerInfo = document.createElement('div');
+  const shipButtons = document.createElement('div');
   const randomButton = document.createElement('button');
   const startButton = document.createElement('button');
   const resetButton = document.createElement('button');
   const playAgainButton = document.createElement('button');
+  const orientationButton = document.createElement('button');
   const title = document.createElement('p');
   const playerBoardTitle = document.createElement('p');
   const computerBoardTitle = document.createElement('p');
@@ -47,7 +50,7 @@ export default function dom() {
   playerBoardTitle.textContent = 'PLAYER';
   buttonContainer.id = 'buttoncontainer';
   randomButton.id = 'randombutton';
-  randomButton.textContent = 'PLACE SHIPS';
+  randomButton.textContent = 'AUTO PLACE';
   computerBoard.id = 'computerboard';
   computerBoardTitle.id = 'computerboardtitle';
   computerBoardTitle.textContent = 'COMPUTER';
@@ -79,15 +82,19 @@ export default function dom() {
   playAgainButton.textContent = 'PLAY AGAIN';
   shipContainer.id = 'shipcontainer';
   carrierContainer.id = 'carrier';
-  carrierContainer.className = 'ship';
+  carrierContainer.classList.add('ship', 'horizontal');
   battleshipContainer.id = 'battleship';
-  battleshipContainer.className = 'ship';
+  battleshipContainer.classList.add('ship', 'horizontal');
   destroyerContainer.id = 'destroyer';
-  destroyerContainer.className = 'ship';
+  destroyerContainer.classList.add('ship', 'horizontal');
   submarineContainer.id = 'submarine';
-  submarineContainer.className = 'ship';
+  submarineContainer.classList.add('ship', 'horizontal');
   patrolBoatContainer.id = 'patrolboat';
-  patrolBoatContainer.className = 'ship';
+  patrolBoatContainer.classList.add('ship', 'horizontal');
+  shipContainerInfo.id = 'shipcontainerinfo';
+  orientationButton.id = 'orientationbutton';
+  orientationButton.textContent = 'CHANGE DIRECTION';
+  shipButtons.id = 'shipbuttons';
 
   playerStatus.append(
     playerShipsSunk,
@@ -107,8 +114,16 @@ export default function dom() {
     playerBoardTitle,
     computerBoardTitle,
   );
-  boardContainer.append(
+  shipButtons.append(
+    orientationButton,
+    randomButton,
+  );
+  shipContainerInfo.append(
     shipContainer,
+    shipButtons,
+  );
+  boardContainer.append(
+    shipContainerInfo,
     playerBoard,
     computerBoard,
     overlay,
@@ -116,7 +131,6 @@ export default function dom() {
   buttonContainer.append(
     startButton,
     resetButton,
-    randomButton,
   );
   titlebar.append(
     title,
@@ -147,7 +161,7 @@ export default function dom() {
     main,
   );
 
-  const handleMouseEvents = (e) => {
+  const handlePlacement = (e) => {
     const squares = document.querySelectorAll('.playersquare');
     const manualX = parseInt(e.target.getAttribute('data-x'), 10);
     const manualY = parseInt(e.target.getAttribute('data-y'), 10);
@@ -164,11 +178,22 @@ export default function dom() {
       } else if (selectedShipID.id === 'submarine') {
         selectedShip = players.p1.ships.submarine;
       } else if (selectedShipID.id === 'patrolboat') {
-        selectedShip = players.p1.ships.submarine;
+        selectedShip = players.p1.ships.patrolboat;
       }
     }
+    if (e.type === 'click' && selectedShip != null) {
+      shipPlacement('manual', manualX, manualY, manualI);
+    }
     if (e.type === 'mouseenter' && selectedShip != null) {
-      shipPlacement('manual', manualX, manualY, manualI, selectedShip);
+      if (manualX <= (10 - selectedShip.length)) {
+        for (let i = 0; i < selectedShip.length; i += 1) {
+          squares[manualI + i].classList.add('valid');
+        }
+      } else if (manualX > (10 - selectedShip.length)) {
+        for (let i = 0; i < (10 - manualX); i += 1) {
+          squares[manualI + i].classList.add('invalid');
+        }
+      }
     } else if (e.type === 'mouseleave' && selectedShip != null) {
       if (manualX <= (10 - selectedShip.length)) {
         for (let n = 0; n < selectedShip.length; n += 1) {
@@ -179,6 +204,47 @@ export default function dom() {
           squares[manualI + n].classList.remove('valid', 'invalid');
         }
       }
+    }
+  };
+
+  const changeOrientation = (e) => {
+    const ships = document.querySelectorAll('.ship');
+    if (e.target.id === 'orientationbutton') {
+      ships.forEach((element) => {
+        if (element.classList.contains('horizontal')) {
+          shipContainer.style.flexDirection = 'row-reverse';
+          carrierContainer.style.width = '50px';
+          battleshipContainer.style.width = '50px';
+          destroyerContainer.style.width = '50px';
+          submarineContainer.style.width = '50px';
+          patrolBoatContainer.style.width = '50px';
+          carrierContainer.style.height = '250px';
+          battleshipContainer.style.height = '200px';
+          destroyerContainer.style.height = '150px';
+          submarineContainer.style.height = '150px';
+          patrolBoatContainer.style.height = '100px';
+          element.style.flexDirection = 'column';
+          element.classList.remove('horizontal');
+          element.classList.add('vertical');
+          orientationButton.textContent = 'SWITCH TO HORIZONTAL';
+        } else if (element.classList.contains('vertical')) {
+          shipContainer.style.flexDirection = 'column';
+          carrierContainer.style.width = '250px';
+          battleshipContainer.style.width = '200px';
+          destroyerContainer.style.width = '150px';
+          submarineContainer.style.width = '150px';
+          patrolBoatContainer.style.width = '100px';
+          carrierContainer.style.height = '50px';
+          battleshipContainer.style.height = '50px';
+          destroyerContainer.style.height = '50px';
+          submarineContainer.style.height = '50px';
+          patrolBoatContainer.style.height = '50px';
+          element.style.flexDirection = 'row';
+          element.classList.remove('vertical');
+          element.classList.add('horizontal');
+          orientationButton.textContent = 'SWITCH TO VERTICAL';
+        }
+      });
     }
   };
 
@@ -227,8 +293,9 @@ export default function dom() {
     computerSquare.dataset.y = y;
     playerSquare.className = 'playersquare';
     computerSquare.className = 'computersquare';
-    playerSquare.addEventListener('mouseenter', handleMouseEvents);
-    playerSquare.addEventListener('mouseleave', handleMouseEvents);
+    playerSquare.addEventListener('mouseenter', handlePlacement);
+    playerSquare.addEventListener('mouseleave', handlePlacement);
+    playerSquare.addEventListener('click', handlePlacement);
     playerBoard.append(playerSquare);
     computerBoard.append(computerSquare);
   }
@@ -252,6 +319,30 @@ export default function dom() {
     computerShipsSunk.textContent = `COMPUTER SHIPS SUNK: ${players.c.sunkShips()}`;
     computerHit.textContent = `COMPUTER BOARD HITS: ${players.c.hitCount()}`;
     computerMiss.textContent = `COMPUTER BOARD MISSES: ${players.c.missCount()}`;
+    if (e.target.id === 'startbutton') {
+      shipContainer.style.display = 'none';
+      computerBoard.style.display = 'flex';
+      computerBoardTitle.style.display = 'block';
+      gameStatusContainer.style.display = 'flex';
+      startButton.style.display = 'none';
+      randomButton.style.display = 'none';
+      resetButton.style.display = 'block';
+    } else if (e.target.id === 'resetbutton' || e.target.id === 'playagainbutton') {
+      reset('partial');
+      shipContainer.style.display = 'flex';
+      computerBoard.style.display = 'none';
+      computerBoardTitle.style.display = 'none';
+      gameStatusContainer.style.display = 'none';
+      startButton.style.display = 'block';
+      randomButton.style.display = 'block';
+      resetButton.style.display = 'none';
+    } else if (e.target.id === 'randombutton') {
+      console.log('rng');
+      reset('full');
+    }
+    if (e.target.id === 'orientationbutton') {
+      changeOrientation(e);
+    }
   });
 
   shipContainer.addEventListener('click', (e) => {
@@ -266,24 +357,22 @@ export default function dom() {
 
   buttonContainer.addEventListener('click', (e) => {
     if (e.target.id === 'startbutton') {
-      shipContainer.style.display = 'none';
+      shipContainerInfo.style.display = 'none';
       computerBoard.style.display = 'flex';
       computerBoardTitle.style.display = 'block';
       gameStatusContainer.style.display = 'flex';
       startButton.style.display = 'none';
       randomButton.style.display = 'none';
       resetButton.style.display = 'block';
-    } else if (e.target.id === 'resetbutton' || e.target.id === 'playAgainButton') {
+    } else if (e.target.id === 'resetbutton' || e.target.id === 'playagainbutton') {
       reset('partial');
-      shipContainer.style.display = 'flex';
+      shipContainerInfo.style.display = 'block';
       computerBoard.style.display = 'none';
       computerBoardTitle.style.display = 'none';
       gameStatusContainer.style.display = 'none';
       startButton.style.display = 'block';
       randomButton.style.display = 'block';
       resetButton.style.display = 'none';
-    } else if (e.target.id === 'randombutton') {
-      reset('full');
     }
   });
 }

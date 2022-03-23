@@ -7,26 +7,22 @@
 #startbutton {
   width: 100px;
   height: 50px;
-  font-family: 'Bungee', Arial, Helvetica, sans-serif;
 }
 
 #randombutton {
   width: 100px;
   height: 50px;
-  font-family: 'Bungee', Arial, Helvetica, sans-serif;
 }
 
 #resetbutton {
   width: 100px;
   height: 50px;
-  font-family: 'Bungee', Arial, Helvetica, sans-serif;
 }
 
 #orientationbutton {
   width: 100px;
   height: 50px;
   padding: 0;
-  font-family: 'Bungee', Arial, Helvetica, sans-serif;
 }
 
 #shipbuttons {

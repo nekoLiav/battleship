@@ -185,23 +185,47 @@ export default function dom() {
       shipPlacement('manual', manualX, manualY, manualI);
     }
     if (e.type === 'mouseenter' && selectedShip != null) {
-      if (manualX <= (10 - selectedShip.length)) {
-        for (let i = 0; i < selectedShip.length; i += 1) {
-          squares[manualI + i].classList.add('valid');
+      if (selectedShipID.classList.contains('horizontal')) {
+        if (manualX <= (10 - selectedShip.length)) {
+          for (let i = 0; i < selectedShip.length; i += 1) {
+            squares[manualI + i].classList.add('valid');
+          }
+        } else if (manualX > (10 - selectedShip.length)) {
+          for (let i = 0; i < (10 - manualX); i += 1) {
+            squares[manualI + i].classList.add('invalid');
+          }
         }
-      } else if (manualX > (10 - selectedShip.length)) {
-        for (let i = 0; i < (10 - manualX); i += 1) {
-          squares[manualI + i].classList.add('invalid');
+      } else if (selectedShipID.classList.contains('vertical')) {
+        if (manualY <= (10 - selectedShip.length)) {
+          for (let i = 0, i2 = 0; i < selectedShip.length; i += 1, i2 += 9) {
+            squares[manualI + (i + i2)].classList.add('valid');
+          }
+        } else if (manualY > (10 - selectedShip.length)) {
+          for (let i = 0, i2 = 0; i < (10 - manualY); i += 1, i2 += 9) {
+            squares[manualI + (i + i2)].classList.add('invalid');
+          }
         }
       }
     } else if (e.type === 'mouseleave' && selectedShip != null) {
-      if (manualX <= (10 - selectedShip.length)) {
-        for (let n = 0; n < selectedShip.length; n += 1) {
-          squares[manualI + n].classList.remove('valid', 'invalid');
+      if (selectedShipID.classList.contains('horizontal')) {
+        if (manualX <= (10 - selectedShip.length)) {
+          for (let i = 0; i < selectedShip.length; i += 1) {
+            squares[manualI + i].classList.remove('valid', 'invalid');
+          }
+        } else if (manualX > (10 - selectedShip.length)) {
+          for (let i = 0; i < (10 - manualX); i += 1) {
+            squares[manualI + i].classList.remove('valid', 'invalid');
+          }
         }
-      } else if (manualX > (10 - selectedShip.length)) {
-        for (let n = 0; n < (10 - manualX); n += 1) {
-          squares[manualI + n].classList.remove('valid', 'invalid');
+      } else if (selectedShipID.classList.contains('vertical')) {
+        if (manualY <= (10 - selectedShip.length)) {
+          for (let i = 0, i2 = 0; i < selectedShip.length; i += 1, i2 += 9) {
+            squares[manualI + (i + i2)].classList.remove('valid', 'invalid');
+          }
+        } else if (manualY > (10 - selectedShip.length)) {
+          for (let i = 0, i2 = 0; i < (10 - manualY); i += 1, i2 += 9) {
+            squares[manualI + (i + i2)].classList.remove('valid', 'invalid');
+          }
         }
       }
     }
@@ -211,6 +235,7 @@ export default function dom() {
     const ships = document.querySelectorAll('.ship');
     if (e.target.id === 'orientationbutton') {
       ships.forEach((element) => {
+        const elementToModify = element;
         if (element.classList.contains('horizontal')) {
           shipContainer.style.flexDirection = 'row-reverse';
           carrierContainer.style.width = '50px';
@@ -223,9 +248,9 @@ export default function dom() {
           destroyerContainer.style.height = '150px';
           submarineContainer.style.height = '150px';
           patrolBoatContainer.style.height = '100px';
-          element.style.flexDirection = 'column';
-          element.classList.remove('horizontal');
-          element.classList.add('vertical');
+          elementToModify.style.flexDirection = 'column';
+          elementToModify.classList.remove('horizontal');
+          elementToModify.classList.add('vertical');
           orientationButton.textContent = 'SWITCH TO HORIZONTAL';
         } else if (element.classList.contains('vertical')) {
           shipContainer.style.flexDirection = 'column';
@@ -239,9 +264,9 @@ export default function dom() {
           destroyerContainer.style.height = '50px';
           submarineContainer.style.height = '50px';
           patrolBoatContainer.style.height = '50px';
-          element.style.flexDirection = 'row';
-          element.classList.remove('vertical');
-          element.classList.add('horizontal');
+          elementToModify.style.flexDirection = 'row';
+          elementToModify.classList.remove('vertical');
+          elementToModify.classList.add('horizontal');
           orientationButton.textContent = 'SWITCH TO VERTICAL';
         }
       });

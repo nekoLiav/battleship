@@ -1,8 +1,11 @@
+* {
+  font-family: 'Bungee', Arial, Helvetica, sans-serif;
+}
+
 body {
   margin: 0 auto;
   background-color: #121212;
   color: white;
-  font-family: 'Bungee', Arial, Helvetica, sans-serif;
 }
 
 #content {

@@ -24,7 +24,7 @@ export default function boardEvents(e) {
     } else if (selectedShipSelector.id === 'patrol-boat') {
       selectedShip = player.ships.patrolboat;
     }
-    // Assign direction to be passed to shipPlacement function
+    // Assign direction to be passed to placeShip function
     if (selectedShipSelector.classList.contains('horizontal')) {
       direction = 0;
     } else if (selectedShipSelector.classList.contains('vertical')) {

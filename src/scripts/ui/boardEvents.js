@@ -2,7 +2,7 @@ import { player, computer } from '../players';
 import ai from '../ai';
 
 export default function boardEvents(e) {
-  // Varialbes needed for providing board feedback
+  // Variables needed for providing board feedback
   const selectedShipSelector = document.querySelector('.ship-selected');
   const squares = document.querySelectorAll('.player-square');
   const manualX = parseInt(e.target.getAttribute('data-x'), 10);

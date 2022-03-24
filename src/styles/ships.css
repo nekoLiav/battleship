@@ -28,31 +28,31 @@
 
 #carrier {
   display: flex;
-  background-color: #E27D60;
+  background-color: #999999;
   box-sizing: border-box;
 }
 
 #battleship {
   display: flex;
-  background-color: #85DCB0;
+  background-color: #999999;
   box-sizing: border-box;
 }
 
 #destroyer {
   display: flex;
-  background-color: #E8A87C;
+  background-color: #999999;
   box-sizing: border-box;
 }
 
 #submarine {
   display: flex;
-  background-color: #C38D9E;
+  background-color: #999999;
   box-sizing: border-box;
 }
 
 #patrol-boat {
   display: flex;
-  background-color: #41B3A3;
+  background-color: #999999;
   box-sizing: border-box;
 }
 
@@ -65,21 +65,21 @@
 }
 
 .carrier {
-  background-color: #E27D60;
+  background-color: #999999;
 }
 
 .battleship {
-  background-color: #85DCB0;
+  background-color: #999999;
 }
 
 .destroyer {
-  background-color: #E8A87C;
+  background-color: #999999;
 }
 
 .submarine {
-  background-color: #C38D9E;
+  background-color: #999999;
 }
 
 .patrol-boat {
-  background-color: #41B3A3;
+  background-color: #999999;
 }

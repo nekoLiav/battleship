@@ -1,7 +1,7 @@
 import players from './players';
 
-export default function shipPlacement(type, orientation, manualX, manualY, manualI, selectedShip) {
-  const auto = (ship, player) => {
+export default function shipPlacement(type, orientation, manualX, manualY, selectedShip) {
+  const automatic = (ship, player) => {
     const randomOrientation = Math.floor(Math.random() * 2);
     const validX = [];
     const validY = [];
@@ -44,17 +44,12 @@ export default function shipPlacement(type, orientation, manualX, manualY, manua
     players.p1.placeShip(selectedShip, orientation, manualX, manualY);
   };
 
-  if (type === 'auto') {
-    auto(players.p1.ships.carrier, players.p1);
-    auto(players.p1.ships.battleship, players.p1);
-    auto(players.p1.ships.destroyer, players.p1);
-    auto(players.p1.ships.submarine, players.p1);
-    auto(players.p1.ships.patrolboat, players.p1);
-    auto(players.c.ships.carrier, players.c);
-    auto(players.c.ships.battleship, players.c);
-    auto(players.c.ships.destroyer, players.c);
-    auto(players.c.ships.submarine, players.c);
-    auto(players.c.ships.patrolboat, players.c);
+  if (type === 'automatic') {
+    automatic(players.c.ships.carrier, players.c);
+    automatic(players.c.ships.battleship, players.c);
+    automatic(players.c.ships.destroyer, players.c);
+    automatic(players.c.ships.submarine, players.c);
+    automatic(players.c.ships.patrolboat, players.c);
   } else if (type === 'manual') {
     manual();
   }

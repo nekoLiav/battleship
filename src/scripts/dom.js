@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import players from './players';
 import reset from './reset';
 import ai from './ai';
@@ -11,7 +12,6 @@ export default function dom() {
   const boardContainer = document.createElement('div');
   const playerBoard = document.createElement('div');
   const computerBoard = document.createElement('div');
-  const buttonContainer = document.createElement('div');
   const gameStatusContainer = document.createElement('div');
   const playerStatus = document.createElement('div');
   const computerStatus = document.createElement('div');
@@ -25,7 +25,6 @@ export default function dom() {
   const patrolBoatContainer = document.createElement('div');
   const shipContainerInfo = document.createElement('div');
   const shipButtons = document.createElement('div');
-  const randomButton = document.createElement('button');
   const startButton = document.createElement('button');
   const resetButton = document.createElement('button');
   const playAgainButton = document.createElement('button');
@@ -34,11 +33,7 @@ export default function dom() {
   const playerBoardTitle = document.createElement('p');
   const computerBoardTitle = document.createElement('p');
   const playerShipsSunk = document.createElement('p');
-  const playerHit = document.createElement('p');
-  const playerMiss = document.createElement('p');
   const computerShipsSunk = document.createElement('p');
-  const computerHit = document.createElement('p');
-  const computerMiss = document.createElement('p');
   const modalHeader = document.createElement('p');
   const modalText = document.createElement('p');
 
@@ -47,10 +42,7 @@ export default function dom() {
   boardContainer.id = 'boardcontainer';
   playerBoard.id = 'playerboard';
   playerBoardTitle.id = 'playerboardtitle';
-  playerBoardTitle.textContent = 'PLAYER';
-  buttonContainer.id = 'buttoncontainer';
-  randomButton.id = 'randombutton';
-  randomButton.textContent = 'AUTO PLACE';
+  playerBoardTitle.textContent = 'PLACE YOUR SHIPS';
   computerBoard.id = 'computerboard';
   computerBoardTitle.id = 'computerboardtitle';
   computerBoardTitle.textContent = 'COMPUTER';
@@ -67,11 +59,7 @@ export default function dom() {
   playerStatus.id = 'playerstatus';
   computerStatus.id = 'computerstatus';
   playerShipsSunk.id = 'playershipssunk';
-  playerHit.id = 'playerhit';
-  playerMiss.id = 'playermiss';
   computerShipsSunk.id = 'computershipssunk';
-  computerHit.id = 'computerhit';
-  computerMiss.id = 'computermiss';
   modal.id = 'modal';
   playAgainButton.id = 'playagainbutton';
   overlay.id = 'overlay';
@@ -95,16 +83,13 @@ export default function dom() {
   orientationButton.id = 'orientationbutton';
   orientationButton.textContent = 'CHANGE DIRECTION';
   shipButtons.id = 'shipbuttons';
+  playerShipsSunk.textContent = 'PLAYER SHIPS SUNK: 0';
 
   playerStatus.append(
     playerShipsSunk,
-    playerHit,
-    playerMiss,
   );
   computerStatus.append(
     computerShipsSunk,
-    computerHit,
-    computerMiss,
   );
   gameStatusContainer.append(
     playerStatus,
@@ -116,7 +101,8 @@ export default function dom() {
   );
   shipButtons.append(
     orientationButton,
-    randomButton,
+    startButton,
+    resetButton,
   );
   shipContainerInfo.append(
     shipContainer,
@@ -127,10 +113,6 @@ export default function dom() {
     playerBoard,
     computerBoard,
     overlay,
-  );
-  buttonContainer.append(
-    startButton,
-    resetButton,
   );
   titlebar.append(
     title,
@@ -154,7 +136,6 @@ export default function dom() {
     boardTitleContainer,
     boardContainer,
     gameStatusContainer,
-    buttonContainer,
   );
   content.append(
     titlebar,
@@ -251,8 +232,16 @@ export default function dom() {
         );
       }
       if (e.target.classList.contains('placed') && !e.target.classList.contains('invalid')) {
-        shipPlacement('manual', orientation, manualX, manualY, manualI, selectedShip);
+        shipPlacement('manual', orientation, manualX, manualY, selectedShip);
         selectedShipSelector.remove();
+        if (document.querySelector('.carrier') !== null
+        && document.querySelector('.battleship') !== null
+        && document.querySelector('.destroyer') !== null
+        && document.querySelector('.submarine') !== null
+        && document.querySelector('.patrolboat') !== null) {
+          orientationButton.style.display = 'none';
+          startButton.style.display = 'block';
+        }
       }
     }
   };
@@ -264,32 +253,12 @@ export default function dom() {
         const elementToModify = element;
         if (element.classList.contains('horizontal')) {
           shipContainer.style.flexDirection = 'row-reverse';
-          carrierContainer.style.width = '50px';
-          battleshipContainer.style.width = '50px';
-          destroyerContainer.style.width = '50px';
-          submarineContainer.style.width = '50px';
-          patrolBoatContainer.style.width = '50px';
-          carrierContainer.style.height = '250px';
-          battleshipContainer.style.height = '200px';
-          destroyerContainer.style.height = '150px';
-          submarineContainer.style.height = '150px';
-          patrolBoatContainer.style.height = '100px';
           elementToModify.style.flexDirection = 'column';
           elementToModify.classList.remove('horizontal');
           elementToModify.classList.add('vertical');
           orientationButton.textContent = 'SWITCH TO HORIZONTAL';
         } else if (element.classList.contains('vertical')) {
           shipContainer.style.flexDirection = 'column';
-          carrierContainer.style.width = '250px';
-          battleshipContainer.style.width = '200px';
-          destroyerContainer.style.width = '150px';
-          submarineContainer.style.width = '150px';
-          patrolBoatContainer.style.width = '100px';
-          carrierContainer.style.height = '50px';
-          battleshipContainer.style.height = '50px';
-          destroyerContainer.style.height = '50px';
-          submarineContainer.style.height = '50px';
-          patrolBoatContainer.style.height = '50px';
           elementToModify.style.flexDirection = 'row';
           elementToModify.classList.remove('vertical');
           elementToModify.classList.add('horizontal');
@@ -368,30 +337,34 @@ export default function dom() {
       }
     }
     computerShipsSunk.textContent = `COMPUTER SHIPS SUNK: ${players.c.sunkShips()}`;
-    computerHit.textContent = `COMPUTER BOARD HITS: ${players.c.hitCount()}`;
-    computerMiss.textContent = `COMPUTER BOARD MISSES: ${players.c.missCount()}`;
     if (e.target.id === 'startbutton') {
-      shipContainer.style.display = 'none';
+      shipContainerInfo.style.display = 'none';
       computerBoard.style.display = 'flex';
       computerBoardTitle.style.display = 'block';
       gameStatusContainer.style.display = 'flex';
       startButton.style.display = 'none';
-      randomButton.style.display = 'none';
-      resetButton.style.display = 'block';
     } else if (e.target.id === 'resetbutton' || e.target.id === 'playagainbutton') {
       reset('partial');
-      shipContainer.style.display = 'flex';
+      orientationButton.textContent = 'CHANGE DIRECTION';
+      startButton.style.display = 'none';
+      orientationButton.style.display = 'block';
+      shipContainerInfo.style.display = 'flex';
       computerBoard.style.display = 'none';
       computerBoardTitle.style.display = 'none';
       gameStatusContainer.style.display = 'none';
-      startButton.style.display = 'block';
-      randomButton.style.display = 'block';
       resetButton.style.display = 'none';
-    } else if (e.target.id === 'randombutton') {
-      reset('full');
-    }
-    if (e.target.id === 'orientationbutton') {
-      changeOrientation(e);
+      overlay.style.display = 'none';
+      shipContainer.append(
+        carrierContainer,
+        battleshipContainer,
+        destroyerContainer,
+        submarineContainer,
+        patrolBoatContainer,
+      );
+      shipContainer.style.flexDirection = 'column';
+      document.querySelectorAll('.ship').forEach(
+        (element) => { element.classList.remove('shipselected', 'vertical'); element.classList.add('horizontal'); element.style.flexDirection = 'row'; },
+      );
     }
   });
 
@@ -405,24 +378,18 @@ export default function dom() {
     }
   });
 
-  buttonContainer.addEventListener('click', (e) => {
+  shipButtons.addEventListener('click', (e) => {
     if (e.target.id === 'startbutton') {
+      shipPlacement('automatic');
+      playerBoardTitle.textContent = 'PLAYER';
       shipContainerInfo.style.display = 'none';
       computerBoard.style.display = 'flex';
       computerBoardTitle.style.display = 'block';
       gameStatusContainer.style.display = 'flex';
       startButton.style.display = 'none';
-      randomButton.style.display = 'none';
       resetButton.style.display = 'block';
-    } else if (e.target.id === 'resetbutton' || e.target.id === 'playagainbutton') {
-      reset('partial');
-      shipContainerInfo.style.display = 'block';
-      computerBoard.style.display = 'none';
-      computerBoardTitle.style.display = 'none';
-      gameStatusContainer.style.display = 'none';
-      startButton.style.display = 'block';
-      randomButton.style.display = 'block';
-      resetButton.style.display = 'none';
+    } else if (e.target.id === 'orientationbutton') {
+      changeOrientation(e);
     }
   });
 }

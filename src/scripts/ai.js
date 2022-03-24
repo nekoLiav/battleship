@@ -22,10 +22,6 @@ export default function ai() {
   }
 
   const playerShipsSunk = document.getElementById('playershipssunk');
-  const playerHit = document.getElementById('playerhit');
-  const playerMiss = document.getElementById('playermiss');
 
   playerShipsSunk.textContent = `PLAYER SHIPS SUNK: ${players.p1.sunkShips()}`;
-  playerHit.textContent = `PLAYER BOARD HITS: ${players.p1.hitCount()}`;
-  playerMiss.textContent = `PLAYER BOARD MISSES: ${players.p1.missCount()}`;
 }

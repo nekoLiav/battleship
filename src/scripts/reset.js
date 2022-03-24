@@ -5,22 +5,14 @@ export default function reset(resetType) {
   const playerSquare = document.getElementsByClassName('playersquare');
   const computerSquare = document.getElementsByClassName('computersquare');
   const playerShipsSunk = document.getElementById('playershipssunk');
-  const playerHit = document.getElementById('playerhit');
-  const playerMiss = document.getElementById('playermiss');
   const computerShipsSunk = document.getElementById('computershipssunk');
-  const computerHit = document.getElementById('computerhit');
-  const computerMiss = document.getElementById('computermiss');
 
   const resetBoardElements = () => {
     for (let i = 0; i < 100; i += 1) {
-      playerSquare[i].classList.remove('occupied', 'hit', 'miss');
+      playerSquare[i].classList.remove('placed', 'occupied', 'carrier', 'battleship', 'destroyer', 'submarine', 'patrolboat', 'hit', 'miss');
       computerSquare[i].classList.remove('hit', 'miss');
       playerShipsSunk.textContent = 'SHIPS SUNK: 0';
-      playerHit.textContent = 'BOARD HITS: 0';
-      playerMiss.textContent = 'BOARD MISSES: 0';
       computerShipsSunk.textContent = 'SHIPS SUNK: 0';
-      computerHit.textContent = 'BOARD HITS: 0';
-      computerMiss.textContent = 'BOARD MISSES: 0';
     }
   };
 

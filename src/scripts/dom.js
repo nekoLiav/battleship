@@ -162,13 +162,15 @@ export default function dom() {
   );
 
   const handlePlacement = (e) => {
+    const selectedShipSelector = document.querySelector('.shipselected');
     const squares = document.querySelectorAll('.playersquare');
     const manualX = parseInt(e.target.getAttribute('data-x'), 10);
     const manualY = parseInt(e.target.getAttribute('data-y'), 10);
     const manualI = parseInt(e.target.getAttribute('data-i'), 10);
-    const selectedShipSelector = document.querySelector('.shipselected');
-    let selectedShip = null;
-    if (selectedShipSelector != null) {
+    let orientation;
+    let collision = 0;
+    let selectedShip;
+    if (selectedShipSelector !== undefined && selectedShipSelector !== null) {
       if (selectedShipSelector.id === 'carrier') {
         selectedShip = players.p1.ships.carrier;
       } else if (selectedShipSelector.id === 'battleship') {
@@ -180,147 +182,77 @@ export default function dom() {
       } else if (selectedShipSelector.id === 'patrolboat') {
         selectedShip = players.p1.ships.patrolboat;
       }
+      if (selectedShipSelector.classList.contains('horizontal')) {
+        orientation = 0;
+      } else if (selectedShipSelector.classList.contains('vertical')) {
+        orientation = 1;
+      }
     }
-    if (e.type === 'click' && selectedShipSelector != null) {
-      if (selectedShipSelector.id === 'carrier') {
-        const carrier = Array.from(document.getElementsByClassName('carrier'));
-        carrier.forEach((element) => {
-          element.classList.add('placed');
-        });
-      }
-      if (selectedShipSelector.id === 'battleship') {
-        const battleship = Array.from(document.getElementsByClassName('battleship'));
-        battleship.forEach((element) => {
-          element.classList.add('placed');
-        });
-      }
-      if (selectedShipSelector.id === 'destroyer') {
-        const destroyer = Array.from(document.getElementsByClassName('destroyer'));
-        destroyer.forEach((element) => {
-          element.classList.add('placed');
-        });
-      }
-      if (selectedShipSelector.id === 'submarine') {
-        const submarine = Array.from(document.getElementsByClassName('submarine'));
-        submarine.forEach((element) => {
-          element.classList.add('placed');
-        });
-      }
-      if (selectedShipSelector.id === 'patrolboat') {
-        const patrolboat = Array.from(document.getElementsByClassName('patrolboat'));
-        patrolboat.forEach((element) => {
-          element.classList.add('placed');
-        });
-      }
-      selectedShipSelector.remove();
-    }
-    if (e.type === 'mouseenter' && selectedShipSelector != null) {
+    if (e.type === 'mouseenter' && selectedShipSelector !== undefined && selectedShipSelector !== null) {
       if (selectedShipSelector.classList.contains('horizontal')) {
         if (manualX <= (10 - selectedShip.length)) {
-          for (let i = 0; i < selectedShip.length; i += 1) {
-            squares[manualI + i].classList.add(`${selectedShipSelector.id}`);
-            if (squares[manualI + i].classList.contains('placed')) {
-              if (selectedShipSelector.id === 'carrier') {
-                const carrier = Array.from(document.getElementsByClassName('carrier'));
-                carrier.forEach((element) => {
-                  element.classList.add('invalid');
-                });
-              }
-              if (selectedShipSelector.id === 'battleship') {
-                const battleship = Array.from(document.getElementsByClassName('battleship'));
-                battleship.forEach((element) => {
-                  element.classList.add('invalid');
-                });
-              }
-              if (selectedShipSelector.id === 'destroyer') {
-                const destroyer = Array.from(document.getElementsByClassName('destroyer'));
-                destroyer.forEach((element) => {
-                  element.classList.add('invalid');
-                });
-              }
-              if (selectedShipSelector.id === 'submarine') {
-                const submarine = Array.from(document.getElementsByClassName('submarine'));
-                submarine.forEach((element) => {
-                  element.classList.add('invalid');
-                });
-              }
-              if (selectedShipSelector.id === 'patrolboat') {
-                const patrolboat = Array.from(document.getElementsByClassName('patrolboat'));
-                patrolboat.forEach((element) => {
-                  element.classList.add('invalid');
-                });
-              }
+          for (let x = 0; x < selectedShip.length; x += 1) {
+            if (squares[manualI + x].classList.contains('placed')) {
+              collision += 1;
             }
+            squares[manualI + x].classList.add(`${selectedShipSelector.id}`);
           }
         } else if (manualX > (10 - selectedShip.length)) {
-          for (let i = 0; i < (10 - manualX); i += 1) {
-            squares[manualI + i].classList.add('invalid');
+          for (let x = 0; x < (10 - manualX); x += 1) {
+            squares[manualI + x].classList.add('invalid');
+          } collision += 1;
+        }
+      } else if (selectedShipSelector.classList.contains('vertical')) {
+        if (manualY <= (10 - selectedShip.length)) {
+          for (let x = 0, y = 0; x < selectedShip.length; x += 1, y += 9) {
+            if (squares[manualI + (x + y)].classList.contains('placed')) {
+              collision += 1;
+            }
+            squares[manualI + (x + y)].classList.add(`${selectedShipSelector.id}`);
+          }
+        } else if (manualY > (10 - selectedShip.length)) {
+          for (let x = 0, y = 0; x < (10 - manualY); x += 1, y += 9) {
+            squares[manualI + (x + y)].classList.add('invalid');
+            collision += 1;
+          }
+        }
+      }
+      if (collision > 0) {
+        Array.from(document.getElementsByClassName(selectedShipSelector.id)).forEach(
+          (element) => { element.classList.add('invalid'); },
+        );
+      }
+    } else if (e.type === 'mouseleave' && selectedShipSelector !== undefined && selectedShipSelector !== null) {
+      if (selectedShipSelector.classList.contains('horizontal')) {
+        if (manualX <= (10 - selectedShip.length)) {
+          for (let x = 0; x < selectedShip.length; x += 1) {
+            squares[manualI + x].classList.remove(`${selectedShipSelector.id}`, 'invalid');
+          }
+        } else if (manualX > (10 - selectedShip.length)) {
+          for (let x = 0; x < (10 - manualX); x += 1) {
+            squares[manualI + x].classList.remove(`${selectedShipSelector.id}`, 'invalid');
           }
         }
       } else if (selectedShipSelector.classList.contains('vertical')) {
         if (manualY <= (10 - selectedShip.length)) {
-          for (let i = 0, i2 = 0; i < selectedShip.length; i += 1, i2 += 9) {
-            squares[manualI + (i + i2)].classList.add(`${selectedShipSelector.id}`);
-            if (squares[manualI + (i + i2)].classList.contains('placed')) {
-              if (selectedShipSelector.id === 'carrier') {
-                const carrier = Array.from(document.getElementsByClassName('carrier'));
-                carrier.forEach((element) => {
-                  element.classList.add('invalid');
-                });
-              }
-              if (selectedShipSelector.id === 'battleship') {
-                const battleship = Array.from(document.getElementsByClassName('battleship'));
-                battleship.forEach((element) => {
-                  element.classList.add('invalid');
-                });
-              }
-              if (selectedShipSelector.id === 'destroyer') {
-                const destroyer = Array.from(document.getElementsByClassName('destroyer'));
-                destroyer.forEach((element) => {
-                  element.classList.add('invalid');
-                });
-              }
-              if (selectedShipSelector.id === 'submarine') {
-                const submarine = Array.from(document.getElementsByClassName('submarine'));
-                submarine.forEach((element) => {
-                  element.classList.add('invalid');
-                });
-              }
-              if (selectedShipSelector.id === 'patrolboat') {
-                const patrolboat = Array.from(document.getElementsByClassName('patrolboat'));
-                patrolboat.forEach((element) => {
-                  element.classList.add('invalid');
-                });
-              }
-            }
+          for (let x = 0, y = 0; x < selectedShip.length; x += 1, y += 9) {
+            squares[manualI + (x + y)].classList.remove(`${selectedShipSelector.id}`, 'invalid');
           }
         } else if (manualY > (10 - selectedShip.length)) {
-          for (let i = 0, i2 = 0; i < (10 - manualY); i += 1, i2 += 9) {
-            squares[manualI + (i + i2)].classList.add('invalid');
+          for (let x = 0, y = 0; x < (10 - manualY); x += 1, y += 9) {
+            squares[manualI + (x + y)].classList.remove(`${selectedShipSelector.id}`, 'invalid');
           }
         }
       }
-    } else if (e.type === 'mouseleave' && selectedShipSelector != null) {
-      if (selectedShipSelector.classList.contains('horizontal')) {
-        if (manualX <= (10 - selectedShip.length)) {
-          for (let i = 0; i < selectedShip.length; i += 1) {
-            squares[manualI + i].classList.remove(`${selectedShipSelector.id}`, 'invalid');
-          }
-        } else if (manualX > (10 - selectedShip.length)) {
-          for (let i = 0; i < (10 - manualX); i += 1) {
-            squares[manualI + i].classList.remove(`${selectedShipSelector.id}`, 'invalid');
-          }
-        }
-      } else if (selectedShipSelector.classList.contains('vertical')) {
-        if (manualY <= (10 - selectedShip.length)) {
-          for (let i = 0, i2 = 0; i < selectedShip.length; i += 1, i2 += 9) {
-            squares[manualI + (i + i2)].classList.remove(`${selectedShipSelector.id}`, 'invalid');
-          }
-        } else if (manualY > (10 - selectedShip.length)) {
-          for (let i = 0, i2 = 0; i < (10 - manualY); i += 1, i2 += 9) {
-            squares[manualI + (i + i2)].classList.remove(`${selectedShipSelector.id}`, 'invalid');
-          }
-        }
+    } else if (e.type === 'click' && selectedShipSelector !== undefined && selectedShipSelector !== null && collision === 0) {
+      if (!e.target.classList.contains('invalid')) {
+        Array.from(document.getElementsByClassName(selectedShipSelector.id)).forEach(
+          (element) => { element.classList.add('placed'); },
+        );
+      }
+      if (e.target.classList.contains('placed') && !e.target.classList.contains('invalid')) {
+        shipPlacement('manual', orientation, manualX, manualY, manualI, selectedShip);
+        selectedShipSelector.remove();
       }
     }
   };
@@ -367,31 +299,31 @@ export default function dom() {
     }
   };
 
-  for (let i = 0; i < 5; i += 1) {
+  for (let n = 0; n < 5; n += 1) {
     const shipSquare = document.createElement('div');
     shipSquare.className = 'shipsquare';
     carrierContainer.append(shipSquare);
   }
 
-  for (let i = 0; i < 4; i += 1) {
+  for (let n = 0; n < 4; n += 1) {
     const shipSquare = document.createElement('div');
     shipSquare.className = 'shipsquare';
     battleshipContainer.append(shipSquare);
   }
 
-  for (let i = 0; i < 3; i += 1) {
+  for (let n = 0; n < 3; n += 1) {
     const shipSquare = document.createElement('div');
     shipSquare.className = 'shipsquare';
     destroyerContainer.append(shipSquare);
   }
 
-  for (let i = 0; i < 3; i += 1) {
+  for (let n = 0; n < 3; n += 1) {
     const shipSquare = document.createElement('div');
     shipSquare.className = 'shipsquare';
     submarineContainer.append(shipSquare);
   }
 
-  for (let i = 0; i < 2; i += 1) {
+  for (let n = 0; n < 2; n += 1) {
     const shipSquare = document.createElement('div');
     shipSquare.className = 'shipsquare';
     patrolBoatContainer.append(shipSquare);
@@ -456,7 +388,6 @@ export default function dom() {
       randomButton.style.display = 'block';
       resetButton.style.display = 'none';
     } else if (e.target.id === 'randombutton') {
-      console.log('rng');
       reset('full');
     }
     if (e.target.id === 'orientationbutton') {

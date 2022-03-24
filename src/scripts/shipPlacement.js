@@ -1,6 +1,6 @@
 import players from './players';
 
-export default function shipPlacement(type, manualX, manualY, manualI, selectedShip) {
+export default function shipPlacement(type, orientation, manualX, manualY, manualI, selectedShip) {
   const auto = (ship, player) => {
     const randomOrientation = Math.floor(Math.random() * 2);
     const validX = [];
@@ -41,6 +41,7 @@ export default function shipPlacement(type, manualX, manualY, manualI, selectedS
   };
 
   const manual = () => {
+    players.p1.placeShip(selectedShip, orientation, manualX, manualY);
   };
 
   if (type === 'auto') {

@@ -9,10 +9,7 @@ export default function ship(shipLength, shipType, shipOwner) {
   };
 
   const isSunk = () => {
-    const shipHitsArray = shipArray.reduce(
-      (acc, cur) => acc + cur,
-    );
-    if (shipHitsArray === length) {
+    if (shipArray.reduce((acc, cur) => acc + cur) === length) {
       return true;
     } return false;
   };

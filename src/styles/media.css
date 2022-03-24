@@ -1,0 +1,59 @@
+@media only screen and (max-width: 1050px) {
+  #title {
+    font-size: 1.8rem;
+  }
+  #main {
+    width: 630px;
+  }
+  #boardcontainer {
+    height: 300px;
+  }
+  #playerboardtitle {
+    width: 300px;
+    font-size: 1.2rem;
+  }
+  #computerboardtitle {
+    width: 300px;
+    font-size: 1.2rem;
+  }
+  #playerboard {
+    width: 300px;
+    height: 300px;
+  }
+  #computerboard {
+    width: 300px;
+    height: 300px;
+  }
+  #shipcontainerinfo {
+    width: 165px;
+  }
+  #shipcontainer {
+    width: 150px;
+  }
+  .shipSquare {
+    width: 30px;
+    height: 30px;
+  }
+  #startbutton {
+    width: 105px;
+    height: 30px;
+    font-size: 0.65rem;
+  }
+  #orientationbutton {
+    width: 90px;
+    height: 30px;
+    font-size: 0.65rem;
+  }
+  #playerstatus {
+    width: 300px;
+  }
+  
+  #computerstatus {
+    width: 300px;
+  }
+
+  #overlay {
+    width: 630px;
+    height: 300px;
+  }
+}

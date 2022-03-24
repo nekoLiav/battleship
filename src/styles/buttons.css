@@ -1,31 +1,31 @@
-#buttoncontainer {
+#button-container {
   display: flex;
   justify-content: center;
   gap: 50px;
 }
 
-#startbutton {
+#buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+#start-button {
   width: 150px;
   height: 50px;
   font-size: 1rem;
   display: none;
 }
 
-#resetbutton {
+#reset-button {
   width: 150px;
   height: 50px;
   font-size: 1rem;
   display: none;
 }
 
-#orientationbutton {
+#direction-button {
   width: 150px;
   height: 50px;
   font-size: 1rem;
   text-align: center;
-}
-
-#shipbuttons {
-  display: flex;
-  justify-content: space-between;
 }

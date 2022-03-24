@@ -1,15 +1,13 @@
-#gamestatuscontainer {
+#player-status {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 50px;
+}
+
+#computer-status {
   display: none;
-  justify-content: center;
-  gap: 50px;
-  background-color: #1a1a1a;
-}
-
-#playerstatus {
-  width: 500px;
-}
-
-#computerstatus {
-  width: 500px;
-  margin-left: auto;
+  align-items: center;
+  width: 300px;
+  height: 50px;
 }

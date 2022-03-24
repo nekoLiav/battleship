@@ -1,4 +1,4 @@
-import ship from './ship';
+import ship from './shipFactory';
 
 export default function gameBoard(name) {
   const owner = name;

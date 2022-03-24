@@ -1,27 +1,22 @@
-import players from './players';
+import { player } from './players';
 
 export default function ai() {
+  const playerSquare = document.getElementsByClassName('player-square');
   const validAIAttacks = [];
 
   for (let i = 0; i < 100; i += 1) {
-    if (players.p1.boardArray[i][2] === 0) {
-      validAIAttacks.push([players.p1.boardArray[i][0], players.p1.boardArray[i][1], i]);
+    if (player.boardArray[i][2] === 0) {
+      validAIAttacks.push([player.boardArray[i][0], player.boardArray[i][1], i]);
     }
   }
 
   const randomAIAttack = validAIAttacks[Math.floor(Math.random() * validAIAttacks.length)];
 
-  players.p1.receiveAttack(randomAIAttack[2]);
+  player.receiveAttack(randomAIAttack[2]);
 
-  const playerSquare = document.getElementsByClassName('playersquare');
-
-  if (players.p1.boardArray[randomAIAttack[2]].length > 3) {
+  if (player.boardArray[randomAIAttack[2]].length > 3) {
     playerSquare[randomAIAttack[2]].classList.add('hit');
   } else {
     playerSquare[randomAIAttack[2]].classList.add('miss');
   }
-
-  const playerShipsSunk = document.getElementById('playershipssunk');
-
-  playerShipsSunk.textContent = `PLAYER SHIPS SUNK: ${players.p1.sunkShips()}`;
 }

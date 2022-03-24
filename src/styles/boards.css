@@ -1,23 +1,23 @@
-#boardcontainer {
+#board-container {
   display: flex;
   background-color: #1a1a1a;
 }
 
-#playerboard {
+#player-board {
   display: flex;
   flex-wrap: wrap;
   width: 500px;
   height: 500px;
 }
 
-.playersquare {
+.player-square {
   border: 1px solid #999999;
   box-sizing: border-box;
   width: 10%;
   height: 10%;
 }
 
-#computerboard {
+#computer-board {
   display: none;
   flex-wrap: wrap;
   width: 500px;
@@ -25,35 +25,34 @@
   margin-left: auto;
 }
 
-.computersquare {
+.computer-square {
   border: 1px solid #999999;
   box-sizing: border-box;
   height: 10%;
   width: 10%;
 }
 
-.computersquare:hover {
+.computer-square:hover {
   background-color: #555555;
 }
 
-#boardtitlecontainer {
+#player-info-container {
   display: flex;
+  height: 50px;
   justify-content: center;
-  gap: 50px;
-  text-align: center;
+  align-items: center;
   font-size: 2rem;
   background-color: #1a1a1a;
 }
 
-#playerboardtitle {
-  width: 500px;
+#player-title {
+  width: 200px;
   font-size: 2rem;
   margin: 0;
 }
 
-#computerboardtitle {
-  display: none;
-  width: 500px;
+#computer-title {
+  width: 200px;
   font-size: 2rem;
   margin: 0;
 }
@@ -81,4 +80,17 @@
 .invalid {
   background-color: red !important;
   cursor: not-allowed;
+}
+
+#player-info {
+  display: flex;
+  align-items: center;
+  width: 500px;
+}
+
+#computer-info {
+  display: none;
+  align-items: center;
+  width: 500px;
+  margin-left: auto;
 }

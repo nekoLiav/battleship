@@ -5,50 +5,65 @@
   #main {
     width: 630px;
   }
-  #boardcontainer {
+  #board-container {
     height: 300px;
   }
-  #playerboardtitle {
-    width: 300px;
+  #player-info-container {
+    height: 30px;
+  }
+  #player-title {
+    width: 200px;
     font-size: 1.2rem;
   }
-  #computerboardtitle {
-    width: 300px;
+  #computer-title {
+    width: 200px;
     font-size: 1.2rem;
   }
-  #playerboard {
+  #player-status-text {
+    font-size: 0.65rem;
+  }
+  #computer-status-text {
+    font-size: 0.65rem;
+  }
+  #player-info {
+    width: 300px;
+  }
+  #computer-info {
+    width: 300px;
+  }
+  #player-board {
     width: 300px;
     height: 300px;
   }
-  #computerboard {
+  #computer-board {
     width: 300px;
     height: 300px;
   }
-  #shipcontainerinfo {
+  #ship-container {
     width: 165px;
   }
-  #shipcontainer {
+  #ships {
     width: 150px;
   }
-  .shipSquare {
+  .ship-square {
     width: 30px;
     height: 30px;
   }
-  #startbutton {
+  #start-button {
     width: 105px;
     height: 30px;
     font-size: 0.65rem;
   }
-  #orientationbutton {
+  #direction-button {
     width: 90px;
     height: 30px;
     font-size: 0.65rem;
   }
-  #playerstatus {
+  #player-status {
     width: 300px;
   }
   
-  #computerstatus {
+  #computer-status {
     width: 300px;
   }
 

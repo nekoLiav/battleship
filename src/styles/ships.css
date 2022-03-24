@@ -1,4 +1,4 @@
-#shipcontainerinfo {
+#ship-container {
   width: 275px;
   display: flex;
   flex-direction: column;
@@ -7,20 +7,21 @@
   box-sizing: border-box;
 }
 
-#shipcontainer {
+#ships {
   width: 250px;
   height: 450px;
   display: flex;
+  gap: 1px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-#shipbuttons {
+#buttons {
   gap: 25px;
 }
 
-.shipSquare {
+.ship-square {
   width: 50px;
   height: 50px;
 }
@@ -28,40 +29,35 @@
 #carrier {
   display: flex;
   background-color: #E27D60;
-  border: 2px solid black;
   box-sizing: border-box;
 }
 
 #battleship {
   display: flex;
   background-color: #85DCB0;
-  border: 2px solid black;
   box-sizing: border-box;
 }
 
 #destroyer {
   display: flex;
   background-color: #E8A87C;
-  border: 2px solid black;
   box-sizing: border-box;
 }
 
 #submarine {
   display: flex;
   background-color: #C38D9E;
-  border: 2px solid black;
   box-sizing: border-box;
 }
 
-#patrolboat {
+#patrol-boat {
   display: flex;
   background-color: #41B3A3;
-  border: 2px solid black;
   box-sizing: border-box;
 }
 
-.shipselected {
-  border-color: white !important;
+.ship-selected {
+  border: 2px solid white !important;
 }
 
 .ship:hover {
@@ -84,6 +80,6 @@
   background-color: #C38D9E;
 }
 
-.patrolboat {
+.patrol-boat {
   background-color: #41B3A3;
 }

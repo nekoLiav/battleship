@@ -1,15 +1,11 @@
-import { player, computer } from '../game/players';
-import ai from '../game/ai';
-import endGame from '../game/endGame';
-import updateUI from '../helpers/updateUI';
+import { player } from '../game/players';
 
-export default function boardEvents(e) {
+export default function handlePlace(e) {
   // Variables needed for providing board feedback
   const orientationButton = document.getElementById('direction-button');
   const startButton = document.getElementById('start-button');
   const selectedShipSelector = document.querySelector('.ship-selected');
   const playerSquares = document.querySelectorAll('.player-square');
-  const computerSquares = document.getElementsByClassName('computer-square');
   const shipSquares = document.querySelectorAll('.ship');
   const manualX = parseInt(e.target.getAttribute('data-x'), 10);
   const manualY = parseInt(e.target.getAttribute('data-y'), 10);
@@ -126,20 +122,5 @@ export default function boardEvents(e) {
       orientationButton.style.display = 'none';
       startButton.style.display = 'block';
     }
-  }
-  // Handles the player attacking the computer board
-  if (e.target.parentNode.id === 'computer-board') {
-    const dataIndex = e.target.getAttribute('data-i');
-    if (computer.boardArray[dataIndex][2] === 0) {
-      computer.receiveAttack(dataIndex);
-      ai();
-      if (computer.boardArray[dataIndex].length > 3) {
-        computerSquares[dataIndex].classList.add('hit');
-      } else {
-        computerSquares[dataIndex].classList.add('miss');
-      }
-    }
-    updateUI();
-    endGame();
   }
 }

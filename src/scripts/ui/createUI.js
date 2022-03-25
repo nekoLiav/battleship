@@ -1,5 +1,8 @@
-import boardEvents from './boardEvents';
-import buttonEvents from './buttonEvents';
+import playerAttack from '../game/playerAttack';
+import handlePlace from './handlePlace';
+import playAgain from './playAgain';
+import startGame from './startGame';
+import switchDirection from './switchDirection';
 
 export default function createUI() {
   const content = document.createElement('div');
@@ -71,9 +74,9 @@ export default function createUI() {
     }
     const playerSquare = document.createElement('div');
     playerSquare.className = 'player-square';
-    playerSquare.addEventListener('mouseenter', boardEvents);
-    playerSquare.addEventListener('mouseleave', boardEvents);
-    playerSquare.addEventListener('click', boardEvents);
+    playerSquare.addEventListener('mouseenter', handlePlace);
+    playerSquare.addEventListener('mouseleave', handlePlace);
+    playerSquare.addEventListener('click', handlePlace);
     playerSquare.dataset.i = i;
     playerSquare.dataset.x = x;
     playerSquare.dataset.y = y;
@@ -86,8 +89,11 @@ export default function createUI() {
     computerBoard.append(computerSquare);
   }
 
-  boardContainer.addEventListener('click', boardEvents);
-  boardContainer.addEventListener('click', buttonEvents);
+  startButton.addEventListener('click', startGame);
+  directionButton.addEventListener('click', switchDirection);
+  playAgainButton.addEventListener('click', playAgain);
+  ships.addEventListener('click', handlePlace);
+  computerBoard.addEventListener('click', playerAttack);
 
   titlebar.id = 'title-bar';
   title.id = 'title';

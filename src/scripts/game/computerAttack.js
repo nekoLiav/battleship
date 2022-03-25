@@ -1,7 +1,7 @@
 import { player } from './players';
-import endGame from './endGame';
+import updateStatus from '../ui/updateStatus';
 
-export default function ai() {
+export default function computerAttack() {
   const playerSquare = document.getElementsByClassName('player-square');
   const validAIAttacks = [];
 
@@ -14,8 +14,7 @@ export default function ai() {
   const randomAIAttack = validAIAttacks[Math.floor(Math.random() * validAIAttacks.length)];
 
   player.receiveAttack(randomAIAttack[2]);
-
-  endGame();
+  updateStatus();
 
   if (player.boardArray[randomAIAttack[2]].length > 3) {
     playerSquare[randomAIAttack[2]].classList.add('hit');

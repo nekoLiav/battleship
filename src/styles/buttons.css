@@ -1,9 +1,3 @@
-#button-container {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-}
-
 #buttons {
   display: flex;
   justify-content: space-between;
@@ -12,20 +6,22 @@
 #start-button {
   width: 150px;
   height: 50px;
-  font-size: 1rem;
   display: none;
 }
 
 #reset-button {
   width: 150px;
   height: 50px;
-  font-size: 1rem;
   display: none;
 }
 
 #direction-button {
   width: 150px;
   height: 50px;
-  font-size: 1rem;
   text-align: center;
+}
+
+#play-again-button {
+  width: 150px;
+  height: 50px;
 }

@@ -1,6 +1,6 @@
 import reset from '../helpers/reset';
 import autoPlace from '../helpers/autoPlace';
-import { computer } from '../players';
+import { computer } from '../game/players';
 
 export default function buttonEvents(e) {
   const ship = document.querySelectorAll('.ship');

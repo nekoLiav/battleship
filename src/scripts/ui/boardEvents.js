@@ -1,5 +1,6 @@
-import { player, computer } from '../players';
-import ai from '../ai';
+import { player, computer } from '../game/players';
+import ai from '../game/ai';
+import endGame from '../game/endGame';
 
 export default function boardEvents(e) {
   // Variables needed for providing board feedback
@@ -134,5 +135,6 @@ export default function boardEvents(e) {
         computerSquares[dataIndex].classList.add('miss');
       }
     }
+    endGame();
   }
 }

@@ -116,6 +116,7 @@ export default function createUI() {
   modalHeader.id = 'modal-header';
   modalText.id = 'modal-text';
   playAgainButton.id = 'play-again-button';
+  playAgainButton.textContent = 'Play again?';
   buttons.id = 'buttons';
   directionButton.id = 'direction-button';
   directionButton.textContent = 'Switch Direction';

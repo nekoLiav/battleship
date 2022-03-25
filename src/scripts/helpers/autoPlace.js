@@ -1,4 +1,4 @@
-import { computer } from '../players';
+import { computer } from '../game/players';
 
 export default function autoPlace(ship) {
   const randomOrientation = Math.floor(Math.random() * 2);

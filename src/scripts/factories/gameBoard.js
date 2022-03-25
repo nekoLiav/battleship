@@ -1,4 +1,4 @@
-import ship from './shipFactory';
+import ship from './ship';
 
 export default function gameBoard(name) {
   const owner = name;
@@ -51,20 +51,6 @@ export default function gameBoard(name) {
     } return sunkCounter;
   };
 
-  const endGame = () => {
-    const overlay = document.getElementById('overlay');
-    const modalHeader = document.getElementById('modalheader');
-    if (sunkShips() === 5) {
-      if (owner === 'computer') {
-        modalHeader.textContent = 'YOU WIN! (=^_^=)';
-        overlay.style.display = 'flex';
-      } else if (owner === 'player') {
-        modalHeader.textContent = 'YOU LOSE! <(-_-<)';
-        overlay.style.display = 'flex';
-      }
-    }
-  };
-
   const hitCount = () => {
     let hitCounter = 0;
     for (let i = 0; i < 100; i += 1) {
@@ -96,7 +82,6 @@ export default function gameBoard(name) {
     } else if (boardArray[i][3] === 'patrolboat') {
       ships.patrolboat.hit(boardArray[i][4]);
     }
-    endGame();
   };
 
   const populate = () => {

@@ -1,4 +1,5 @@
 import { player } from './players';
+import endGame from './endGame';
 
 export default function ai() {
   const playerSquare = document.getElementsByClassName('player-square');
@@ -13,6 +14,8 @@ export default function ai() {
   const randomAIAttack = validAIAttacks[Math.floor(Math.random() * validAIAttacks.length)];
 
   player.receiveAttack(randomAIAttack[2]);
+
+  endGame();
 
   if (player.boardArray[randomAIAttack[2]].length > 3) {
     playerSquare[randomAIAttack[2]].classList.add('hit');

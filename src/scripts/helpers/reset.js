@@ -1,4 +1,4 @@
-import { player, computer } from '../players';
+import { player, computer } from '../game/players';
 
 export default function reset(resetType) {
   const playerSquare = document.getElementById('player-square');

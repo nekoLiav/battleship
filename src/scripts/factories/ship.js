@@ -3,6 +3,7 @@ export default function ship(shipLength, shipType, shipOwner) {
   const type = shipType;
   const length = shipLength;
   const shipArray = [];
+  let isPlaced;
 
   const hit = (n) => {
     shipArray[n] = 1;
@@ -32,6 +33,7 @@ export default function ship(shipLength, shipType, shipOwner) {
     type,
     length,
     shipArray,
+    isPlaced,
     hit,
     isSunk,
     clean,

@@ -86,9 +86,8 @@ export default function createUI() {
     computerBoard.append(computerSquare);
   }
 
-  boardContainer.addEventListener('click', buttonEvents);
   boardContainer.addEventListener('click', boardEvents);
-  shipContainer.addEventListener('click', boardEvents);
+  boardContainer.addEventListener('click', buttonEvents);
 
   titlebar.id = 'title-bar';
   title.id = 'title';
@@ -115,8 +114,9 @@ export default function createUI() {
   modal.id = 'modal';
   modalHeader.id = 'modal-header';
   modalText.id = 'modal-text';
+  modalText.textContent = 'Would you like to play again?';
   playAgainButton.id = 'play-again-button';
-  playAgainButton.textContent = 'Play again?';
+  playAgainButton.textContent = 'Play again';
   buttons.id = 'buttons';
   directionButton.id = 'direction-button';
   directionButton.textContent = 'Switch Direction';

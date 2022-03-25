@@ -32,7 +32,7 @@ export default function boardEvents(e) {
       direction = 1;
     }
   }
-  // Handles feedback for ship to be placed
+  // Handles feedback for selecting ship to be placed
   if (e.target.className === 'ship-square') {
     const shipSquares = document.querySelectorAll('.ship');
     shipSquares.forEach((element) => {
@@ -111,7 +111,9 @@ export default function boardEvents(e) {
       const orientationButton = document.getElementById('direction-button');
       const startButton = document.getElementById('start-button');
       player.placeShip(selectedShip, direction, manualX, manualY);
-      selectedShipSelector.remove();
+      selectedShip.isPlaced = true;
+      selectedShipSelector.style.display = 'none';
+      selectedShipSelector.classList.remove('ship-selected');
       if (document.querySelector('.carrier') !== null
       && document.querySelector('.battleship') !== null
       && document.querySelector('.destroyer') !== null

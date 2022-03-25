@@ -46,21 +46,22 @@ export default function buttonEvents(e) {
     autoPlace(computer.ships.destroyer);
     autoPlace(computer.ships.submarine);
     autoPlace(computer.ships.patrolboat);
-  } else if (e.target.id === 'play-again-button') {
-    reset('partial');
-    directionButton.textContent = 'CHANGE DIRECTION';
+  }
+
+  if (e.target.id === 'play-again-button') {
+    reset();
+    directionButton.textContent = 'SWITCH DIRECTION';
     startButton.style.display = 'none';
-    directionButton.style.display = 'block';
-    shipContainer.style.display = 'flex';
     computerInfo.style.display = 'none';
     overlay.style.display = 'none';
-    ships.append(
-      carrier,
-      battleship,
-      destroyer,
-      submarine,
-      patrolBoat,
-    );
+    computerBoard.style.display = 'none';
+    directionButton.style.display = 'block';
+    shipContainer.style.display = 'flex';
+    carrier.style.display = 'flex';
+    battleship.style.display = 'flex';
+    destroyer.style.display = 'flex';
+    submarine.style.display = 'flex';
+    patrolBoat.style.display = 'flex';
     ships.style.flexDirection = 'column';
     document.querySelectorAll('.ship').forEach(
       // eslint-disable-next-line no-param-reassign

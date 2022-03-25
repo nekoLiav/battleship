@@ -24,6 +24,8 @@
 .ship-square {
   width: 50px;
   height: 50px;
+  border: 1px solid #1A1A1A;
+  box-sizing: border-box;
 }
 
 #carrier {
@@ -66,20 +68,25 @@
 
 .carrier {
   background-color: #999999;
+  border: 1px solid #1A1A1A;
 }
 
 .battleship {
   background-color: #999999;
+  border: 1px solid #1A1A1A;
 }
 
 .destroyer {
   background-color: #999999;
+  border: 1px solid #1A1A1A;
 }
 
 .submarine {
   background-color: #999999;
+  border: 1px solid #1A1A1A;
 }
 
 .patrol-boat {
   background-color: #999999;
+  border: 1px solid #1A1A1A;
 }

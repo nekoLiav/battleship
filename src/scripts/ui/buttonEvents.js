@@ -1,5 +1,6 @@
-import reset from '../helpers/reset';
 import autoPlace from '../helpers/autoPlace';
+import reset from '../helpers/reset';
+import updateUI from '../helpers/updateUI';
 import { computer } from '../game/players';
 
 export default function buttonEvents(e) {
@@ -16,6 +17,7 @@ export default function buttonEvents(e) {
   const computerInfo = document.getElementById('computer-info');
   const computerBoard = document.getElementById('computer-board');
   const startButton = document.getElementById('start-button');
+  const playerStatusText = document.getElementById('player-status-text');
 
   if (e.target.id === 'direction-button') {
     ship.forEach((element) => {
@@ -46,10 +48,12 @@ export default function buttonEvents(e) {
     autoPlace(computer.ships.destroyer);
     autoPlace(computer.ships.submarine);
     autoPlace(computer.ships.patrolboat);
+    updateUI();
   }
 
   if (e.target.id === 'play-again-button') {
     reset();
+    playerStatusText.textContent = 'Awaiting ship placement...';
     directionButton.textContent = 'SWITCH DIRECTION';
     startButton.style.display = 'none';
     computerInfo.style.display = 'none';

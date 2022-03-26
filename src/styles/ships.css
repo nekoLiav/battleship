@@ -57,12 +57,12 @@
   box-sizing: border-box;
 }
 
-.ship-selected {
-  border: 2px solid white !important;
+#ships .ship-selected {
+  background-color: #bdbdbd;
 }
 
-.ship:hover {
-  border-color: white !important;
+#ships .ship:hover {
+  background-color: #bdbdbd;
 }
 
 .carrier {

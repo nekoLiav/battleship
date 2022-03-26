@@ -80,10 +80,6 @@
   cursor: not-allowed;
 }
 
-.placed {
-  background-color: #999999;
-}
-
 #player-info {
   display: flex;
   align-items: center;

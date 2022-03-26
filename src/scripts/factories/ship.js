@@ -1,28 +1,24 @@
-export default function ship(shipLength, shipType, shipOwner) {
-  const owner = shipOwner;
-  const type = shipType;
-  const length = shipLength;
-  const shipArray = [];
-  let isPlaced;
+export default function ship(length, type, owner) {
+  const hits = [];
 
-  const hit = (n) => {
-    shipArray[n] = 1;
+  const hit = (i) => {
+    hits[i] = 1;
   };
 
-  const isSunk = () => {
-    if (shipArray.reduce((acc, cur) => acc + cur) === length) {
+  const sunk = () => {
+    if (hits.reduce((acc, cur) => acc + cur) === length) {
       return true;
     } return false;
   };
 
   const populate = () => {
     for (let i = 0; i < length; i += 1) {
-      shipArray.push(0);
+      hits.push(0);
     }
   };
 
   const clean = () => {
-    shipArray.splice(0);
+    hits.splice(0);
     populate();
   };
 
@@ -32,10 +28,9 @@ export default function ship(shipLength, shipType, shipOwner) {
     owner,
     type,
     length,
-    shipArray,
-    isPlaced,
+    hits,
     hit,
-    isSunk,
+    sunk,
     clean,
   };
 }

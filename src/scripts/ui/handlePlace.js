@@ -111,7 +111,6 @@ export default function handlePlace(e) {
       (element) => { element.classList.add('placed'); },
     );
     selectedShipSelector.classList.remove('ship-selected');
-    selectedShip.isPlaced = true;
     selectedShipSelector.style.display = 'none';
     player.placeShip(selectedShip, direction, manualX, manualY);
     if (document.querySelector('.carrier') !== null

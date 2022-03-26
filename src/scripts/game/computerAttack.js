@@ -1,24 +1,23 @@
 import { player } from './players';
+import updateBoard from '../ui/updateBoard';
 import updateStatus from '../ui/updateStatus';
 
 export default function computerAttack() {
-  const playerSquare = document.getElementsByClassName('player-square');
-  const validAIAttacks = [];
+  const validAttacks = [];
 
   for (let i = 0; i < 100; i += 1) {
-    if (player.boardArray[i][2] === 0) {
-      validAIAttacks.push([player.boardArray[i][0], player.boardArray[i][1], i]);
+    if (player.board[i][2] === 0) {
+      validAttacks.push([player.board[i][0], player.board[i][1], i]);
     }
   }
 
-  const randomAIAttack = validAIAttacks[Math.floor(Math.random() * validAIAttacks.length)];
+  const randomAttack = validAttacks[Math.floor(Math.random() * validAttacks.length)];
 
-  player.receiveAttack(randomAIAttack[2]);
+  player.receiveAttack(randomAttack[2]);
   updateStatus();
-
-  if (player.boardArray[randomAIAttack[2]].length > 3) {
-    playerSquare[randomAIAttack[2]].classList.add('hit');
+  if (player.board[randomAttack[2]].length > 3) {
+    updateBoard('player', randomAttack[2], true);
   } else {
-    playerSquare[randomAIAttack[2]].classList.add('miss');
+    updateBoard('player', randomAttack[2], false);
   }
 }

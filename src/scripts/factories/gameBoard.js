@@ -2,8 +2,7 @@ import ship from './ship';
 
 export default function gameBoard(name) {
   const owner = name;
-  const boardArray = [];
-
+  const board = [];
   const ships = {
     carrier: ship(5, 'carrier', owner),
     battleship: ship(4, 'battleship', owner),
@@ -12,75 +11,57 @@ export default function gameBoard(name) {
     patrolboat: ship(2, 'patrolboat', owner),
   };
 
-  const placeShip = (shippy, orientation, x, y) => {
+  const placeShip = (shipId, orientation, x, y) => {
     const locationXY = [x, y];
     let locationIndex = 0;
-    for (let i = 0; i < boardArray.length; i += 1) {
-      if (boardArray[i][0] === locationXY[0] && boardArray[i][1] === locationXY[1]) {
+    for (let i = 0; i < board.length; i += 1) {
+      if (board[i][0] === locationXY[0] && board[i][1] === locationXY[1]) {
         locationIndex = i;
       }
     }
     if (orientation === 0) {
-      for (let i = 0; i < shippy.length; i += 1) {
-        boardArray[locationIndex + i].push(shippy.type, i);
+      for (let i = 0; i < shipId.length; i += 1) {
+        board[locationIndex + i].push(shipId.type, i);
       }
     }
     if (orientation === 1) {
-      for (let i = 0, n = 0; i < shippy.length; i += 1, n += 10) {
-        boardArray[locationIndex + n].push(shippy.type, i);
+      for (let i = 0, n = 0; i < shipId.length; i += 1, n += 10) {
+        board[locationIndex + n].push(shipId.type, i);
       }
     }
   };
 
   const sunkShips = () => {
     let sunkCounter = 0;
-    if (ships.carrier.isSunk() === true) {
+    if (ships.carrier.sunk()) {
       sunkCounter += 1;
     }
-    if (ships.battleship.isSunk() === true) {
+    if (ships.battleship.sunk()) {
       sunkCounter += 1;
     }
-    if (ships.destroyer.isSunk() === true) {
+    if (ships.destroyer.sunk()) {
       sunkCounter += 1;
     }
-    if (ships.submarine.isSunk() === true) {
+    if (ships.submarine.sunk()) {
       sunkCounter += 1;
     }
-    if (ships.patrolboat.isSunk() === true) {
+    if (ships.patrolboat.sunk()) {
       sunkCounter += 1;
     } return sunkCounter;
   };
 
-  const hitCount = () => {
-    let hitCounter = 0;
-    for (let i = 0; i < 100; i += 1) {
-      if (boardArray[i].length > 3 && boardArray[i][2] === 1) {
-        hitCounter += 1;
-      }
-    } return hitCounter;
-  };
-
-  const missCount = () => {
-    let missCounter = 0;
-    for (let i = 0; i < 100; i += 1) {
-      if (boardArray[i].length === 3 && boardArray[i][2] === 1) {
-        missCounter += 1;
-      }
-    } return missCounter;
-  };
-
   const receiveAttack = (i) => {
-    boardArray[i][2] = 1;
-    if (boardArray[i][3] === 'carrier') {
-      ships.carrier.hit(boardArray[i][4]);
-    } else if (boardArray[i][3] === 'battleship') {
-      ships.battleship.hit(boardArray[i][4]);
-    } else if (boardArray[i][3] === 'destroyer') {
-      ships.destroyer.hit(boardArray[i][4]);
-    } else if (boardArray[i][3] === 'submarine') {
-      ships.submarine.hit(boardArray[i][4]);
-    } else if (boardArray[i][3] === 'patrolboat') {
-      ships.patrolboat.hit(boardArray[i][4]);
+    board[i][2] = 1;
+    if (board[i][3] === 'carrier') {
+      ships.carrier.hit(board[i][4]);
+    } else if (board[i][3] === 'battleship') {
+      ships.battleship.hit(board[i][4]);
+    } else if (board[i][3] === 'destroyer') {
+      ships.destroyer.hit(board[i][4]);
+    } else if (board[i][3] === 'submarine') {
+      ships.submarine.hit(board[i][4]);
+    } else if (board[i][3] === 'patrolboat') {
+      ships.patrolboat.hit(board[i][4]);
     }
   };
 
@@ -90,12 +71,12 @@ export default function gameBoard(name) {
         x = 0;
         y += 1;
       }
-      boardArray.push([x, y, 0]);
+      board.push([x, y, 0]);
     }
   };
 
   const clean = () => {
-    boardArray.splice(0);
+    board.splice(0);
     populate();
     ships.carrier.clean();
     ships.battleship.clean();
@@ -108,12 +89,10 @@ export default function gameBoard(name) {
 
   return {
     ships,
-    boardArray,
+    board,
     placeShip,
     receiveAttack,
     sunkShips,
     clean,
-    hitCount,
-    missCount,
   };
 }

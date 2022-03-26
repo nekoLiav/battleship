@@ -1,20 +1,20 @@
 import { computer } from './players';
+import updateBoard from '../ui/updateBoard';
 import updateStatus from '../ui/updateStatus';
 import computerAttack from './computerAttack';
 
 export default function playerAttack(e) {
-  const computerSquares = document.getElementsByClassName('computer-square');
   if (e.target.parentNode.id === 'computer-board') {
     const dataIndex = e.target.getAttribute('data-i');
-    if (computer.boardArray[dataIndex][2] === 0) {
+    if (computer.board[dataIndex][2] === 0) {
       computer.receiveAttack(dataIndex);
+      if (computer.board[dataIndex].length > 3) {
+        updateBoard('computer', dataIndex, true);
+      } else {
+        updateBoard('computer', dataIndex, false);
+      }
       updateStatus();
       computerAttack();
-      if (computer.boardArray[dataIndex].length > 3) {
-        computerSquares[dataIndex].classList.add('hit');
-      } else {
-        computerSquares[dataIndex].classList.add('miss');
-      }
     }
   }
 }

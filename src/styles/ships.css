@@ -24,37 +24,36 @@
 .ship-square {
   width: 50px;
   height: 50px;
-  border: 1px solid #1A1A1A;
   box-sizing: border-box;
 }
 
 #carrier {
   display: flex;
-  background-color: #999999;
+  background-color: #EFEFEF;
   box-sizing: border-box;
 }
 
 #battleship {
   display: flex;
-  background-color: #999999;
+  background-color: #EFEFEF;
   box-sizing: border-box;
 }
 
 #destroyer {
   display: flex;
-  background-color: #999999;
+  background-color: #EFEFEF;
   box-sizing: border-box;
 }
 
 #submarine {
   display: flex;
-  background-color: #999999;
+  background-color: #EFEFEF;
   box-sizing: border-box;
 }
 
 #patrol-boat {
   display: flex;
-  background-color: #999999;
+  background-color: #EFEFEF;
   box-sizing: border-box;
 }
 
@@ -67,26 +66,26 @@
 }
 
 .carrier {
-  background-color: #999999;
-  border: 1px solid #1A1A1A;
+  background-color: #EFEFEF;
+  border: 1px solid #000F1A;
 }
 
 .battleship {
-  background-color: #999999;
-  border: 1px solid #1A1A1A;
+  background-color: #EFEFEF;
+  border: 1px solid #000F1A;
 }
 
 .destroyer {
-  background-color: #999999;
-  border: 1px solid #1A1A1A;
+  background-color: #EFEFEF;
+  border: 1px solid #000F1A;
 }
 
 .submarine {
-  background-color: #999999;
-  border: 1px solid #1A1A1A;
+  background-color: #EFEFEF;
+  border: 1px solid #000F1A;
 }
 
 .patrol-boat {
-  background-color: #999999;
-  border: 1px solid #1A1A1A;
+  background-color: #EFEFEF;
+  border: 1px solid #000F1A;
 }

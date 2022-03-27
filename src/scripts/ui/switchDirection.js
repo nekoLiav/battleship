@@ -6,13 +6,15 @@ export default function switchDirection() {
       element.style.flexDirection = 'column';
       element.classList.remove('horizontal');
       element.classList.add('vertical');
-      document.getElementById('direction-button').textContent = 'SWITCH TO HORIZONTAL';
+      document.getElementById('direction-button').textContent =
+        'SWITCH TO HORIZONTAL';
     } else if (element.classList.contains('vertical')) {
       document.getElementById('ships').style.flexDirection = 'column';
       element.style.flexDirection = 'row';
       element.classList.remove('vertical');
       element.classList.add('horizontal');
-      document.getElementById('direction-button').textContent = 'SWITCH TO VERTICAL';
+      document.getElementById('direction-button').textContent =
+        'SWITCH TO VERTICAL';
     }
   });
 }

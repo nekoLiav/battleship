@@ -1,20 +1,20 @@
 #board-container {
   display: flex;
-  background-color: #000F1A;
+  background-color: #000f1a;
 }
 
 #player-board {
   display: flex;
   flex-wrap: wrap;
-  background-color: #517A97;
-  border: 1px solid #517A97;
+  background-color: #517a97;
+  border: 1px solid #517a97;
   box-sizing: border-box;
   width: 500px;
   height: 500px;
 }
 
 .player-square {
-  border: 1px solid #000F1A;
+  border: 1px solid #000f1a;
   box-sizing: border-box;
   width: 10%;
   height: 10%;
@@ -23,8 +23,8 @@
 #computer-board {
   display: none;
   flex-wrap: wrap;
-  background-color: #517A97;
-  border: 1px solid #517A97;
+  background-color: #517a97;
+  border: 1px solid #517a97;
   box-sizing: border-box;
   width: 500px;
   height: 500px;
@@ -32,14 +32,14 @@
 }
 
 .computer-square {
-  border: 1px solid #000F1A;
+  border: 1px solid #000f1a;
   box-sizing: border-box;
   height: 10%;
   width: 10%;
 }
 
 .computer-square:hover {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 #player-info-container {
@@ -48,7 +48,7 @@
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  background-color: #000F1A;
+  background-color: #000f1a;
 }
 
 #player-title {
@@ -68,7 +68,7 @@
 }
 
 .miss {
-  background-color: #000F1A !important;
+  background-color: #000f1a !important;
 }
 
 .valid {

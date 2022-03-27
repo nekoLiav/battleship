@@ -140,63 +140,19 @@ export default function createUI() {
   patrolBoat.id = 'patrol-boat';
   patrolBoat.classList.add('ship', 'horizontal');
 
-  ships.append(
-    carrier,
-    battleship,
-    destroyer,
-    submarine,
-    patrolBoat,
-  );
-  buttons.append(
-    directionButton,
-    startButton,
-  );
-  shipContainer.append(
-    ships,
-    buttons,
-  );
-  modal.append(
-    modalHeader,
-    modalText,
-    playAgainButton,
-  );
-  overlay.append(
-    modal,
-  );
-  boardContainer.append(
-    shipContainer,
-    playerBoard,
-    computerBoard,
-    overlay,
-  );
-  playerStatus.append(
-    playerStatusText,
-  );
-  computerStatus.append(
-    computerStatusText,
-  );
-  playerInfo.append(
-    playerTitle,
-    playerStatus,
-  );
-  computerInfo.append(
-    computerTitle,
-    computerStatus,
-  );
-  playerInfoContainer.append(
-    playerInfo,
-    computerInfo,
-  );
-  main.append(
-    playerInfoContainer,
-    boardContainer,
-  );
-  content.append(
-    titlebar,
-    main,
-  );
-  titlebar.append(
-    title,
-  );
+  ships.append(carrier, battleship, destroyer, submarine, patrolBoat);
+  buttons.append(directionButton, startButton);
+  shipContainer.append(ships, buttons);
+  modal.append(modalHeader, modalText, playAgainButton);
+  overlay.append(modal);
+  boardContainer.append(shipContainer, playerBoard, computerBoard, overlay);
+  playerStatus.append(playerStatusText);
+  computerStatus.append(computerStatusText);
+  playerInfo.append(playerTitle, playerStatus);
+  computerInfo.append(computerTitle, computerStatus);
+  playerInfoContainer.append(playerInfo, computerInfo);
+  main.append(playerInfoContainer, boardContainer);
+  content.append(titlebar, main);
+  titlebar.append(title);
   document.body.append(content);
 }

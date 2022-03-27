@@ -11,7 +11,8 @@ export default function computerAttack() {
     }
   }
 
-  const randomAttack = validAttacks[Math.floor(Math.random() * validAttacks.length)];
+  const randomAttack =
+    validAttacks[Math.floor(Math.random() * validAttacks.length)];
 
   player.receiveAttack(randomAttack[2]);
   updateStatus();

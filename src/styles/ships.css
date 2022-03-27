@@ -29,31 +29,31 @@
 
 #carrier {
   display: flex;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   box-sizing: border-box;
 }
 
 #battleship {
   display: flex;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   box-sizing: border-box;
 }
 
 #destroyer {
   display: flex;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   box-sizing: border-box;
 }
 
 #submarine {
   display: flex;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   box-sizing: border-box;
 }
 
 #patrol-boat {
   display: flex;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   box-sizing: border-box;
 }
 
@@ -66,26 +66,26 @@
 }
 
 .carrier {
-  background-color: #EFEFEF;
-  border: 1px solid #000F1A;
+  background-color: #efefef;
+  border: 1px solid #000f1a;
 }
 
 .battleship {
-  background-color: #EFEFEF;
-  border: 1px solid #000F1A;
+  background-color: #efefef;
+  border: 1px solid #000f1a;
 }
 
 .destroyer {
-  background-color: #EFEFEF;
-  border: 1px solid #000F1A;
+  background-color: #efefef;
+  border: 1px solid #000f1a;
 }
 
 .submarine {
-  background-color: #EFEFEF;
-  border: 1px solid #000F1A;
+  background-color: #efefef;
+  border: 1px solid #000f1a;
 }
 
 .patrol-boat {
-  background-color: #EFEFEF;
-  border: 1px solid #000F1A;
+  background-color: #efefef;
+  border: 1px solid #000f1a;
 }

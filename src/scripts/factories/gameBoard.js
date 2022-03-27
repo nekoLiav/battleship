@@ -47,7 +47,8 @@ export default function gameBoard(name) {
     }
     if (ships.patrolboat.sunk()) {
       sunkCounter += 1;
-    } return sunkCounter;
+    }
+    return sunkCounter;
   };
 
   const receiveAttack = (i) => {

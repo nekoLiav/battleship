@@ -8,7 +8,8 @@ export default function ship(length, type, owner) {
   const sunk = () => {
     if (hits.reduce((acc, cur) => acc + cur) === length) {
       return true;
-    } return false;
+    }
+    return false;
   };
 
   const populate = () => {

@@ -1,3 +1,5 @@
+import updateSunk from './updateSunk';
+
 export default function updateBoard(attackedPlayer, n, hit) {
   const playerSquare = document.getElementsByClassName('player-square');
   const computerSquare = document.getElementsByClassName('computer-square');
@@ -17,4 +19,5 @@ export default function updateBoard(attackedPlayer, n, hit) {
       computerSquare[n].classList.add('miss');
     }
   }
+  updateSunk();
 }

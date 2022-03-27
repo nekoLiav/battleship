@@ -13,7 +13,7 @@ export default function handlePlace(e) {
   let direction;
   let collision = 0;
   let selectedShip;
-  // Find correct ship object based on element id (this could be done better)
+  // Find correct ship object based on element id
   if (selectedShipSelector !== undefined && selectedShipSelector !== null) {
     if (selectedShipSelector.id === 'carrier') {
       selectedShip = player.ships.carrier;
@@ -144,6 +144,7 @@ export default function handlePlace(e) {
     selectedShipSelector.classList.remove('ship-selected');
     selectedShipSelector.style.display = 'none';
     player.placeShip(selectedShip, direction, manualX, manualY);
+    // Checks if all ships have been placed
     if (
       document.querySelector('.carrier') !== null &&
       document.querySelector('.battleship') !== null &&

@@ -1,5 +1,5 @@
 import placeComputerShips from '../game/placeComputerShips';
-import updateUI from './updateStatus';
+import updateStatus from './updateStatus';
 
 export default function startGame() {
   document.getElementById('ship-container').style.display = 'none';
@@ -7,5 +7,5 @@ export default function startGame() {
   document.getElementById('computer-board').style.display = 'flex';
   document.getElementById('start-button').style.display = 'none';
   placeComputerShips();
-  updateUI();
+  updateStatus();
 }

@@ -89,3 +89,7 @@
   background-color: #efefef;
   border: 1px solid #000f1a;
 }
+
+.sunk {
+  background-color: #400000 !important;
+}

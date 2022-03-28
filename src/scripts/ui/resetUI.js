@@ -21,7 +21,7 @@ export default function resetUI() {
     element.style.flexDirection = 'row';
   });
   document.querySelectorAll('.player-square').forEach((element) => {
-    element.classList.remove('placed', 'hit', 'miss');
+    element.classList.remove('placed', 'sunk', 'hit', 'miss');
   });
   document.querySelectorAll('.computer-square').forEach((element) => {
     element.classList.remove('hit', 'miss');

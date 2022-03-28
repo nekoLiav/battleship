@@ -1,56 +1,138 @@
 import { player, computer } from '../game/players';
 
 export default function updateSunk() {
+  const playerSquare = document.querySelectorAll('.player-square');
+  const computerSquare = document.querySelectorAll('.computer-square');
   switch (true) {
     case player.ships.carrier.sunk():
-      document.querySelectorAll('.carrier').forEach((element) => {
-        element.classList.remove('hit');
-        element.classList.add('sunk');
+      player.board.forEach((element) => {
+        if (element[3] === 'carrier') {
+          if (
+            !playerSquare[player.board.indexOf(element)].classList.contains(
+              'sunk'
+            )
+          ) {
+            playerSquare[player.board.indexOf(element)].classList.add('sunk');
+          }
+        }
       });
     case player.ships.battleship.sunk():
-      document.querySelectorAll('.battleship').forEach((element) => {
-        element.classList.remove('hit');
-        element.classList.add('sunk');
+      player.board.forEach((element) => {
+        if (element[3] === 'battleship') {
+          if (
+            !playerSquare[player.board.indexOf(element)].classList.contains(
+              'sunk'
+            )
+          ) {
+            playerSquare[player.board.indexOf(element)].classList.add('sunk');
+          }
+        }
       });
     case player.ships.destroyer.sunk():
-      document.querySelectorAll('.destroyer').forEach((element) => {
-        element.classList.remove('hit');
-        element.classList.add('sunk');
+      player.board.forEach((element) => {
+        if (element[3] === 'destroyer') {
+          if (
+            !playerSquare[player.board.indexOf(element)].classList.contains(
+              'sunk'
+            )
+          ) {
+            playerSquare[player.board.indexOf(element)].classList.add('sunk');
+          }
+        }
       });
     case player.ships.submarine.sunk():
-      document.querySelectorAll('.submarine').forEach((element) => {
-        element.classList.remove('hit');
-        element.classList.add('sunk');
+      player.board.forEach((element) => {
+        if (element[3] === 'submarine') {
+          if (
+            !playerSquare[player.board.indexOf(element)].classList.contains(
+              'sunk'
+            )
+          ) {
+            playerSquare[player.board.indexOf(element)].classList.add('sunk');
+          }
+        }
       });
     case player.ships.patrolboat.sunk():
-      document.querySelectorAll('.patrolboat').forEach((element) => {
-        element.classList.remove('hit');
-        element.classList.add('sunk');
+      player.board.forEach((element) => {
+        if (element[3] === 'patrolboat') {
+          if (
+            !playerSquare[player.board.indexOf(element)].classList.contains(
+              'sunk'
+            )
+          ) {
+            playerSquare[player.board.indexOf(element)].classList.add('sunk');
+          }
+        }
       });
     case computer.ships.carrier.sunk():
-      document.querySelectorAll('.carrier').forEach((element) => {
-        element.classList.remove('hit');
-        element.classList.add('sunk');
+      computer.board.forEach((element) => {
+        if (element[3] === 'carrier') {
+          if (
+            !computerSquare[computer.board.indexOf(element)].classList.contains(
+              'sunk'
+            )
+          ) {
+            computerSquare[computer.board.indexOf(element)].classList.add(
+              'sunk'
+            );
+          }
+        }
       });
     case computer.ships.battleship.sunk():
-      document.querySelectorAll('.battleship').forEach((element) => {
-        element.classList.remove('hit');
-        element.classList.add('sunk');
+      computer.board.forEach((element) => {
+        if (element[3] === 'battleship') {
+          if (
+            !computerSquare[computer.board.indexOf(element)].classList.contains(
+              'sunk'
+            )
+          ) {
+            computerSquare[computer.board.indexOf(element)].classList.add(
+              'sunk'
+            );
+          }
+        }
       });
     case computer.ships.destroyer.sunk():
-      document.querySelectorAll('.destroyer').forEach((element) => {
-        element.classList.remove('hit');
-        element.classList.add('sunk');
+      computer.board.forEach((element) => {
+        if (element[3] === 'destroyer') {
+          if (
+            !computerSquare[computer.board.indexOf(element)].classList.contains(
+              'sunk'
+            )
+          ) {
+            computerSquare[computer.board.indexOf(element)].classList.add(
+              'sunk'
+            );
+          }
+        }
       });
     case computer.ships.submarine.sunk():
-      document.querySelectorAll('.submarine').forEach((element) => {
-        element.classList.remove('hit');
-        element.classList.add('sunk');
+      computer.board.forEach((element) => {
+        if (element[3] === 'submarine') {
+          if (
+            !computerSquare[computer.board.indexOf(element)].classList.contains(
+              'sunk'
+            )
+          ) {
+            computerSquare[computer.board.indexOf(element)].classList.add(
+              'sunk'
+            );
+          }
+        }
       });
     case computer.ships.patrolboat.sunk():
-      document.querySelectorAll('.patrolboat').forEach((element) => {
-        element.classList.remove('hit');
-        element.classList.add('sunk');
+      computer.board.forEach((element) => {
+        if (element[3] === 'patrolboat') {
+          if (
+            !computerSquare[computer.board.indexOf(element)].classList.contains(
+              'sunk'
+            )
+          ) {
+            computerSquare[computer.board.indexOf(element)].classList.add(
+              'sunk'
+            );
+          }
+        }
       });
       break;
   }

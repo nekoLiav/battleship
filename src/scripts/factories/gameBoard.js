@@ -1,64 +1,75 @@
 import ship from './ship';
 
-export default function gameBoard(name) {
-  const owner = name;
+export default function gameBoard() {
   const board = [];
   const ships = {
-    carrier: ship(5, 'carrier', owner),
-    battleship: ship(4, 'battleship', owner),
-    destroyer: ship(3, 'destroyer', owner),
-    submarine: ship(3, 'submarine', owner),
-    patrolboat: ship(2, 'patrolboat', owner),
+    carrier: ship(5, 'carrier'),
+    battleship: ship(4, 'battleship'),
+    destroyer: ship(3, 'destroyer'),
+    submarine: ship(3, 'submarine'),
+    patrolboat: ship(2, 'patrolboat'),
+  };
+  const placedShips = [];
+
+  const checkPlaced = () => {
+    if (
+      carrier.placed &&
+      battleship.placed &&
+      destroyer.placed &&
+      submarine.placed &&
+      patrolboat.placed
+    ) {
+      return true;
+    }
+    return false;
   };
 
   const validPlacements = (ship, direction, x, y, i) => {
     const valid = [];
-    let collisions;
     if (direction === 0) {
       if (x <= 10 - ship.length) {
         for (let x = 0; x < ship.length; x += 1) {
           if (board[i + x].length > 3) {
-            collisions += 1;
+            return 'overlap';
           }
           valid.push(i + x);
         }
         return valid;
       }
+      return 'oob';
     }
     if (direction === 1) {
       if (y <= 10 - ship.length) {
         for (let x = 0, y = 0; x < ship.length; x += 1, y += 9) {
           if (board[i + (x + y)].length > 3) {
-            collisions += 1;
+            return 'overlap';
           }
           valid.push(i + (x + y));
         }
         return valid;
       }
-    }
-    if (collisions > 0) {
-      console.log(collisions);
-      return 'overlap';
+      return 'oob';
     }
   };
 
-  const placeShip = (shipId, orientation, x, y) => {
+  const placeShip = (shipId, direction, x, y) => {
     let locationIndex = 0;
     for (let i = 0; i < board.length; i += 1) {
       if (board[i][0] === x && board[i][1] === y) {
         locationIndex = i;
       }
     }
-    if (orientation === 0) {
+    if (direction === 0) {
       for (let i = 0; i < shipId.length; i += 1) {
         board[locationIndex + i].push(shipId.type, i);
       }
     }
-    if (orientation === 1) {
+    if (direction === 1) {
       for (let i = 0, n = 0; i < shipId.length; i += 1, n += 10) {
         board[locationIndex + n].push(shipId.type, i);
       }
     }
+    placedShips.push(1);
   };
 
   const sunkShips = () => {
@@ -120,7 +131,9 @@ export default function gameBoard(name) {
 
   return {
     ships,
+    placedShips,
     board,
+    checkPlaced,
     validPlacements,
     placeShip,
     receiveAttack,

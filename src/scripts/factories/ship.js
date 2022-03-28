@@ -1,4 +1,4 @@
-export default function ship(length, type, owner) {
+export default function ship(length, type) {
   const hits = [];
 
   const hit = (i) => {
@@ -26,7 +26,6 @@ export default function ship(length, type, owner) {
   populate();
 
   return {
-    owner,
     type,
     length,
     hits,

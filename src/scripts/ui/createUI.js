@@ -1,4 +1,4 @@
-import playerAttack from '../game/playerAttack';
+import playerAttack from './playerAttack';
 import playAgain from './playAgain';
 import startGame from './startGame';
 import switchDirection from './switchDirection';

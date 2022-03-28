@@ -1,4 +1,4 @@
-import { player, computer } from '../game/players';
+import { player, computer } from '../helpers/players';
 
 export default function updateSunk() {
   const playerSquare = document.querySelectorAll('.player-square');

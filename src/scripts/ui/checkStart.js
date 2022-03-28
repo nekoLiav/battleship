@@ -1,4 +1,4 @@
-import { player } from '../game/players';
+import { player } from '../helpers/players';
 
 export default function checkStart() {
   if (player.placedShips.length === 5) {

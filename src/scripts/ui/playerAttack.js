@@ -1,7 +1,7 @@
-import { computer } from './players';
-import updateBoard from '../ui/updateBoard';
-import updateStatus from '../ui/updateStatus';
-import computerAttack from './computerAttack';
+import { computer } from '../helpers/players';
+import updateBoard from './updateBoard';
+import updateStatus from './updateStatus';
+import computerAttack from '../helpers/computerAttack';
 
 export default function playerAttack(e) {
   if (e.target.parentNode.id === 'computer-board') {

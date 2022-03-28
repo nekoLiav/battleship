@@ -1,4 +1,4 @@
-import { player, computer } from '../game/players';
+import { player, computer } from '../helpers/players';
 
 export default function checkEnd() {
   if (computer.sunkShips() === 5) {

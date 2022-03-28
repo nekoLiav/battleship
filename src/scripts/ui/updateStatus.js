@@ -1,4 +1,4 @@
-import { player, computer } from '../game/players';
+import { player, computer } from '../helpers/players';
 import checkEnd from './checkEnd';
 
 export default function updateStatus() {

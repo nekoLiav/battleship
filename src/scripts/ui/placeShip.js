@@ -1,4 +1,4 @@
-import { player } from '../game/players';
+import { player } from '../helpers/players';
 import checkStart from './checkStart';
 
 export default function placeShip(e) {

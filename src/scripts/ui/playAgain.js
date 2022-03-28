@@ -1,5 +1,5 @@
 import resetUI from './resetUI';
-import resetGame from '../game/resetGame';
+import resetGame from '../helpers/resetGame';
 
 export default function playAgain() {
   resetUI();

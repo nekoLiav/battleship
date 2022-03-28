@@ -1,4 +1,4 @@
-import placeComputerShips from '../game/placeComputerShips';
+import placeComputerShips from '../helpers/placeComputerShips';
 import updateStatus from './updateStatus';
 
 export default function startGame() {

@@ -1,16 +1,18 @@
 /* eslint-disable no-undef */
-import { player } from '../game/players';
+import { player } from '../helpers/players';
 
 test('ship hits array is equivalent in size to its length', () => {
   expect(player.ships.carrier.hits.length).toEqual(player.ships.carrier.length);
 });
 
-test('ship hits array responds as intended by hit function', () => {
+test('element of ship hits array flips to 1 according to hit function parameter', () => {
   player.ships.carrier.hit(2);
   expect(player.ships.carrier.hits).toEqual([0, 0, 1, 0, 0]);
 });
 
-test('ship sunk function returns false if ship hit', () => {
+test('ship sunk function returns false if ship is not hit in all array locations', () => {
+  player.ships.carrier.hit(0);
+  player.ships.carrier.hit(1);
   player.ships.carrier.hit(2);
   expect(player.ships.carrier.sunk()).toEqual(false);
 });

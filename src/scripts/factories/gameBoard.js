@@ -11,19 +11,6 @@ export default function gameBoard() {
   };
   const placedShips = [];
 
-  const checkPlaced = () => {
-    if (
-      carrier.placed &&
-      battleship.placed &&
-      destroyer.placed &&
-      submarine.placed &&
-      patrolboat.placed
-    ) {
-      return true;
-    }
-    return false;
-  };
-
   const validPlacements = (ship, direction, x, y, i) => {
     const valid = [];
     if (direction === 0) {
@@ -133,7 +120,6 @@ export default function gameBoard() {
     ships,
     placedShips,
     board,
-    checkPlaced,
     validPlacements,
     placeShip,
     receiveAttack,

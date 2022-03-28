@@ -24,6 +24,6 @@ export default function resetUI() {
     element.classList.remove('placed', 'sunk', 'hit', 'miss');
   });
   document.querySelectorAll('.computer-square').forEach((element) => {
-    element.classList.remove('hit', 'miss');
+    element.classList.remove('sunk', 'hit', 'miss');
   });
 }

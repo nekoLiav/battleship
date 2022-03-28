@@ -106,6 +106,7 @@ export default function gameBoard() {
 
   const clean = () => {
     board.splice(0);
+    placedShips.splice(0);
     populate();
     ships.carrier.clean();
     ships.battleship.clean();

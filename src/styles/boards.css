@@ -31,15 +31,15 @@
   margin-left: auto;
 }
 
+.computer-square:hover {
+  background-color: #efefef;
+}
+
 .computer-square {
   border: 1px solid #000f1a;
   box-sizing: border-box;
   height: 10%;
   width: 10%;
-}
-
-.computer-square:hover {
-  background-color: #ffffff;
 }
 
 #player-info-container {
@@ -73,11 +73,24 @@
 }
 
 .hit {
-  background-color: red !important;
+  background-color: red;
+}
+
+.computer-square.hit {
+  background-color: red;
+}
+
+.sunk {
+  background-color: red;
+  opacity: 0.5;
 }
 
 .miss {
-  background-color: #000f1a !important;
+  background-color: #000f1a;
+}
+
+.computer-square.miss {
+  background-color: #000f1a;
 }
 
 .valid {
@@ -85,7 +98,7 @@
 }
 
 .invalid {
-  background-color: red !important;
+  background-color: red;
   opacity: 1;
   cursor: not-allowed;
 }

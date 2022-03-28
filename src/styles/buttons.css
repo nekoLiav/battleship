@@ -10,6 +10,7 @@
   box-sizing: border-box;
   border: 0;
   padding: 0;
+  line-height: 20px;
 }
 
 #reset-button {
@@ -19,6 +20,7 @@
   box-sizing: border-box;
   border: 0;
   padding: 0;
+  line-height: 20px;
 }
 
 #direction-button {
@@ -28,6 +30,7 @@
   box-sizing: border-box;
   border: 0;
   padding: 0;
+  line-height: 20px;
 }
 
 #play-again-button {
@@ -36,4 +39,5 @@
   box-sizing: border-box;
   border: 0;
   padding: 0;
+  line-height: 20px;
 }

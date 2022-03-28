@@ -51,13 +51,13 @@
   box-sizing: border-box;
 }
 
-#patrol-boat {
+#patrolboat {
   display: flex;
   background-color: #efefef;
   box-sizing: border-box;
 }
 
-#ships .ship-selected {
+#ships .selected {
   background-color: #bdbdbd;
 }
 
@@ -65,31 +65,6 @@
   background-color: #bdbdbd;
 }
 
-.carrier {
-  background-color: #efefef;
-  border: 1px solid #000f1a;
-}
-
-.battleship {
-  background-color: #efefef;
-  border: 1px solid #000f1a;
-}
-
-.destroyer {
-  background-color: #efefef;
-  border: 1px solid #000f1a;
-}
-
-.submarine {
-  background-color: #efefef;
-  border: 1px solid #000f1a;
-}
-
-.patrol-boat {
-  background-color: #efefef;
-  border: 1px solid #000f1a;
-}
-
 .sunk {
-  background-color: #400000 !important;
+  opacity: 0.5 !important;
 }

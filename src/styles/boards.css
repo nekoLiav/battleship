@@ -63,6 +63,15 @@
   margin: 0;
 }
 
+.placing {
+  background-color: #efefef;
+  opacity: 0.5;
+}
+
+.placed {
+  background-color: #efefef;
+}
+
 .hit {
   background-color: red !important;
 }
@@ -77,6 +86,7 @@
 
 .invalid {
   background-color: red !important;
+  opacity: 1;
   cursor: not-allowed;
 }
 
@@ -91,4 +101,8 @@
   align-items: center;
   width: 500px;
   margin-left: auto;
+}
+
+.played {
+  background-color: #efefef;
 }

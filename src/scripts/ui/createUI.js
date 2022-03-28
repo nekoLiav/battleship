@@ -1,8 +1,8 @@
 import playerAttack from '../game/playerAttack';
-import handlePlace from './handlePlace';
 import playAgain from './playAgain';
 import startGame from './startGame';
 import switchDirection from './switchDirection';
+import placeShip from './placeShip';
 
 export default function createUI() {
   const content = document.createElement('div');
@@ -22,7 +22,7 @@ export default function createUI() {
   const battleship = document.createElement('div');
   const destroyer = document.createElement('div');
   const submarine = document.createElement('div');
-  const patrolBoat = document.createElement('div');
+  const patrolboat = document.createElement('div');
   const shipContainer = document.createElement('div');
   const ships = document.createElement('div');
   const buttons = document.createElement('div');
@@ -64,7 +64,7 @@ export default function createUI() {
   for (let n = 0; n < 2; n += 1) {
     const shipSquare = document.createElement('div');
     shipSquare.className = 'ship-square';
-    patrolBoat.append(shipSquare);
+    patrolboat.append(shipSquare);
   }
 
   for (let i = 0, x = 0, y = 0; i < 100; i += 1, x += 1) {
@@ -74,9 +74,9 @@ export default function createUI() {
     }
     const playerSquare = document.createElement('div');
     playerSquare.className = 'player-square';
-    playerSquare.addEventListener('mouseenter', handlePlace);
-    playerSquare.addEventListener('mouseleave', handlePlace);
-    playerSquare.addEventListener('click', handlePlace);
+    playerSquare.addEventListener('mouseenter', placeShip);
+    playerSquare.addEventListener('mouseleave', placeShip);
+    playerSquare.addEventListener('click', placeShip);
     playerSquare.dataset.i = i;
     playerSquare.dataset.x = x;
     playerSquare.dataset.y = y;
@@ -92,7 +92,7 @@ export default function createUI() {
   startButton.addEventListener('click', startGame);
   directionButton.addEventListener('click', switchDirection);
   playAgainButton.addEventListener('click', playAgain);
-  ships.addEventListener('click', handlePlace);
+  ships.addEventListener('click', placeShip);
   computerBoard.addEventListener('click', playerAttack);
 
   titlebar.id = 'title-bar';
@@ -137,10 +137,10 @@ export default function createUI() {
   destroyer.classList.add('ship', 'horizontal');
   submarine.id = 'submarine';
   submarine.classList.add('ship', 'horizontal');
-  patrolBoat.id = 'patrol-boat';
-  patrolBoat.classList.add('ship', 'horizontal');
+  patrolboat.id = 'patrolboat';
+  patrolboat.classList.add('ship', 'horizontal');
 
-  ships.append(carrier, battleship, destroyer, submarine, patrolBoat);
+  ships.append(carrier, battleship, destroyer, submarine, patrolboat);
   buttons.append(directionButton, startButton);
   shipContainer.append(ships, buttons);
   modal.append(modalHeader, modalText, playAgainButton);

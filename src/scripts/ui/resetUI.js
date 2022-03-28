@@ -10,7 +10,7 @@ export default function resetUI() {
   document.getElementById('battleship').style.display = 'flex';
   document.getElementById('destroyer').style.display = 'flex';
   document.getElementById('submarine').style.display = 'flex';
-  document.getElementById('patrol-boat').style.display = 'flex';
+  document.getElementById('patrolboat').style.display = 'flex';
   document.getElementById('player-status-text').textContent =
     'Awaiting ship placement...';
   document.getElementById('direction-button').textContent = 'Switch Direction';
@@ -21,16 +21,7 @@ export default function resetUI() {
     element.style.flexDirection = 'row';
   });
   document.querySelectorAll('.player-square').forEach((element) => {
-    element.classList.remove(
-      'placed',
-      'carrier',
-      'battleship',
-      'destroyer',
-      'submarine',
-      'patrol-boat',
-      'hit',
-      'miss'
-    );
+    element.classList.remove('placed', 'hit', 'miss');
   });
   document.querySelectorAll('.computer-square').forEach((element) => {
     element.classList.remove('hit', 'miss');

@@ -11,11 +11,41 @@ export default function gameBoard(name) {
     patrolboat: ship(2, 'patrolboat', owner),
   };
 
+  const validPlacements = (ship, direction, x, y, i) => {
+    const valid = [];
+    let collisions;
+    if (direction === 0) {
+      if (x <= 10 - ship.length) {
+        for (let x = 0; x < ship.length; x += 1) {
+          if (board[i + x].length > 3) {
+            collisions += 1;
+          }
+          valid.push(i + x);
+        }
+        return valid;
+      }
+    }
+    if (direction === 1) {
+      if (y <= 10 - ship.length) {
+        for (let x = 0, y = 0; x < ship.length; x += 1, y += 9) {
+          if (board[i + (x + y)].length > 3) {
+            collisions += 1;
+          }
+          valid.push(i + (x + y));
+        }
+        return valid;
+      }
+    }
+    if (collisions > 0) {
+      console.log(collisions);
+      return 'overlap';
+    }
+  };
+
   const placeShip = (shipId, orientation, x, y) => {
-    const locationXY = [x, y];
     let locationIndex = 0;
     for (let i = 0; i < board.length; i += 1) {
-      if (board[i][0] === locationXY[0] && board[i][1] === locationXY[1]) {
+      if (board[i][0] === x && board[i][1] === y) {
         locationIndex = i;
       }
     }
@@ -91,6 +121,7 @@ export default function gameBoard(name) {
   return {
     ships,
     board,
+    validPlacements,
     placeShip,
     receiveAttack,
     sunkShips,

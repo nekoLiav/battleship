@@ -23,7 +23,32 @@ export default function updateSunk() {
         element.classList.add('sunk');
       });
     case player.ships.patrolboat.sunk():
-      document.querySelectorAll('.patrol-boat').forEach((element) => {
+      document.querySelectorAll('.patrolboat').forEach((element) => {
+        element.classList.remove('hit');
+        element.classList.add('sunk');
+      });
+    case computer.ships.carrier.sunk():
+      document.querySelectorAll('.carrier').forEach((element) => {
+        element.classList.remove('hit');
+        element.classList.add('sunk');
+      });
+    case computer.ships.battleship.sunk():
+      document.querySelectorAll('.battleship').forEach((element) => {
+        element.classList.remove('hit');
+        element.classList.add('sunk');
+      });
+    case computer.ships.destroyer.sunk():
+      document.querySelectorAll('.destroyer').forEach((element) => {
+        element.classList.remove('hit');
+        element.classList.add('sunk');
+      });
+    case computer.ships.submarine.sunk():
+      document.querySelectorAll('.submarine').forEach((element) => {
+        element.classList.remove('hit');
+        element.classList.add('sunk');
+      });
+    case computer.ships.patrolboat.sunk():
+      document.querySelectorAll('.patrolboat').forEach((element) => {
         element.classList.remove('hit');
         element.classList.add('sunk');
       });

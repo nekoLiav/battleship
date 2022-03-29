@@ -65,7 +65,3 @@
 #ships .ship:hover {
   background-color: #bdbdbd;
 }
-
-.sunk {
-  opacity: 0.5 !important;
-}

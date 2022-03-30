@@ -1,0 +1,44 @@
+#player-info {
+  grid-column-start: 8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+}
+
+#player-name {
+  font-size: 2rem;
+  font-family: var(--font-with-fallbacks);
+  color: white;
+}
+
+#player-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-with-fallbacks);
+  color: white;
+}
+
+#computer-info {
+  grid-column-start: 14;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  margin-left: auto;
+}
+
+#computer-name {
+  font-size: 2rem;
+  font-family: var(--font-with-fallbacks);
+  color: white;
+}
+
+#computer-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-with-fallbacks);
+  color: white;
+}

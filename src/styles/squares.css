@@ -1,0 +1,42 @@
+.player-square {
+  border: var(--border-dark-blue);
+}
+
+.computer-square {
+  border: var(--border-dark-blue);
+}
+
+.computer-square:hover {
+  background-color: var(--less-than-white);
+}
+
+.placing {
+  background-color: var(--less-than-white);
+  opacity: 0.5;
+}
+
+.placed {
+  background-color: var(--less-than-white);
+}
+
+.invalid {
+  background-color: red;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.player-square.hit,
+.computer-square.hit {
+  background-color: red;
+}
+
+.player-square.sunk,
+.computer-square.sunk {
+  background-color: red;
+  opacity: 0.5;
+}
+
+.player-square.miss,
+.computer-square.miss {
+  background-color: var(--color-bkg-dark-blue);
+}

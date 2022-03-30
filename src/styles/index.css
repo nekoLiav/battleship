@@ -1,12 +1,13 @@
-* {
-  font-family: 'Bungee', Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-}
-
-body {
-  margin: 0 auto;
-  background-color: #032842;
-  color: white;
+:root {
+  --color-bkg-dark-blue: #000f1a;
+  --color-bkg-medium-blue: #032842;
+  --color-bkg-light-blue: #517a97;
+  --border-light-blue: 1px solid #517a97;
+  --border-dark-blue: 1px solid #000f1a;
+  --less-than-white: #f2f2f2;
+  --font-with-fallbacks: 'Bungee', Arial, Helvetica, sans-serif;
+  --button-hover: #bfbfbf;
+  --button-active: #b3b3b3;
 }
 
 #content {
@@ -15,9 +16,18 @@ body {
   align-items: center;
   height: 100%;
   width: 100%;
+  background-color: var(--color-bkg-medium-blue);
 }
 
 #main {
-  width: 1050px;
-  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#board-container {
+  display: grid;
+  grid-template-rows: repeat(12, 50px);
+  grid-template-columns: repeat(24, 50px);
+  background-color: var(--color-bkg-dark-blue);
 }

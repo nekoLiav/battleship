@@ -1,12 +1,13 @@
 import createUI from './scripts/ui/createUI';
+import './styles/meyer-reset.css';
 import './styles/index.css';
-import './styles/overlays.css';
-import './styles/titlebar.css';
+import './styles/header.css';
+import './styles/overlay.css';
 import './styles/boards.css';
 import './styles/buttons.css';
-import './styles/status.css';
+import './styles/info.css';
 import './styles/modal.css';
 import './styles/ships.css';
-import './styles/media-queries/media-1050w.css';
+import './styles/squares.css';
 
 createUI();

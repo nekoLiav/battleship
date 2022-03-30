@@ -6,16 +6,13 @@ import placeShip from './placeShip';
 
 export default function createUI() {
   const content = document.createElement('div');
-  const titlebar = document.createElement('div');
+  const header = document.createElement('div');
   const main = document.createElement('div');
-  const playerInfoContainer = document.createElement('div');
   const playerInfo = document.createElement('div');
   const computerInfo = document.createElement('div');
   const boardContainer = document.createElement('div');
   const playerBoard = document.createElement('div');
   const computerBoard = document.createElement('div');
-  const playerStatus = document.createElement('div');
-  const computerStatus = document.createElement('div');
   const modal = document.createElement('div');
   const overlay = document.createElement('div');
   const carrier = document.createElement('div');
@@ -29,11 +26,11 @@ export default function createUI() {
   const startButton = document.createElement('button');
   const directionButton = document.createElement('button');
   const playAgainButton = document.createElement('button');
-  const title = document.createElement('p');
-  const playerTitle = document.createElement('p');
-  const playerStatusText = document.createElement('p');
-  const computerTitle = document.createElement('p');
-  const computerStatusText = document.createElement('p');
+  const headerText = document.createElement('p');
+  const playerName = document.createElement('p');
+  const playerStatus = document.createElement('p');
+  const computerName = document.createElement('p');
+  const computerStatus = document.createElement('p');
   const modalHeader = document.createElement('p');
   const modalText = document.createElement('p');
 
@@ -95,23 +92,20 @@ export default function createUI() {
   ships.addEventListener('click', placeShip);
   computerBoard.addEventListener('click', playerAttack);
 
-  titlebar.id = 'title-bar';
-  title.id = 'title';
-  title.textContent = 'Battleship';
+  header.id = 'header';
+  headerText.id = 'header-text';
+  headerText.textContent = 'Battleship';
   content.id = 'content';
   main.id = 'main';
-  playerInfoContainer.id = 'player-info-container';
   playerInfo.id = 'player-info';
   computerInfo.id = 'computer-info';
-  playerTitle.id = 'player-title';
-  playerTitle.textContent = 'Player';
+  playerName.id = 'player-name';
+  playerName.textContent = 'Player';
   playerStatus.id = 'player-status';
-  playerStatusText.id = 'player-status-text';
-  playerStatusText.textContent = 'Awaiting ship placement...';
-  computerTitle.id = 'computer-title';
-  computerTitle.textContent = 'Computer';
+  playerStatus.textContent = 'Awaiting ship placement...';
+  computerName.id = 'computer-name';
+  computerName.textContent = 'Computer';
   computerStatus.id = 'computer-status';
-  computerStatusText.id = 'computer-status-text';
   boardContainer.id = 'board-container';
   shipContainer.id = 'ship-container';
   playerBoard.id = 'player-board';
@@ -140,19 +134,24 @@ export default function createUI() {
   patrolboat.id = 'patrolboat';
   patrolboat.classList.add('ship', 'horizontal');
 
-  ships.append(carrier, battleship, destroyer, submarine, patrolboat);
-  buttons.append(directionButton, startButton);
-  shipContainer.append(ships, buttons);
   modal.append(modalHeader, modalText, playAgainButton);
   overlay.append(modal);
-  boardContainer.append(shipContainer, playerBoard, computerBoard, overlay);
-  playerStatus.append(playerStatusText);
-  computerStatus.append(computerStatusText);
-  playerInfo.append(playerTitle, playerStatus);
-  computerInfo.append(computerTitle, computerStatus);
-  playerInfoContainer.append(playerInfo, computerInfo);
-  main.append(playerInfoContainer, boardContainer);
-  content.append(titlebar, main);
-  titlebar.append(title);
+  ships.append(carrier, battleship, destroyer, submarine, patrolboat);
+  shipContainer.append(ships);
+  buttons.append(directionButton, startButton);
+  playerInfo.append(playerName, playerStatus);
+  computerInfo.append(computerName, computerStatus);
+  boardContainer.append(
+    overlay,
+    shipContainer,
+    buttons,
+    playerInfo,
+    computerInfo,
+    playerBoard,
+    computerBoard
+  );
+  main.append(boardContainer);
+  header.append(headerText);
+  content.append(header, main);
   document.body.append(content);
 }

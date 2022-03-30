@@ -1,121 +1,32 @@
 #board-container {
-  display: flex;
-  background-color: #000f1a;
+  display: grid;
+  grid-template-rows: repeat(12, 50px);
+  grid-template-columns: repeat(24, 50px);
+  background-color: var(--color-bkg-dark-blue);
 }
 
 #player-board {
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #517a97;
-  border: 1px solid #517a97;
+  display: grid;
+  grid-row-start: 2;
+  grid-column-start: 8;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  background-color: var(--color-bkg-light-blue);
+  border: var(--border-light-blue);
   box-sizing: border-box;
   width: 500px;
   height: 500px;
-}
-
-.player-square {
-  border: 1px solid #000f1a;
-  box-sizing: border-box;
-  width: 10%;
-  height: 10%;
 }
 
 #computer-board {
   display: none;
-  flex-wrap: wrap;
-  background-color: #517a97;
-  border: 1px solid #517a97;
+  grid-row-start: 2;
+  grid-column-start: 14;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  background-color: var(--color-bkg-light-blue);
+  border: var(--border-light-blue);
   box-sizing: border-box;
   width: 500px;
   height: 500px;
-  margin-left: auto;
-}
-
-.computer-square:hover {
-  background-color: #efefef;
-}
-
-.computer-square {
-  border: 1px solid #000f1a;
-  box-sizing: border-box;
-  height: 10%;
-  width: 10%;
-}
-
-#player-info-container {
-  display: flex;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  background-color: #000f1a;
-}
-
-#player-title {
-  width: 200px;
-  font-size: 2rem;
-  margin: 0;
-}
-
-#computer-title {
-  width: 200px;
-  font-size: 2rem;
-  margin: 0;
-}
-
-.placing {
-  background-color: #efefef;
-  opacity: 0.5;
-}
-
-.placed {
-  background-color: #efefef;
-}
-
-.hit {
-  background-color: red;
-}
-
-.computer-square.hit {
-  background-color: red;
-}
-
-.sunk {
-  background-color: red;
-  opacity: 0.5;
-}
-
-.miss {
-  background-color: #000f1a;
-}
-
-.computer-square.miss {
-  background-color: #000f1a;
-}
-
-.valid {
-  background-color: green;
-}
-
-.invalid {
-  background-color: red;
-  opacity: 1;
-  cursor: not-allowed;
-}
-
-#player-info {
-  display: flex;
-  align-items: center;
-  width: 500px;
-}
-
-#computer-info {
-  display: none;
-  align-items: center;
-  width: 500px;
-  margin-left: auto;
-}
-
-.played {
-  background-color: #efefef;
 }

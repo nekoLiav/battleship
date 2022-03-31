@@ -1,6 +1,5 @@
 import SelfLogo from '../../images/HeartLogoNoBkg.svg';
 import OdinLogo from '../../images/OdinLogo.svg';
-import GitHubLogo from '../../images/GitHubLogo.svg';
 import playerAttack from './playerAttack';
 import playAgain from './playAgain';
 import startGame from './startGame';
@@ -37,12 +36,11 @@ export default function createUI() {
   const modalText = document.createElement('p');
   const playAgainButton = document.createElement('button');
   const footer = document.createElement('div');
-  const headerSelf = document.createElement('div');
-  const headerSelfText = document.createElement('p');
-  const headerSelfLogo = document.createElement('img');
-  const headerOther = document.createElement('div');
-  const headerOdinLogo = document.createElement('img');
-  const headerGitHubLogo = document.createElement('img');
+  const footerSelf = document.createElement('div');
+  const footerSelfText = document.createElement('p');
+  const footerSelfLogo = document.createElement('img');
+  const footerOther = document.createElement('div');
+  const footerOdinLogo = document.createElement('img');
 
   for (let n = 0; n < 5; n += 1) {
     const shipSquare = document.createElement('div');
@@ -80,10 +78,9 @@ export default function createUI() {
       y += 1;
     }
     const playerSquare = document.createElement('div');
-    playerSquare.className = 'player-square';
     playerSquare.addEventListener('mouseenter', placeShip);
     playerSquare.addEventListener('mouseleave', placeShip);
-    playerSquare.addEventListener('click', placeShip);
+    playerSquare.className = 'player-square';
     playerSquare.dataset.i = i;
     playerSquare.dataset.x = x;
     playerSquare.dataset.y = y;
@@ -100,6 +97,7 @@ export default function createUI() {
   directionButton.addEventListener('click', switchDirection);
   playAgainButton.addEventListener('click', playAgain);
   ships.addEventListener('click', placeShip);
+  playerBoard.addEventListener('click', placeShip);
   computerBoard.addEventListener('click', playerAttack);
 
   header.id = 'header';
@@ -144,16 +142,14 @@ export default function createUI() {
   patrolboat.id = 'patrolboat';
   patrolboat.classList.add('ship', 'horizontal');
   footer.id = 'footer';
-  headerSelf.id = 'header-self';
-  headerSelfText.id = 'header-self-text';
-  headerSelfText.textContent = 'Created by Liav';
-  headerSelfLogo.id = 'header-self-logo';
-  headerSelfLogo.src = SelfLogo;
-  headerOdinLogo.src = OdinLogo;
-  headerOdinLogo.id = 'header-odin-logo';
-  headerGitHubLogo.src = GitHubLogo;
-  headerGitHubLogo.id = 'header-github-logo';
-  headerOther.id = 'header-other';
+  footerSelf.id = 'footer-self';
+  footerSelfLogo.id = 'footer-self-logo';
+  footerSelfLogo.src = SelfLogo;
+  footerSelfText.id = 'footer-self-text';
+  footerSelfText.textContent = 'Created by Liav';
+  footerOdinLogo.src = OdinLogo;
+  footerOdinLogo.id = 'footer-odin-logo';
+  footerOther.id = 'footer-other';
 
   modal.append(modalHeader, modalText, playAgainButton);
   overlay.append(modal);
@@ -171,10 +167,11 @@ export default function createUI() {
     playerBoard,
     computerBoard
   );
-  headerSelf.append(headerSelfLogo, headerSelfText);
-  headerOther.append(headerGitHubLogo, headerOdinLogo);
+  footerSelf.append(footerSelfLogo, footerSelfText);
+  footerOther.append(footerOdinLogo);
+  footer.append(footerSelf, footerOther);
   main.append(boardContainer);
-  header.append(headerSelf, headerText, headerOther);
+  header.append(headerText);
   content.append(header, main, footer);
   document.body.append(content);
 }

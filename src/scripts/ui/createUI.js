@@ -7,32 +7,33 @@ import placeShip from './placeShip';
 export default function createUI() {
   const content = document.createElement('div');
   const header = document.createElement('div');
+  const headerText = document.createElement('p');
   const main = document.createElement('div');
   const playerInfo = document.createElement('div');
+  const playerName = document.createElement('p');
+  const playerStatus = document.createElement('p');
   const computerInfo = document.createElement('div');
+  const computerName = document.createElement('p');
+  const computerStatus = document.createElement('p');
   const boardContainer = document.createElement('div');
-  const playerBoard = document.createElement('div');
-  const computerBoard = document.createElement('div');
-  const modal = document.createElement('div');
-  const overlay = document.createElement('div');
+  const shipContainer = document.createElement('div');
+  const ships = document.createElement('div');
   const carrier = document.createElement('div');
   const battleship = document.createElement('div');
   const destroyer = document.createElement('div');
   const submarine = document.createElement('div');
   const patrolboat = document.createElement('div');
-  const shipContainer = document.createElement('div');
-  const ships = document.createElement('div');
+  const playerBoard = document.createElement('div');
+  const computerBoard = document.createElement('div');
   const buttons = document.createElement('div');
   const startButton = document.createElement('button');
   const directionButton = document.createElement('button');
-  const playAgainButton = document.createElement('button');
-  const headerText = document.createElement('p');
-  const playerName = document.createElement('p');
-  const playerStatus = document.createElement('p');
-  const computerName = document.createElement('p');
-  const computerStatus = document.createElement('p');
+  const overlay = document.createElement('div');
+  const modal = document.createElement('div');
   const modalHeader = document.createElement('p');
   const modalText = document.createElement('p');
+  const playAgainButton = document.createElement('button');
+  const footer = document.createElement('div');
 
   for (let n = 0; n < 5; n += 1) {
     const shipSquare = document.createElement('div');
@@ -133,6 +134,7 @@ export default function createUI() {
   submarine.classList.add('ship', 'horizontal');
   patrolboat.id = 'patrolboat';
   patrolboat.classList.add('ship', 'horizontal');
+  footer.id = 'footer';
 
   modal.append(modalHeader, modalText, playAgainButton);
   overlay.append(modal);
@@ -152,6 +154,6 @@ export default function createUI() {
   );
   main.append(boardContainer);
   header.append(headerText);
-  content.append(header, main);
+  content.append(header, main, footer);
   document.body.append(content);
 }

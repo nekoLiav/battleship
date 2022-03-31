@@ -1,0 +1,6 @@
+#footer {
+  grid-column-start: 1;
+  grid-column-end: 11;
+  grid-row-start: 10;
+  background-color: var(--color-bkg-dark-blue);
+}

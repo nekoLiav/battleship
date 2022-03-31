@@ -1,6 +1,36 @@
 #footer {
   grid-column-start: 1;
   grid-column-end: 12;
-  grid-row-start: 10;
+  grid-row-start: 11;
+  grid-row-end: 12;
+  display: flex;
+  justify-content: space-between;
   background-color: var(--color-bkg-dark-blue);
+}
+
+#footer-self {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+
+#footer-self-text {
+  font-family: var(--Bungee-font-with-fallbacks);
+  color: white;
+}
+
+#footer-self-logo {
+  align-self: center;
+  height: 100%;
+}
+
+#footer-other {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+#footer-odin-logo {
+  height: 100%;
 }

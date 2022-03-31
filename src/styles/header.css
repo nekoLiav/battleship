@@ -8,41 +8,10 @@
   background-color: var(--color-bkg-dark-blue);
 }
 
-#header-self {
-  display: flex;
-  width: 100px;
-  align-items: flex-end;
-}
-
-#header-self-text {
-  font-family: var(--Bungee-font-with-fallbacks);
-  color: white;
-}
-
-#header-self-logo {
-  max-width: 50px;
-  max-height: 50px;
-}
-
 #header-text {
   font-size: 4rem;
   flex-grow: 2;
   text-align: center;
   font-family: var(--Bungee-font-with-fallbacks);
   color: white;
-}
-
-#header-other {
-  display: flex;
-  justify-content: space-between;
-  width: 100px;
-}
-
-#header-github-logo {
-  width: 50px;
-  height: 50px;
-}
-
-#header-odin-logo {
-  max-height: 50px;
 }

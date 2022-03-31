@@ -7,7 +7,7 @@
 
 <h3>To Do:</h3>
 1. Add basic how-to-play information to the game interface</br>
-2. Improve mobile support by adding additional media queries</br>
+2. Improve mobile screen size support</br>
 3. Improve AI to more intelligently attack the player's board</br>
 4. Improve AI ship placement to result in more difficult patterns to guess
 

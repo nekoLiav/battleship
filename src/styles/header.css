@@ -1,14 +1,48 @@
 #header {
   grid-column-start: 1;
-  grid-column-end: 11;
+  grid-column-end: 12;
   grid-row-start: 1;
-  grid-row-end: 3;
-  text-align: center;
+  grid-row-end: 2;
+  display: flex;
+  align-items: center;
   background-color: var(--color-bkg-dark-blue);
 }
 
-#header-text {
-  font-size: 3rem;
-  font-family: var(--font-with-fallbacks);
+#header-self {
+  display: flex;
+  width: 100px;
+  align-items: flex-end;
+}
+
+#header-self-text {
+  font-family: var(--Bungee-font-with-fallbacks);
   color: white;
+}
+
+#header-self-logo {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+#header-text {
+  font-size: 4rem;
+  flex-grow: 2;
+  text-align: center;
+  font-family: var(--Bungee-font-with-fallbacks);
+  color: white;
+}
+
+#header-other {
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+}
+
+#header-github-logo {
+  width: 50px;
+  height: 50px;
+}
+
+#header-odin-logo {
+  max-height: 50px;
 }

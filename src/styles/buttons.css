@@ -12,7 +12,7 @@
   text-align: center;
   line-height: 20px;
   font-size: 1rem;
-  font-family: var(--font-with-fallbacks);
+  font-family: var(--Bungee-font-with-fallbacks);
 }
 
 #reset-button {
@@ -22,7 +22,7 @@
   text-align: center;
   line-height: 20px;
   font-size: 1rem;
-  font-family: var(--font-with-fallbacks);
+  font-family: var(--Bungee-font-with-fallbacks);
 }
 
 #direction-button {
@@ -31,5 +31,5 @@
   text-align: center;
   line-height: 20px;
   font-size: 1rem;
-  font-family: var(--font-with-fallbacks);
+  font-family: var(--Bungee-font-with-fallbacks);
 }

@@ -1,7 +1,6 @@
 #main {
-  grid-column-start: 5;
-  grid-row-start: 4;
+  grid-column-start: 6;
+  grid-row-start: 3;
   display: flex;
   justify-content: center;
-  width: 100%;
 }

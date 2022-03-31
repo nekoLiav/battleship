@@ -8,25 +8,25 @@
 #player-board {
   display: grid;
   grid-row-start: 2;
+  grid-row-end: 12;
   grid-column-start: 8;
+  grid-column-end: 18;
   grid-template-rows: repeat(10, 1fr);
   grid-template-columns: repeat(10, 1fr);
   background-color: var(--color-bkg-light-blue);
   border: var(--border-light-blue);
   box-sizing: border-box;
-  width: 500px;
-  height: 500px;
 }
 
 #computer-board {
   display: none;
   grid-row-start: 2;
+  grid-row-end: 12;
   grid-column-start: 14;
+  grid-column-end: 24;
   grid-template-rows: repeat(10, 1fr);
   grid-template-columns: repeat(10, 1fr);
   background-color: var(--color-bkg-light-blue);
   border: var(--border-light-blue);
   box-sizing: border-box;
-  width: 500px;
-  height: 500px;
 }

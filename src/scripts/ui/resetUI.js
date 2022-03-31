@@ -2,6 +2,8 @@ export default function resetUI() {
   document.getElementById('start-button').style.display = 'none';
   document.getElementById('player-board').style.gridColumnStart = '8';
   document.getElementById('player-info').style.gridColumnStart = '8';
+  document.getElementById('player-board').style.gridColumnEnd = '18';
+  document.getElementById('player-info').style.gridColumnEnd = '18';
   document.getElementById('computer-info').style.display = 'none';
   document.getElementById('computer-board').style.display = 'none';
   document.getElementById('overlay').style.display = 'none';

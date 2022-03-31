@@ -8,7 +8,7 @@
 
 #player-name {
   font-size: 2rem;
-  font-family: var(--font-with-fallbacks);
+  font-family: var(--Bungee-font-with-fallbacks);
   color: white;
 }
 
@@ -16,7 +16,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: var(--font-with-fallbacks);
+  font-family: var(--Bungee-font-with-fallbacks);
   color: white;
 }
 
@@ -31,7 +31,7 @@
 
 #computer-name {
   font-size: 2rem;
-  font-family: var(--font-with-fallbacks);
+  font-family: var(--Bungee-font-with-fallbacks);
   color: white;
 }
 
@@ -39,6 +39,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: var(--font-with-fallbacks);
+  font-family: var(--Bungee-font-with-fallbacks);
   color: white;
 }

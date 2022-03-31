@@ -5,7 +5,7 @@
   --border-light-blue: 1px solid #517a97;
   --border-dark-blue: 1px solid #000f1a;
   --less-than-white: #f2f2f2;
-  --font-with-fallbacks: 'Bungee', Arial, Helvetica, sans-serif;
+  --Bungee-font-with-fallbacks: 'Bungee', Arial, Helvetica, sans-serif;
   --button-hover: #bfbfbf;
   --button-active: #b3b3b3;
 }

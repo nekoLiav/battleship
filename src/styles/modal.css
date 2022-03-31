@@ -4,7 +4,7 @@
   z-index: 1;
   background-color: var(--color-bkg-dark-blue);
   color: white;
-  font-family: var(--font-with-fallbacks);
+  font-family: var(--Bungee-font-with-fallbacks);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,5 +19,5 @@
   text-align: center;
   line-height: 20px;
   font-size: 1rem;
-  font-family: var(--font-with-fallbacks);
+  font-family: var(--Bungee-font-with-fallbacks);
 }

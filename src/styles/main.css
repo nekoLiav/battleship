@@ -1,6 +1,5 @@
 #main {
-  grid-column-start: 6;
-  grid-row-start: 3;
   display: flex;
   justify-content: center;
+  margin-top: 64px;
 }

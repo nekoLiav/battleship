@@ -9,3 +9,7 @@
   --button-hover: #bfbfbf;
   --button-active: #b3b3b3;
 }
+
+body {
+  background-color: var(--color-bkg-medium-blue);
+}

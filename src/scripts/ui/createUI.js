@@ -40,7 +40,8 @@ export default function createUI() {
   const footerSelfText = document.createElement('p');
   const footerSelfLogo = document.createElement('img');
   const footerOther = document.createElement('div');
-  const footerOdinLogo = document.createElement('img');
+  const footerOdinLogoUrl = document.createElement('a');
+  const footerOdinLogoImg = document.createElement('img');
 
   for (let n = 0; n < 5; n += 1) {
     const shipSquare = document.createElement('div');
@@ -147,8 +148,8 @@ export default function createUI() {
   footerSelfLogo.src = SelfLogo;
   footerSelfText.id = 'footer-self-text';
   footerSelfText.textContent = 'Created by Liav';
-  footerOdinLogo.src = OdinLogo;
-  footerOdinLogo.id = 'footer-odin-logo';
+  footerOdinLogoImg.src = OdinLogo;
+  footerOdinLogoUrl.href = 'https://www.theodinproject.com/';
   footerOther.id = 'footer-other';
 
   modal.append(modalHeader, modalText, playAgainButton);
@@ -168,7 +169,8 @@ export default function createUI() {
     computerBoard
   );
   footerSelf.append(footerSelfLogo, footerSelfText);
-  footerOther.append(footerOdinLogo);
+  footerOdinLogoUrl.append(footerOdinLogoImg);
+  footerOther.append(footerOdinLogoUrl);
   footer.append(footerSelf, footerOther);
   main.append(boardContainer);
   header.append(headerText);

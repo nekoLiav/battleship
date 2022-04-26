@@ -1,4 +1,4 @@
-# Battleship
+# battleship
 
 [LIVE DEMO](https://nekoliav.github.io/Battleship/)
 

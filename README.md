@@ -1,6 +1,6 @@
 # battleship
 
-[LIVE DEMO](https://nekoliav.github.io/Battleship/)
+[LIVE DEMO](https://nekoliav.github.io/battleship/)
 
 <h3>Project Details:</h3>
 <p>This project is a part of the Full Stack JavaScript path of The Odin Project's curriculum. The objective of this project was to use TDD (Test Driven Development) in the process of its creation. In this instance, Jest was used as a testing suite for its simplicity of use and ability to run many tests very efficiently on every save.</p>
